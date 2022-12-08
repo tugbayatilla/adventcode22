@@ -95,22 +95,16 @@ public class AdventDay2
         opponentSelection = ConvertToCommonDefinitions(opponentSelection);
         mySelection = ConvertToCommonDefinitions(mySelection);
 
+        if (opponentSelection == mySelection)
+        {
+            return CalculateDrawPoints(opponentSelection);
+        }
+
 
         var won = (opponentSelection == Rock && mySelection == Paper)
                   || (opponentSelection == Paper && mySelection == Scissors)
                   || (opponentSelection == Scissors && mySelection == Rock);
 
-
-        if (opponentSelection == mySelection)
-        {
-            return opponentSelection switch
-            {
-                Rock => RockPoint * 2,
-                Paper => PaperPoint * 2,
-                Scissors => ScissorsPoint * 2,
-                _ => 0
-            };
-        }
 
         result += mySelection switch
         {
@@ -123,6 +117,17 @@ public class AdventDay2
         if (won) result += WinPoint;
 
         return result;
+    }
+
+    private int CalculateDrawPoints(string opponentSelection)
+    {
+        return opponentSelection switch
+        {
+            Rock => RockPoint * 2,
+            Paper => PaperPoint * 2,
+            Scissors => ScissorsPoint * 2,
+            _ => 0
+        };
     }
 
     private string ConvertToCommonDefinitions(string selection) =>
