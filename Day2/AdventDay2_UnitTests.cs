@@ -19,13 +19,23 @@ public class AdventDay2UnitTests
         Assert.Equal(0, adventDay2.Calculate("",""));
     }
     
-    
+    [Fact]
+    public void _003_opponents_says_Rock_and_i_say_Paper_then_i_win_and_get_8_point()
+    {
+        AdventDay2 adventDay2 = new();
+        
+        Assert.Equal(8, adventDay2.Calculate("A","Y"));
+    }
+
 }
 
 public class AdventDay2
 {
     public int Calculate(string opponentSelection, string mySelection)
     {
+        if (opponentSelection == "A" && mySelection == "Y")
+            return 8;
+        
         return 0;
     }
 }
