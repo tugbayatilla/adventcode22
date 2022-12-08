@@ -11,9 +11,21 @@ public class AdventDay2UnitTests
         Assert.NotNull(adventDay2);
     }
     
+    [Fact]
+    public void _002_opponents_and_i_say_nothing_then_i_get_zero_point()
+    {
+        AdventDay2 adventDay2 = new();
+        
+        Assert.Equal(0, adventDay2.Calculate("",""));
+    }
+    
     
 }
 
 public class AdventDay2
 {
+    public int Calculate(string opponentSelection, string mySelection)
+    {
+        return 0;
+    }
 }
