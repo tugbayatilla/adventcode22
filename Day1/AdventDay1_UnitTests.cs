@@ -2,15 +2,13 @@ namespace AdventOfCode22;
 
 public class AdventDay1UnitTests
 {
-    private readonly AdventDay1 _adventDay1 = new();
+    private readonly AdventCode _adventDay1 = new();
     private const string FileName = "Day1/AdventDay1_TestData.data";
 
     [Fact]
     public void Day_Exist()
     {
-        AdventDay1 adventDay1 = new();
-        
-        Assert.NotNull(adventDay1);
+        Assert.NotNull(_adventDay1);
     }
     
     [Fact]
@@ -118,53 +116,26 @@ public class AdventDay1UnitTests
         Assert.Equal(700, _adventDay1.GetMostCalories());
     }
 
-}
-
-public class AdventDay1
-{
-    private readonly Dictionary<int, List<int>> _inventory = new();
-
-    public int GetMostCalories()
+    [Fact]
+    public void Get_top_3_most_calories()
     {
-        if (_inventory.Count == 0) return 0;
-        
-        return _inventory.Values.Select(p=>p.Sum()).Max();
-    }
+        string fileContent = 
+            @"100
+              200
 
-    public void AddCalories(int calories, int indexOfElf)
-    {
-        if (!_inventory.ContainsKey(indexOfElf))
-        {
-            _inventory.Add(indexOfElf, new List<int>());
-        }
-        _inventory[indexOfElf].Add(calories);
-    }
+              300
+              400
 
-    public string ReadDataFromFile(string fileName)
-    {
-        if (string.IsNullOrEmpty(fileName)) return "";
-        
-        var directory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-        var path = System.IO.Path.Combine(directory, fileName);
+              500
+              600
 
-        if (!File.Exists(path)) return "";
-        
-        return File.ReadAllText(path);
-    }
+              700
+              800";
 
-    public void FillInventory(string fileContent)
-    {
-        var emptyLine = Environment.NewLine + Environment.NewLine;
-        var elfInventories = fileContent.Split(emptyLine);
-        for (var indexOfElf = 0; indexOfElf < elfInventories.Length; indexOfElf++)
-        {
-            var elfInventory = elfInventories[indexOfElf];
-            var items = elfInventory.Split(Environment.NewLine);
-            
-            foreach (var item in items)
-            {
-                AddCalories(int.Parse(item), indexOfElf);
-            }
-        }
+        _adventDay1.FillInventory(fileContent);
+
+        int sumOfTop3Calories = _adventDay1.GetElvesAndCaloriesOrderedDesc().Take(3).Sum(p=>p.TotalCalories);
+        Assert.Equal(3300, sumOfTop3Calories);
     }
+    
 }
