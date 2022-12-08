@@ -78,6 +78,16 @@ public class UnitTest1
 
         Assert.Equal("100", fileContent);
     }
+    
+    [Fact]
+    public void Invalid_filePath_returns_zero_most_calories()
+    {
+        AdventDay1 adventDay1 = new();
+        string fileName = "xyz";
+        string fileContent = adventDay1.ReadDataFromFile(fileName);
+
+        Assert.Equal("", fileContent);
+    }
 
 }
 
@@ -108,6 +118,8 @@ public class AdventDay1
         var directory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
         var path = System.IO.Path.Combine(directory, fileName);
 
+        if (!File.Exists(path)) return "";
+        
         return File.ReadAllText(path);
     }
 }
