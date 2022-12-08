@@ -4,6 +4,13 @@ namespace AdventOfCode22.Day2;
 
 public class AdventDay2UnitTests
 {
+    private const string OppRock = "A";
+    private const string MePaper = "Y";
+    private const string OppPaper = "B";
+    private const string MeRock = "X";
+    private const string OppScissors = "C";
+    private const string MeScissors = "Z";
+
     [Fact]
     public void _001_Day2_exist()
     {
@@ -25,7 +32,7 @@ public class AdventDay2UnitTests
     {
         AdventDay2 adventDay2 = new();
 
-        Assert.Equal(8, adventDay2.Calculate("A", "Y"));
+        Assert.Equal(8, adventDay2.Calculate(OppRock, MePaper));
     }
 
     [Fact]
@@ -33,7 +40,7 @@ public class AdventDay2UnitTests
     {
         AdventDay2 adventDay2 = new();
 
-        Assert.Equal(1, adventDay2.Calculate("B", "X"));
+        Assert.Equal(1, adventDay2.Calculate(OppPaper, MeRock));
     }
 
     [Fact]
@@ -41,7 +48,7 @@ public class AdventDay2UnitTests
     {
         AdventDay2 adventDay2 = new();
 
-        Assert.Equal(6, adventDay2.Calculate("C", "Z"));
+        Assert.Equal(6, adventDay2.Calculate(OppScissors, MeScissors));
     }
 }
 
