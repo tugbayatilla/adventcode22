@@ -102,6 +102,21 @@ public class UnitTest1
         
         Assert.Equal(300, _adventDay1.GetMostCalories());
     }
+    
+    [Fact]
+    public void File_contains_multiple_entries_for_2_Elves()
+    {
+        string fileContent = 
+            @"100
+              200
+
+              300
+              400";
+
+        _adventDay1.FillInventory(fileContent);
+        
+        Assert.Equal(700, _adventDay1.GetMostCalories());
+    }
 
 }
 
@@ -139,11 +154,17 @@ public class AdventDay1
 
     public void FillInventory(string fileContent)
     {
-        var split = fileContent.Split(System.Environment.NewLine);
-        foreach (var s in split)
+        var emptyLine = Environment.NewLine + Environment.NewLine;
+        var elfInventories = fileContent.Split(emptyLine);
+        for (var indexOfElf = 0; indexOfElf < elfInventories.Length; indexOfElf++)
         {
-            AddCalories(int.Parse(s), 0);    
+            var elfInventory = elfInventories[indexOfElf];
+            var items = elfInventory.Split(Environment.NewLine);
+            
+            foreach (var item in items)
+            {
+                AddCalories(int.Parse(item), indexOfElf);
+            }
         }
-        
     }
 }
