@@ -1,9 +1,9 @@
 namespace AdventOfCode22;
 
-public class UnitTest1
+public class AdventDay1UnitTests
 {
     private readonly AdventDay1 _adventDay1 = new();
-    private const string FileName = "adventDay1_testData.data";
+    private const string FileName = "Day1/AdventDay1_TestData.data";
 
     [Fact]
     public void Day_Exist()

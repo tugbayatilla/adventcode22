@@ -22,7 +22,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="adventDay1_testData.data">
+      <None Update="Day1\AdventDay1.data">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Day1\AdventDay1_TestData.data">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
     </ItemGroup>
