@@ -50,6 +50,17 @@ public class AdventDay2UnitTests
 
         Assert.Equal(6, adventDay2.Calculate(OppScissors, MeScissors));
     }
+    
+    [Theory]
+    [InlineData(OppScissors, MeScissors, 6)]
+    [InlineData(OppPaper, MePaper, 4)]
+    [InlineData(OppRock, MeRock, 2)]
+    public void _006_Draw_Situations(string opp, string me, int expectedPoint)
+    {
+        AdventDay2 adventDay2 = new();
+
+        Assert.Equal(expectedPoint, adventDay2.Calculate(opp, me));
+    }
 }
 
 public class AdventDay2
@@ -95,9 +106,15 @@ public class AdventDay2
             return RockPoint;
         }
 
-        if (opponentSelection == Scissors && mySelection == Scissors)
+        if (opponentSelection == mySelection)
         {
-            return ScissorsPoint + ScissorsPoint;
+            return opponentSelection switch
+            {
+                Rock => RockPoint * 2,
+                Paper => PaperPoint * 2,
+                Scissors => ScissorsPoint * 2,
+                _ => 0
+            };
         }
 
         if (won) result += WinPoint;
