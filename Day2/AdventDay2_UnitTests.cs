@@ -92,8 +92,6 @@ public class AdventDay2
 
     public int Calculate(string opponentSelection, string mySelection)
     {
-        var result = 0;
-
         opponentSelection = ConvertToCommonDefinitions(opponentSelection);
         mySelection = ConvertToCommonDefinitions(mySelection);
 
@@ -101,20 +99,18 @@ public class AdventDay2
         {
             return CalculateDrawPoints(opponentSelection);
         }
-        
-        result = CalculateWinPoints(opponentSelection, mySelection, result);
 
-        return result;
+        return CalculateWinPoints(opponentSelection, mySelection);
     }
 
-    private int CalculateWinPoints(string opponentSelection, string mySelection, int result)
+    private int CalculateWinPoints(string opponentSelection, string mySelection)
     {
         var won = (opponentSelection == Rock && mySelection == Paper)
                   || (opponentSelection == Paper && mySelection == Scissors)
                   || (opponentSelection == Scissors && mySelection == Rock);
 
 
-        result += mySelection switch
+        var result = mySelection switch
         {
             Rock => RockPoint,
             Paper => PaperPoint,
