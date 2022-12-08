@@ -28,6 +28,9 @@
       <None Update="Day1\AdventDay1_TestData.data">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
+      <None Update="Day2\AdventDay2.data">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>

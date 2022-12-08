@@ -1,5 +1,3 @@
-using System.Diagnostics;
-
 namespace AdventOfCode22.Day2;
 
 public class AdventDay2UnitTests
@@ -76,6 +74,24 @@ public class AdventDay2UnitTests
 
         Assert.Equal(expectedPoint, adventDay2.Calculate(opp, me));
     }
+    
+    [Fact]
+    public void _007_read_data_from_file()
+    {
+        AdventDay2 adventDay2 = new();
+
+        Assert.NotEmpty(adventDay2.ReadDataFile("Day2/AdventDay2.data"));
+    }
+    
+    [Fact]
+    public void _008_play()
+    {
+        AdventDay2 adventDay2 = new();
+        var data = new string[]{ "A Y", "B X", "C Z" };
+
+        Assert.Equal(15, adventDay2.play(data));
+    }
+
 
 }
 
@@ -141,4 +157,24 @@ public class AdventDay2
             "C" or "Z" => Scissors,
             _ => ""
         };
+
+    public IEnumerable<string> ReadDataFile(string fileName)
+    {
+        var directory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+        var path = System.IO.Path.Combine(directory, fileName);
+        
+        return File.ReadAllText(path).Split(Environment.NewLine);
+    }
+
+    public int play(string[] data)
+    {
+        var result = 0;
+        for (int i = 0; i < data.Length; i++)
+        {
+            var selections = data[i].Split(" ");
+            result += Calculate(selections[0], selections[1]);
+        }
+
+        return result;
+    }
 }
