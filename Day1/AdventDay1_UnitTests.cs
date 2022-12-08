@@ -6,19 +6,19 @@ public class AdventDay1UnitTests
     private const string FileName = "Day1/AdventDay1_TestData.data";
 
     [Fact]
-    public void Day_Exist()
+    public void _001_Day_Exist()
     {
         Assert.NotNull(_adventDay1);
     }
     
     [Fact]
-    public void Return_MostCalories_Exist()
+    public void _002_Return_MostCalories_Exist()
     {
         Assert.Equal(0, _adventDay1.GetMostCalories());
     }
     
     [Fact]
-    public void Add_Calories_To_An_Elf_returns_the_calories()
+    public void _003_Add_Calories_To_An_Elf_returns_the_calories()
     {
         _adventDay1.AddCalories(100, 0);
         
@@ -26,7 +26,7 @@ public class AdventDay1UnitTests
     }
     
     [Fact]
-    public void Add_Calories_To_A_specific_Elf_returns_the_calories()
+    public void _004_Add_Calories_To_A_specific_Elf_returns_the_calories()
     {
         _adventDay1.AddCalories(100, 1);
         
@@ -34,7 +34,7 @@ public class AdventDay1UnitTests
     }
     
     [Fact]
-    public void Add_Calories_for_2_Elves_returns_most_calories()
+    public void _005_Add_Calories_for_2_Elves_returns_most_calories()
     {
         _adventDay1.AddCalories(100, 0);
         _adventDay1.AddCalories(200, 1);
@@ -43,7 +43,7 @@ public class AdventDay1UnitTests
     }
     
     [Fact]
-    public void Add_Calories_for_2_Elves_multiple_calories_returns_most_calories()
+    public void _006_Add_Calories_for_2_Elves_multiple_calories_returns_most_calories()
     {
         _adventDay1.AddCalories(100, 0);
         _adventDay1.AddCalories(200, 0);
@@ -55,7 +55,7 @@ public class AdventDay1UnitTests
     }
     
     [Fact]
-    public void Empty_filePath_returns_zero_most_calories()
+    public void _007_Empty_filePath_returns_zero_most_calories()
     {
         string fileName = "";
         string fileContent = _adventDay1.ReadDataFromFile(fileName);
@@ -64,7 +64,7 @@ public class AdventDay1UnitTests
     }
 
     [Fact]
-    public void Valid_file_with_1_record_returns_100_as_most_calories()
+    public void _008_Valid_file_with_1_record_returns_100_as_most_calories()
     {
         string fileContent = _adventDay1.ReadDataFromFile(FileName);
 
@@ -72,7 +72,7 @@ public class AdventDay1UnitTests
     }
     
     [Fact]
-    public void Invalid_fileName_returns_zero_most_calories()
+    public void _009_Invalid_fileName_returns_zero_most_calories()
     {
         string fileContent = _adventDay1.ReadDataFromFile("xyz");
 
@@ -80,7 +80,7 @@ public class AdventDay1UnitTests
     }
     
     [Fact]
-    public void Use_filecontent_as_data_for_inventory()
+    public void _010_Use_filecontent_as_data_for_inventory()
     {
         string fileContent = _adventDay1.ReadDataFromFile(FileName);
 
@@ -90,7 +90,7 @@ public class AdventDay1UnitTests
     }
     
     [Fact]
-    public void File_contains_multiple_entires_for_One_Elf()
+    public void _011_File_contains_multiple_entires_for_One_Elf()
     {
         string fileContent = 
             @"100
@@ -102,7 +102,7 @@ public class AdventDay1UnitTests
     }
     
     [Fact]
-    public void File_contains_multiple_entries_for_2_Elves()
+    public void _012_File_contains_multiple_entries_for_2_Elves()
     {
         string fileContent = 
             @"100
@@ -117,7 +117,7 @@ public class AdventDay1UnitTests
     }
 
     [Fact]
-    public void Get_top_3_most_calories()
+    public void _013_Get_top_3_most_calories()
     {
         string fileContent = 
             @"100
