@@ -91,28 +91,14 @@ public class AdventDay2
     public int Calculate(string opponentSelection, string mySelection)
     {
         var result = 0;
-        bool won = false;
 
-        opponentSelection = opponentSelection switch
-        {
-            "A" => Rock,
-            "B" => Paper,
-            "C" => Scissors,
-            _ => ""
-        };
-
-        mySelection = mySelection switch
-        {
-            "X" => Rock,
-            "Y" => Paper,
-            "Z" => Scissors,
-            _ => ""
-        };
+        opponentSelection = ConvertToCommonDefinitions(opponentSelection);
+        mySelection = ConvertToCommonDefinitions(mySelection);
 
 
-        won = (opponentSelection == Rock && mySelection == Paper)
-              || (opponentSelection == Paper && mySelection == Scissors)
-              || (opponentSelection == Scissors && mySelection == Rock);
+        var won = (opponentSelection == Rock && mySelection == Paper)
+                  || (opponentSelection == Paper && mySelection == Scissors)
+                  || (opponentSelection == Scissors && mySelection == Rock);
 
 
         if (opponentSelection == Paper && mySelection == Rock)
@@ -143,4 +129,13 @@ public class AdventDay2
 
         return result;
     }
+
+    private string ConvertToCommonDefinitions(string selection) =>
+        selection switch
+        {
+            "A" or "X" => Rock,
+            "B" or "Y" => Paper,
+            "C" or "Z" => Scissors,
+            _ => ""
+        };
 }
