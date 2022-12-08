@@ -58,18 +58,10 @@ public class AdventDay2UnitTests
     [InlineData(OppScissors, MeScissors, 6)]
     [InlineData(OppPaper, MePaper, 4)]
     [InlineData(OppRock, MeRock, 2)]
-    public void _006_Draw_Situations(string opp, string me, int expectedPoint)
-    {
-        AdventDay2 adventDay2 = new();
-
-        Assert.Equal(expectedPoint, adventDay2.Calculate(opp, me));
-    }
-
-    [Theory]
     [InlineData(OppRock, MePaper, PaperWinPoint)]
     [InlineData(OppPaper, MeScissors, ScissorsWinPoint)]
     [InlineData(OppScissors, MeRock, RockWinPoint)]
-    public void _007_Win_Situations(string opp, string me, int expectedPoint)
+    public void _006_Situations(string opp, string me, int expectedPoint)
     {
         AdventDay2 adventDay2 = new();
 
