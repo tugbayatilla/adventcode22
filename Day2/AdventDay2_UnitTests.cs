@@ -14,9 +14,10 @@ public class AdventDay2UnitTests
     private const int PaperLosePoint = AdventDay2.PaperPoint;
     private const int RockLosePoint = AdventDay2.RockPoint;
     private const int ScissorsLosePoint = AdventDay2.ScissorsPoint;
-    private const int ScissorsDrawPoint = 6;
-    private const int PaperDrawPoint = 4;
-    private const int RockDrawPoint = 2;
+    private const int ScissorsDrawPoint = AdventDay2.DrawPoint + AdventDay2.ScissorsPoint;
+    private const int PaperDrawPoint = AdventDay2.DrawPoint + AdventDay2.PaperPoint;
+    private const int RockDrawPoint = AdventDay2.DrawPoint + AdventDay2.RockPoint;
+    
 
     [Fact]
     public void _001_Day2_exist()
@@ -90,91 +91,5 @@ public class AdventDay2UnitTests
         var data = new string[]{ "A Y", "B X", "C Z" };
 
         Assert.Equal(15, adventDay2.play(data));
-    }
-
-
-}
-
-public class AdventDay2
-{
-    public const int WinPoint = 6;
-    public const int PaperPoint = 2;
-    public const int RockPoint = 1;
-    public const int ScissorsPoint = 3;
-
-    private const string Rock = "rock";
-    private const string Paper = "paper";
-    private const string Scissors = "scissors";
-
-    public int Calculate(string opponentSelection, string mySelection)
-    {
-        opponentSelection = ConvertToCommonDefinitions(opponentSelection);
-        mySelection = ConvertToCommonDefinitions(mySelection);
-
-        if (opponentSelection == mySelection)
-        {
-            return CalculateDrawPoints(opponentSelection);
-        }
-
-        return CalculateWinPoints(opponentSelection, mySelection);
-    }
-
-    private int CalculateWinPoints(string opponentSelection, string mySelection)
-    {
-        var won = (opponentSelection == Rock && mySelection == Paper)
-                  || (opponentSelection == Paper && mySelection == Scissors)
-                  || (opponentSelection == Scissors && mySelection == Rock);
-
-
-        var result = mySelection switch
-        {
-            Rock => RockPoint,
-            Paper => PaperPoint,
-            Scissors => ScissorsPoint,
-            _ => 0
-        };
-
-        if (won) result += WinPoint;
-        return result;
-    }
-
-    private int CalculateDrawPoints(string opponentSelection)
-    {
-        return opponentSelection switch
-        {
-            Rock => RockPoint * 2,
-            Paper => PaperPoint * 2,
-            Scissors => ScissorsPoint * 2,
-            _ => 0
-        };
-    }
-
-    private string ConvertToCommonDefinitions(string selection) =>
-        selection switch
-        {
-            "A" or "X" => Rock,
-            "B" or "Y" => Paper,
-            "C" or "Z" => Scissors,
-            _ => ""
-        };
-
-    public IEnumerable<string> ReadDataFile(string fileName)
-    {
-        var directory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-        var path = System.IO.Path.Combine(directory, fileName);
-        
-        return File.ReadAllText(path).Split(Environment.NewLine);
-    }
-
-    public int play(string[] data)
-    {
-        var result = 0;
-        for (int i = 0; i < data.Length; i++)
-        {
-            var selections = data[i].Split(" ");
-            result += Calculate(selections[0], selections[1]);
-        }
-
-        return result;
     }
 }
