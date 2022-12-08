@@ -22,7 +22,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Update="adventDay1.data">
+      <None Update="adventDay1_testData.data">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
     </ItemGroup>

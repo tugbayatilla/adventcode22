@@ -2,6 +2,8 @@ namespace AdventOfCode22;
 
 public class UnitTest1
 {
+    private const string FileName = "adventDay1_testData.data";
+
     [Fact]
     public void Day_Exist()
     {
@@ -73,8 +75,7 @@ public class UnitTest1
     public void Valid_file_with_1_record_returns_100_as_most_calories()
     {
         AdventDay1 adventDay1 = new();
-        string fileName = "adventDay1.data";
-        string fileContent = adventDay1.ReadDataFromFile(fileName);
+        string fileContent = adventDay1.ReadDataFromFile(FileName);
 
         Assert.Equal("100", fileContent);
     }
@@ -93,8 +94,7 @@ public class UnitTest1
     public void Use_filecontent_as_data_for_inventory()
     {
         AdventDay1 adventDay1 = new();
-        string fileName = "adventDay1.data";
-        string fileContent = adventDay1.ReadDataFromFile(fileName);
+        string fileContent = adventDay1.ReadDataFromFile(FileName);
 
         adventDay1.FillInventory(fileContent);
         
