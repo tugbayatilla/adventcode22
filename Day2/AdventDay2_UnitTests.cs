@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace AdventOfCode22.Day2;
 
 public class AdventDay2UnitTests
@@ -45,12 +47,9 @@ public class AdventDay2UnitTests
 
 public class AdventDay2
 {
-    private const string OppRock = "A";
-    private const string OppPaper = "B";
-    private const string OppScissors = "C";
-    private const string Paper = "Y";
-    private const string Rock = "X";
-    private const string Scissors = "Z";
+    private const string Rock = "rock";
+    private const string Paper = "paper";
+    private const string Scissors = "scissors";
 
     public int Calculate(string opponentSelection, string mySelection)
     {
@@ -61,18 +60,35 @@ public class AdventDay2
         const int ScissorsPoint = 3;
         bool won = false;
 
-        if (opponentSelection == OppRock && mySelection == Paper)
+        opponentSelection = opponentSelection switch
+        {
+            "A" => Rock,
+            "B" => Paper,
+            "C" => Scissors,
+            _ => ""
+        };
+        
+        mySelection = mySelection switch
+        {
+            "X" => Rock,
+            "Y" => Paper,
+            "Z" => Scissors,
+            _ => ""
+        };
+        
+
+        if (opponentSelection == Rock && mySelection == Paper)
         {
             won = true;
             result = PaperPoint;
         }
 
-        if (opponentSelection == OppPaper && mySelection == Rock)
+        if (opponentSelection == Paper && mySelection == Rock)
         {
             return RockPoint;
         }
 
-        if (opponentSelection == OppScissors && mySelection == Scissors)
+        if (opponentSelection == Scissors && mySelection == Scissors)
         {
             return ScissorsPoint + ScissorsPoint;
         }
