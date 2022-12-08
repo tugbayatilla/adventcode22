@@ -58,6 +58,27 @@ public class UnitTest1
 
         Assert.Equal(500, adventDay1.GetMostCalories());
     }
+    
+    [Fact]
+    public void Empty_filePath_returns_zero_most_calories()
+    {
+        AdventDay1 adventDay1 = new();
+        string fileName = "";
+        string fileContent = adventDay1.ReadDataFromFile(fileName);
+
+        Assert.Equal("", fileContent);
+    }
+
+    [Fact]
+    public void Valid_file_with_1_record_returns_100_as_most_calories()
+    {
+        AdventDay1 adventDay1 = new();
+        string fileName = "adventDay1.data";
+        string fileContent = adventDay1.ReadDataFromFile(fileName);
+
+        Assert.Equal("100", fileContent);
+    }
+
 }
 
 public class AdventDay1
@@ -78,5 +99,15 @@ public class AdventDay1
             _inventory.Add(indexOfElf, new List<int>());
         }
         _inventory[indexOfElf].Add(calories);
+    }
+
+    public string ReadDataFromFile(string fileName)
+    {
+        if (string.IsNullOrEmpty(fileName)) return "";
+        
+        var directory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+        var path = System.IO.Path.Combine(directory, fileName);
+
+        return File.ReadAllText(path);
     }
 }
