@@ -2,6 +2,7 @@ namespace AdventOfCode22;
 
 public class UnitTest1
 {
+    private readonly AdventDay1 _adventDay1 = new();
     private const string FileName = "adventDay1_testData.data";
 
     [Fact]
@@ -15,58 +16,51 @@ public class UnitTest1
     [Fact]
     public void Return_MostCalories_Exist()
     {
-        AdventDay1 adventDay1 = new();
-        
-        Assert.Equal(0, adventDay1.GetMostCalories());
+        Assert.Equal(0, _adventDay1.GetMostCalories());
     }
     
     [Fact]
     public void Add_Calories_To_An_Elf_returns_the_calories()
     {
-        AdventDay1 adventDay1 = new();
-        adventDay1.AddCalories(100);
+        _adventDay1.AddCalories(100);
         
-        Assert.Equal(100, adventDay1.GetMostCalories());
+        Assert.Equal(100, _adventDay1.GetMostCalories());
     }
     
     [Fact]
     public void Add_Calories_To_A_specific_Elf_returns_the_calories()
     {
-        AdventDay1 adventDay1 = new();
-        adventDay1.AddCalories(100, 1);
+        _adventDay1.AddCalories(100, 1);
         
-        Assert.Equal(100, adventDay1.GetMostCalories());
+        Assert.Equal(100, _adventDay1.GetMostCalories());
     }
     
     [Fact]
     public void Add_Calories_for_2_Elves_returns_most_calories()
     {
-        AdventDay1 adventDay1 = new();
-        adventDay1.AddCalories(100, 0);
-        adventDay1.AddCalories(200, 1);
+        _adventDay1.AddCalories(100, 0);
+        _adventDay1.AddCalories(200, 1);
         
-        Assert.Equal(200, adventDay1.GetMostCalories());
+        Assert.Equal(200, _adventDay1.GetMostCalories());
     }
     
     [Fact]
     public void Add_Calories_for_2_Elves_multiple_calories_returns_most_calories()
     {
-        AdventDay1 adventDay1 = new();
-        adventDay1.AddCalories(100, 0);
-        adventDay1.AddCalories(200, 0);
+        _adventDay1.AddCalories(100, 0);
+        _adventDay1.AddCalories(200, 0);
         
-        adventDay1.AddCalories(200, 1);
-        adventDay1.AddCalories(300, 1);
+        _adventDay1.AddCalories(200, 1);
+        _adventDay1.AddCalories(300, 1);
 
-        Assert.Equal(500, adventDay1.GetMostCalories());
+        Assert.Equal(500, _adventDay1.GetMostCalories());
     }
     
     [Fact]
     public void Empty_filePath_returns_zero_most_calories()
     {
-        AdventDay1 adventDay1 = new();
         string fileName = "";
-        string fileContent = adventDay1.ReadDataFromFile(fileName);
+        string fileContent = _adventDay1.ReadDataFromFile(fileName);
 
         Assert.Equal("", fileContent);
     }
@@ -74,8 +68,7 @@ public class UnitTest1
     [Fact]
     public void Valid_file_with_1_record_returns_100_as_most_calories()
     {
-        AdventDay1 adventDay1 = new();
-        string fileContent = adventDay1.ReadDataFromFile(FileName);
+        string fileContent = _adventDay1.ReadDataFromFile(FileName);
 
         Assert.Equal("100", fileContent);
     }
@@ -83,9 +76,8 @@ public class UnitTest1
     [Fact]
     public void Invalid_filePath_returns_zero_most_calories()
     {
-        AdventDay1 adventDay1 = new();
         string fileName = "xyz";
-        string fileContent = adventDay1.ReadDataFromFile(fileName);
+        string fileContent = _adventDay1.ReadDataFromFile(fileName);
 
         Assert.Equal("", fileContent);
     }
@@ -93,12 +85,11 @@ public class UnitTest1
     [Fact]
     public void Use_filecontent_as_data_for_inventory()
     {
-        AdventDay1 adventDay1 = new();
-        string fileContent = adventDay1.ReadDataFromFile(FileName);
+        string fileContent = _adventDay1.ReadDataFromFile(FileName);
 
-        adventDay1.FillInventory(fileContent);
+        _adventDay1.FillInventory(fileContent);
         
-        Assert.Equal(100, adventDay1.GetMostCalories());
+        Assert.Equal(100, _adventDay1.GetMostCalories());
     }
 
 }
