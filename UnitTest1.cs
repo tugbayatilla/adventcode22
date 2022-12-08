@@ -88,6 +88,18 @@ public class UnitTest1
 
         Assert.Equal("", fileContent);
     }
+    
+    [Fact]
+    public void Use_filecontent_as_data_for_inventory()
+    {
+        AdventDay1 adventDay1 = new();
+        string fileName = "adventDay1.data";
+        string fileContent = adventDay1.ReadDataFromFile(fileName);
+
+        adventDay1.FillInventory(fileContent);
+        
+        Assert.Equal(100, adventDay1.GetMostCalories());
+    }
 
 }
 
@@ -121,5 +133,10 @@ public class AdventDay1
         if (!File.Exists(path)) return "";
         
         return File.ReadAllText(path);
+    }
+
+    public void FillInventory(string fileContent)
+    {
+        AddCalories(int.Parse(fileContent));
     }
 }
