@@ -10,6 +10,9 @@ public class AdventDay2UnitTests
     private const string MeRock = "X";
     private const string OppScissors = "C";
     private const string MeScissors = "Z";
+    private const int PaperWinPoint = AdventDay2.PaperPoint + AdventDay2.WinPoint;
+    private const int ScissorsWinPoint = AdventDay2.ScissorsPoint + AdventDay2.WinPoint;
+    private const int RockWinPoint = AdventDay2.RockPoint + AdventDay2.WinPoint;
 
     [Fact]
     public void _001_Day2_exist()
@@ -50,7 +53,7 @@ public class AdventDay2UnitTests
 
         Assert.Equal(6, adventDay2.Calculate(OppScissors, MeScissors));
     }
-    
+
     [Theory]
     [InlineData(OppScissors, MeScissors, 6)]
     [InlineData(OppPaper, MePaper, 4)]
@@ -61,10 +64,26 @@ public class AdventDay2UnitTests
 
         Assert.Equal(expectedPoint, adventDay2.Calculate(opp, me));
     }
+
+    [Theory]
+    [InlineData(OppRock, MePaper, PaperWinPoint)]
+    [InlineData(OppPaper, MeScissors, ScissorsWinPoint)]
+    [InlineData(OppScissors, MeRock, RockWinPoint)]
+    public void _007_Win_Situations(string opp, string me, int expectedPoint)
+    {
+        AdventDay2 adventDay2 = new();
+
+        Assert.Equal(expectedPoint, adventDay2.Calculate(opp, me));
+    }
 }
 
 public class AdventDay2
 {
+    public const int WinPoint = 6;
+    public const int PaperPoint = 2;
+    public const int RockPoint = 1;
+    public const int ScissorsPoint = 3;
+
     private const string Rock = "rock";
     private const string Paper = "paper";
     private const string Scissors = "scissors";
@@ -72,10 +91,6 @@ public class AdventDay2
     public int Calculate(string opponentSelection, string mySelection)
     {
         var result = 0;
-        const int WinPoint = 6;
-        const int PaperPoint = 2;
-        const int RockPoint = 1;
-        const int ScissorsPoint = 3;
         bool won = false;
 
         opponentSelection = opponentSelection switch
@@ -85,7 +100,7 @@ public class AdventDay2
             "C" => Scissors,
             _ => ""
         };
-        
+
         mySelection = mySelection switch
         {
             "X" => Rock,
@@ -93,13 +108,12 @@ public class AdventDay2
             "Z" => Scissors,
             _ => ""
         };
-        
 
-        if (opponentSelection == Rock && mySelection == Paper)
-        {
-            won = true;
-            result = PaperPoint;
-        }
+
+        won = (opponentSelection == Rock && mySelection == Paper)
+              || (opponentSelection == Paper && mySelection == Scissors)
+              || (opponentSelection == Scissors && mySelection == Rock);
+
 
         if (opponentSelection == Paper && mySelection == Rock)
         {
@@ -116,6 +130,14 @@ public class AdventDay2
                 _ => 0
             };
         }
+
+        result += mySelection switch
+        {
+            Rock => RockPoint,
+            Paper => PaperPoint,
+            Scissors => ScissorsPoint,
+            _ => 0
+        };
 
         if (won) result += WinPoint;
 
