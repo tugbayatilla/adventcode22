@@ -101,8 +101,14 @@ public class AdventDay2
         {
             return CalculateDrawPoints(opponentSelection);
         }
+        
+        result = CalculateWinPoints(opponentSelection, mySelection, result);
 
+        return result;
+    }
 
+    private int CalculateWinPoints(string opponentSelection, string mySelection, int result)
+    {
         var won = (opponentSelection == Rock && mySelection == Paper)
                   || (opponentSelection == Paper && mySelection == Scissors)
                   || (opponentSelection == Scissors && mySelection == Rock);
@@ -117,7 +123,6 @@ public class AdventDay2
         };
 
         if (won) result += WinPoint;
-
         return result;
     }
 
