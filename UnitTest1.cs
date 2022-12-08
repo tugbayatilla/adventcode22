@@ -74,10 +74,9 @@ public class UnitTest1
     }
     
     [Fact]
-    public void Invalid_filePath_returns_zero_most_calories()
+    public void Invalid_fileName_returns_zero_most_calories()
     {
-        string fileName = "xyz";
-        string fileContent = _adventDay1.ReadDataFromFile(fileName);
+        string fileContent = _adventDay1.ReadDataFromFile("xyz");
 
         Assert.Equal("", fileContent);
     }
