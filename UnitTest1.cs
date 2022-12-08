@@ -22,7 +22,7 @@ public class UnitTest1
     [Fact]
     public void Add_Calories_To_An_Elf_returns_the_calories()
     {
-        _adventDay1.AddCalories(100);
+        _adventDay1.AddCalories(100, 0);
         
         Assert.Equal(100, _adventDay1.GetMostCalories());
     }
@@ -105,7 +105,7 @@ public class AdventDay1
         return _inventory.Values.Select(p=>p.Sum()).Max();
     }
 
-    public void AddCalories(int calories, int indexOfElf = 0)
+    public void AddCalories(int calories, int indexOfElf)
     {
         if (!_inventory.ContainsKey(indexOfElf))
         {
@@ -128,6 +128,6 @@ public class AdventDay1
 
     public void FillInventory(string fileContent)
     {
-        AddCalories(int.Parse(fileContent));
+        AddCalories(int.Parse(fileContent), 0);
     }
 }
