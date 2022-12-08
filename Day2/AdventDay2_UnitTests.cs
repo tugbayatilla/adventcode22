@@ -101,11 +101,6 @@ public class AdventDay2
                   || (opponentSelection == Scissors && mySelection == Rock);
 
 
-        if (opponentSelection == Paper && mySelection == Rock)
-        {
-            return RockPoint;
-        }
-
         if (opponentSelection == mySelection)
         {
             return opponentSelection switch
