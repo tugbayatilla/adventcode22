@@ -44,6 +44,11 @@ public class AdventDay3UnitTests
     
     [Theory]
     [InlineData("vJrwpWtwJgWrhcsFMMfFFhFp", 'p')]
+    [InlineData("jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL", 'L')]
+    [InlineData("PmmdzqPrVvPwwTWBwg", 'P')]
+    [InlineData("wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn", 'v')]
+    [InlineData("ttgJtRGJQctTZtZT", 't')]
+    [InlineData("CrZsJsPPZsGzwwsLwLmpwMDw", 's')]
     public void _005_find_error_char_in_rucksack_line(string items, char errorChar)
     {
         Assert.Equal(errorChar, _adventDay3.FindErrorInItems(items));
