@@ -51,7 +51,7 @@ Console.WriteLine($"Day3: {adventDay3.SumOfPriorities()} -- part2: the sum of th
 AdventDay4 adventDay4 = new();
 var adventDay4Data = ReadDataFromAFile("Day4/AdventDay4.data");
 
-int count = adventDay4Data.Count(p => adventDay4.IsOverlap(p));
+int count = adventDay4Data.Count(p => adventDay4.IsOverlapFully(p));
 
 Console.WriteLine($"Day4: {count} -- part1: how many assignment pairs does one range fully contain the other");
 

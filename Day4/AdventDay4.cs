@@ -38,4 +38,14 @@ public class AdventDay4
         return Enumerable.SequenceEqual(firstRange.Intersect(secondRange), firstRange)
             || Enumerable.SequenceEqual(secondRange.Intersect(firstRange), secondRange);
     }
+
+    public bool IsOverlapPartially(string pairDefinition)
+    {
+        var splitDefinition = SplitPairDefinitionToTwo(pairDefinition);
+        var firstRange = ConvertAssignmentToRange(splitDefinition.First());
+        var secondRange = ConvertAssignmentToRange(splitDefinition.Last());
+
+        return firstRange.Intersect(secondRange).Any() 
+               || secondRange.Intersect(firstRange).Any();
+    }
 }
