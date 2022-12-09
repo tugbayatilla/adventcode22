@@ -1,6 +1,7 @@
 using AdventOfCode22;
 using AdventOfCode22.Day2;
 using AdventOfCode22.Day3;
+using AdventOfCode22.Day4;
 
 AdventCode adventDay1 = new();
 var content = adventDay1.ReadDataFromFile("Day1/adventDay1.data");
@@ -45,3 +46,14 @@ for (int i = 0; i < rucksackItems.Count(); i+=3)
 }
 
 Console.WriteLine($"Day3: {adventDay3.SumOfPriorities()} -- part2: the sum of the priorities of the badges");
+
+
+AdventDay4 adventDay4 = new();
+var adventDay4Data = ReadDataFromAFile("Day4/AdventDay4.data");
+
+int count = adventDay4Data.Count(p => adventDay4.IsOverlap(p));
+
+Console.WriteLine($"Day4: {count} -- part1: how many assignment pairs does one range fully contain the other");
+
+
+
