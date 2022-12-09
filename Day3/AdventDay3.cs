@@ -17,4 +17,14 @@ public class AdventDay3
             
         _sumOfPriorityItems += fullTable.IndexOf(priorityItem) + 1;
     }
+
+    public char FindErrorInItems(string items)
+    {
+        var halfIndex = items.Length / 2;
+        var firstCompartment = items.Substring(0, halfIndex);
+        var secondCompartment = items.Substring(halfIndex);
+
+        var error = firstCompartment.Intersect(secondCompartment);
+        return error.First();
+    }
 }

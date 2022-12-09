@@ -41,4 +41,11 @@ public class AdventDay3UnitTests
 
         Assert.Equal(expectedSumOfPriority, _adventDay3.SumOfPriorities());
     }
+    
+    [Theory]
+    [InlineData("vJrwpWtwJgWrhcsFMMfFFhFp", 'p')]
+    public void _005_find_error_char_in_rucksack_line(string items, char errorChar)
+    {
+        Assert.Equal(errorChar, _adventDay3.FindErrorInItems(items));
+    }
 }
