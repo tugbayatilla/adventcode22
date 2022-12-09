@@ -27,4 +27,14 @@ public class AdventDay3
         var error = firstCompartment.Intersect(secondCompartment);
         return error.First();
     }
+
+    public char FindBadge(string[] rucksacks)
+    {
+        var hashSet = new HashSet<char>(rucksacks[0]);
+        hashSet.IntersectWith(rucksacks[1]);
+        hashSet.IntersectWith(rucksacks[2]);
+        var intersection = hashSet.ToList();
+        
+        return intersection.First();
+    }
 }
