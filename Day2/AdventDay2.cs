@@ -18,12 +18,7 @@ public class AdventDay2
     {
         var opponentSelection = ConvertToCommonDefinitions(firstColumn);
 
-        var finalDecision = secondColumn switch
-        {
-            "X" => "lose",
-            "Y" => "draw",
-            "Z" => "win"
-        };
+        var finalDecision = FinalDecision(secondColumn);
 
         if (finalDecision == "draw")
         {
@@ -33,6 +28,17 @@ public class AdventDay2
         var meSelection = MeSelectionDecision(opponentSelection, finalDecision);
 
         return CalculateWinPoints(finalDecision, meSelection);
+    }
+
+    private string FinalDecision(string secondColumn)
+    {
+        var finalDecision = secondColumn switch
+        {
+            "X" => "lose",
+            "Y" => "draw",
+            "Z" => "win"
+        };
+        return finalDecision;
     }
 
     private string MeSelectionDecision(string opponentSelection, string finalDecision) =>
