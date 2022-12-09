@@ -9,4 +9,14 @@ public class AdventDay3UnitTests
         
         Assert.Equal(0, adventDay3.SumOfPriorities());
     }
+    
+    [Fact]
+    public void _002_identified_and_stored_item_lowercase_p_is_16_points()
+    {
+        AdventDay3 adventDay3 = new();
+
+        adventDay3.IdentifyAndStorePriorityItem("p");
+        
+        Assert.Equal(16, adventDay3.SumOfPriorities());
+    }
 }
