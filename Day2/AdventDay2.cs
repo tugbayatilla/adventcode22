@@ -17,7 +17,6 @@ public class AdventDay2
     public int Calculate(string firstColumn, string secondColumn)
     {
         var opponentSelection = ConvertToCommonDefinitions(firstColumn);
-
         var finalDecision = FinalDecision(secondColumn);
 
         if (finalDecision == "draw")
@@ -34,13 +33,14 @@ public class AdventDay2
             Scissors => ScissorsPoint,
             _ => 0
         };
-        if (finalDecision == "lose")
+        
+        switch (finalDecision)
         {
-            return final;
-        }
-        if (finalDecision == "win")
-        {
-            final += CalculateWinPoints(finalDecision, meSelection);
+            case "lose":
+                return final;
+            case "win":
+                final += WinPoint;
+                break;
         }
 
         return final;
@@ -73,11 +73,6 @@ public class AdventDay2
                 Scissors => Rock,
             },
         };
-
-    private int CalculateWinPoints(string finalDecision, string meSelection)
-    {
-        return WinPoint;
-    }
 
     private int CalculateDrawPoints(string opponentSelection)
     {
