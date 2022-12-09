@@ -26,6 +26,22 @@ public class AdventDay2
 
         var meSelection = MeSelectionDecision(opponentSelection, finalDecision);
 
+        var points = GetDefaultPointsBy(meSelection);
+        
+        switch (finalDecision)
+        {
+            case "lose":
+                return points;
+            case "win":
+                points += WinPoint;
+                break;
+        }
+
+        return points;
+    }
+
+    private int GetDefaultPointsBy(string meSelection)
+    {
         var final = meSelection switch
         {
             Rock => RockPoint,
@@ -33,16 +49,6 @@ public class AdventDay2
             Scissors => ScissorsPoint,
             _ => 0
         };
-        
-        switch (finalDecision)
-        {
-            case "lose":
-                return final;
-            case "win":
-                final += WinPoint;
-                break;
-        }
-
         return final;
     }
 
