@@ -27,14 +27,10 @@ public class AdventDay2
         var meSelection = MeSelectionDecision(opponentSelection, finalDecision);
 
         var points = GetDefaultPointsBy(meSelection);
-        
-        switch (finalDecision)
+
+        if (finalDecision == "win")
         {
-            case "lose":
-                return points;
-            case "win":
-                points += WinPoint;
-                break;
+            points += WinPoint;
         }
 
         return points;
