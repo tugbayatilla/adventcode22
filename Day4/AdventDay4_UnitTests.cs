@@ -17,4 +17,13 @@ public class AdventDay4UnitTests
         
         Assert.Equal(1, adventDay4.GetNumberOfPairsFullyCoverOther());
     }
+    
+    [Fact(Skip = "this is a huge step to take, for now, i skipped it.")]
+    public void _003_one_pair_has_no_overlap_assignment_returns_0()
+    {
+        AdventDay4 adventDay4 = new();
+        adventDay4.AddPairDefinition("1-1,2-2");
+        
+        Assert.Equal(0, adventDay4.GetNumberOfPairsFullyCoverOther());
+    }
 }
