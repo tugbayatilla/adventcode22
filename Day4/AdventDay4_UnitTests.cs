@@ -28,4 +28,12 @@ public class AdventDay4UnitTests
         Assert.Equal(0, _adventDay4.GetNumberOfPairsFullyCoverOther());
     }
     
+    [Fact]
+    public void _004_split_pair_definition_to_two()
+    {
+        var pair = _adventDay4.SplitPairDefinitionToTwo("1-1,2-2");
+        Assert.Equal("1-1", pair.First());
+        Assert.Equal("2-2", pair.Last());
+    }
+
 }

@@ -13,4 +13,10 @@ public class AdventDay4
     {
         _totalPairs = 1;
     }
+
+
+    public IEnumerable<string> SplitPairDefinitionToTwo(string pairDefinition)
+    {
+        return pairDefinition.Split(",");
+    }
 }
