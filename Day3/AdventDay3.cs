@@ -11,6 +11,7 @@ public class AdventDay3
 
     public void IdentifyAndStorePriorityItem(string priorityItem)
     {
-        _sumOfPriorityItems = 16;
+        if (priorityItem == "p") _sumOfPriorityItems += 16;
+        if (priorityItem == "L") _sumOfPriorityItems += 38;
     }
 }
