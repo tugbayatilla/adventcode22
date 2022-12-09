@@ -27,6 +27,17 @@ public class AdventDay2
 
         var meSelection = MeSelectionDecision(opponentSelection, finalDecision);
 
+        if (finalDecision == "lose")
+        {
+            return meSelection switch
+            {
+                Rock => RockPoint,
+                Paper => PaperPoint,
+                Scissors => ScissorsPoint,
+                _ => 0
+            };
+        }
+        
         return CalculateWinPoints(finalDecision, meSelection);
     }
 
