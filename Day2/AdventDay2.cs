@@ -27,18 +27,23 @@ public class AdventDay2
 
         var meSelection = MeSelectionDecision(opponentSelection, finalDecision);
 
+        var final = meSelection switch
+        {
+            Rock => RockPoint,
+            Paper => PaperPoint,
+            Scissors => ScissorsPoint,
+            _ => 0
+        };
         if (finalDecision == "lose")
         {
-            return meSelection switch
-            {
-                Rock => RockPoint,
-                Paper => PaperPoint,
-                Scissors => ScissorsPoint,
-                _ => 0
-            };
+            return final;
         }
-        
-        return CalculateWinPoints(finalDecision, meSelection);
+        if (finalDecision == "win")
+        {
+            final += CalculateWinPoints(finalDecision, meSelection);
+        }
+
+        return final;
     }
 
     private string FinalDecision(string secondColumn)
@@ -71,16 +76,7 @@ public class AdventDay2
 
     private int CalculateWinPoints(string finalDecision, string meSelection)
     {
-        var result = meSelection switch
-        {
-            Rock => RockPoint,
-            Paper => PaperPoint,
-            Scissors => ScissorsPoint,
-            _ => 0
-        };
-
-        if (finalDecision == "win") result += WinPoint;
-        return result;
+        return WinPoint;
     }
 
     private int CalculateDrawPoints(string opponentSelection)
