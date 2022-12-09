@@ -52,4 +52,10 @@ public class AdventDay4UnitTests
     {
         Assert.Equal(expectedArray.AsEnumerable(), _adventDay4.ConvertAssignmentToRange(givenAssignment));
     }
+    
+    [Fact]
+    public void _007_overlap_pairs_returns_true()
+    {
+        Assert.True(_adventDay4.IsOverlap("1-1, 1-1"));
+    }
 }
