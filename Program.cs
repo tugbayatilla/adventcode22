@@ -35,3 +35,13 @@ foreach (var items in rucksackItems)
     adventDay3.IdentifyAndStorePriorityItem(errorChar);
 }
 Console.WriteLine($"Day3: {adventDay3.SumOfPriorities()} --the sum of the priorities");
+
+adventDay3 = new();
+for (int i = 0; i < rucksackItems.Count(); i+=3)
+{
+    var rucksackForAGroup = rucksackItems.Skip(i).Take(3).ToArray();
+    var badge = adventDay3.FindBadge(rucksackForAGroup);
+    adventDay3.IdentifyAndStorePriorityItem(badge);
+}
+
+Console.WriteLine($"Day3: {adventDay3.SumOfPriorities()} -- part2: the sum of the priorities of the badges");
