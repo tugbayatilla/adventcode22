@@ -55,5 +55,7 @@ int count = adventDay4Data.Count(p => adventDay4.IsOverlapFully(p));
 
 Console.WriteLine($"Day4: {count} -- part1: how many assignment pairs does one range fully contain the other");
 
+int countPartially = adventDay4Data.Count(p => adventDay4.IsOverlapPartially(p));
+Console.WriteLine($"Day4: {countPartially} -- part2: how many assignment pairs do the ranges overlap");
 
 
