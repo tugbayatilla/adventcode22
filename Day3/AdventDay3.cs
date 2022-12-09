@@ -11,7 +11,7 @@ public class AdventDay3
         return _sumOfPriorityItems;
     }
 
-    public void IdentifyAndStorePriorityItem(string priorityItem)
+    public void IdentifyAndStorePriorityItem(char priorityItem)
     {
         var fullTable = string.Concat(_lowerLetterList, _upperLetterList);
             
