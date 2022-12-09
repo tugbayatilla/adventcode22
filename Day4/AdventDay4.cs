@@ -29,7 +29,7 @@ public class AdventDay4
         return Enumerable.Range(first, second-first+1);
     }
 
-    public bool IsOverlap(string pairDefinition)
+    public bool IsOverlapFully(string pairDefinition)
     {
         var splitDefinition = SplitPairDefinitionToTwo(pairDefinition);
         var firstRange = ConvertAssignmentToRange(splitDefinition.First());
