@@ -27,7 +27,7 @@ public class AdventDay2UnitTests
         Assert.NotNull(adventDay2);
     }
 
-    [Fact]
+    [Fact(Skip = "unwanted requirement")]
     public void _002_opponents_and_i_say_nothing_then_i_get_zero_point()
     {
         AdventDay2 adventDay2 = new();
@@ -35,7 +35,7 @@ public class AdventDay2UnitTests
         Assert.Equal(0, adventDay2.Calculate("", ""));
     }
 
-    [Fact]
+    [Fact(Skip = "Logic changed, not valid anymore")]
     public void _003_opponents_says_Rock_and_i_say_Paper_then_i_win_and_get_8_point()
     {
         AdventDay2 adventDay2 = new();
@@ -59,7 +59,7 @@ public class AdventDay2UnitTests
         Assert.Equal(ScissorsDrawPoint, adventDay2.Calculate(OppScissors, MeScissors));
     }
 
-    [Theory]
+    [Theory(Skip = "Part2 Logic changed, so this test is not valid anymore")]
     [InlineData(OppScissors, MeScissors, ScissorsDrawPoint)]
     [InlineData(OppPaper, MePaper, PaperDrawPoint)]
     [InlineData(OppRock, MeRock, RockDrawPoint)]
@@ -84,12 +84,40 @@ public class AdventDay2UnitTests
         Assert.NotEmpty(adventDay2.ReadDataFile("Day2/AdventDay2.data"));
     }
     
-    [Fact]
+    [Fact(Skip = "Logic changed, so not valid anymore")]
     public void _008_play()
     {
         AdventDay2 adventDay2 = new();
         var data = new string[]{ "A Y", "B X", "C Z" };
 
         Assert.Equal(15, adventDay2.play(data));
+    }
+    
+    [Theory]
+    [InlineData(OppScissors, "Y", AdventDay2.ScissorsPoint + AdventDay2.DrawPoint)]
+    [InlineData(OppPaper, "Y", AdventDay2.PaperPoint + AdventDay2.DrawPoint)]
+    [InlineData(OppRock, "Y", AdventDay2.RockPoint + AdventDay2.DrawPoint)]
+    public void _009_Part2_Draw_Situations(string opp, string result, int expectedPoint)
+    {
+        AdventDay2 adventDay2 = new();
+
+        Assert.Equal(expectedPoint, adventDay2.Calculate(opp, result));
+    }
+    
+    [Fact]
+    public void _010_part2_play()
+    {
+        AdventDay2 adventDay2 = new();
+        var data = new string[]{ "A Y", "B X", "C Z" };
+
+        Assert.Equal(12, adventDay2.play(data));
+    }
+    
+    [Fact]
+    public void _011_opponents_says_Rock_and_i_say_Paper_then_i_win_and_get_4_point()
+    {
+        AdventDay2 adventDay2 = new();
+
+        Assert.Equal(4, adventDay2.Calculate(OppRock, MePaper));
     }
 }

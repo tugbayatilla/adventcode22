@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace AdventOfCode22.Day2;
 
 public class AdventDay2
@@ -12,27 +14,47 @@ public class AdventDay2
     private const string Paper = "paper";
     private const string Scissors = "scissors";
 
-    public int Calculate(string opponentSelection, string mySelection)
+    public int Calculate(string firstColumn, string secondColumn)
     {
-        opponentSelection = ConvertToCommonDefinitions(opponentSelection);
-        mySelection = ConvertToCommonDefinitions(mySelection);
+        var opponentSelection = ConvertToCommonDefinitions(firstColumn);
 
-        if (opponentSelection == mySelection)
+        var finalDecision = secondColumn switch
+        {
+            "X" => "lose",
+            "Y" => "draw",
+            "Z" => "win"
+        };
+
+        if (finalDecision == "draw")
         {
             return CalculateDrawPoints(opponentSelection);
         }
 
-        return CalculateWinPoints(opponentSelection, mySelection);
+        var meSelection = MeSelectionDecision(opponentSelection, finalDecision);
+
+        return CalculateWinPoints(finalDecision, meSelection);
     }
 
-    private int CalculateWinPoints(string opponentSelection, string mySelection)
+    private string MeSelectionDecision(string opponentSelection, string finalDecision) =>
+        finalDecision switch
+        {
+            "lose" => opponentSelection switch
+            {
+                Paper => Rock,
+                Rock => Scissors,
+                Scissors => Paper,
+            },
+            "win" => opponentSelection switch
+            {
+                Paper => Scissors,
+                Rock => Paper,
+                Scissors => Rock,
+            },
+        };
+
+    private int CalculateWinPoints(string finalDecision, string meSelection)
     {
-        var won = (opponentSelection == Rock && mySelection == Paper)
-                  || (opponentSelection == Paper && mySelection == Scissors)
-                  || (opponentSelection == Scissors && mySelection == Rock);
-
-
-        var result = mySelection switch
+        var result = meSelection switch
         {
             Rock => RockPoint,
             Paper => PaperPoint,
@@ -40,7 +62,7 @@ public class AdventDay2
             _ => 0
         };
 
-        if (won) result += WinPoint;
+        if (finalDecision == "win") result += WinPoint;
         return result;
     }
 
@@ -68,7 +90,7 @@ public class AdventDay2
     {
         var directory = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
         var path = System.IO.Path.Combine(directory, fileName);
-        
+
         return File.ReadAllText(path).Split(Environment.NewLine);
     }
 
