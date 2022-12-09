@@ -35,5 +35,11 @@ public class AdventDay4UnitTests
         Assert.Equal("1-1", pair.First());
         Assert.Equal("2-2", pair.Last());
     }
+    
+    [Fact]
+    public void _005_convert_an_assignment_to_range()
+    {
+        Assert.Equal(Enumerable.Range(1,1), _adventDay4.ConvertAssignmentToRange("1-1"));
+    }
 
 }
