@@ -45,6 +45,9 @@ public class AdventDay4UnitTests
     [Theory]
     [InlineData("1-1", new[] {1})]
     [InlineData("2-2", new[] {2})]
+    [InlineData("1-2", new[] {1,2})]
+    [InlineData("2-4", new[] {2,3,4})]
+    [InlineData("6-8", new[] {6,7,8})]
     public void _006_convert_an_assignment_to_range(string givenAssignment, int[] expectedArray)
     {
         Assert.Equal(expectedArray.AsEnumerable(), _adventDay4.ConvertAssignmentToRange(givenAssignment));
