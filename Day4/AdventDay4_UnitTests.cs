@@ -10,24 +10,24 @@ public class AdventDay4UnitTests
         AdventDay4 adventDay4 = new();
         Assert.Equal(0, adventDay4.GetNumberOfPairsFullyCoverOther());
     }
-    
+
     [Fact]
     public void _002_one_pair_has_same_assignment_returns_1()
     {
         AdventDay4 adventDay4 = new();
         adventDay4.AddPairDefinition("1-1,1-1");
-        
+
         Assert.Equal(1, adventDay4.GetNumberOfPairsFullyCoverOther());
     }
-    
+
     [Fact(Skip = "this is a huge step to take, for now, i skipped it.")]
     public void _003_one_pair_has_no_overlap_assignment_returns_0()
     {
         _adventDay4.AddPairDefinition("1-1,2-2");
-        
+
         Assert.Equal(0, _adventDay4.GetNumberOfPairsFullyCoverOther());
     }
-    
+
     [Fact]
     public void _004_split_pair_definition_to_two()
     {
@@ -35,11 +35,18 @@ public class AdventDay4UnitTests
         Assert.Equal("1-1", pair.First());
         Assert.Equal("2-2", pair.Last());
     }
-    
-    [Fact]
+
+    [Fact(Skip = $"new theory test is cover this test. {nameof(_006_convert_an_assignment_to_range)}")]
     public void _005_convert_an_assignment_to_range()
     {
-        Assert.Equal(Enumerable.Range(1,1), _adventDay4.ConvertAssignmentToRange("1-1"));
+        Assert.Equal(Enumerable.Range(1, 1), _adventDay4.ConvertAssignmentToRange("1-1"));
     }
 
+    [Theory]
+    [InlineData("1-1", new[] {1})]
+    [InlineData("2-2", new[] {2})]
+    public void _006_convert_an_assignment_to_range(string givenAssignment, int[] expectedArray)
+    {
+        Assert.Equal(expectedArray.AsEnumerable(), _adventDay4.ConvertAssignmentToRange(givenAssignment));
+    }
 }
