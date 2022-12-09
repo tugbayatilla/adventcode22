@@ -11,7 +11,11 @@ public class AdventDay3
 
     public void IdentifyAndStorePriorityItem(string priorityItem)
     {
-        if (priorityItem == "p") _sumOfPriorityItems += 16;
-        if (priorityItem == "L") _sumOfPriorityItems += 38;
+        var upperLetterList = string.Join("",Enumerable.Range('A', 'Z' - 'A' + 1).Select(c => (char)c));
+        var lowerLetterList = string.Join("",Enumerable.Range('a', 'z' - 'a' + 1).Select(c => (char)c));
+
+        var fullTable = string.Concat(lowerLetterList, upperLetterList);
+            
+        _sumOfPriorityItems += fullTable.IndexOf(priorityItem) + 1;
     }
 }

@@ -10,7 +10,7 @@ public class AdventDay3UnitTests
         Assert.Equal(0, adventDay3.SumOfPriorities());
     }
     
-    [Fact]
+    [Fact(Skip = $"another test covers this test. {nameof(_004_identified_and_stored_items_and_calculate_sum_of_priorities)}")]
     public void _002_identified_and_stored_item_lowercase_p_is_16_points()
     {
         AdventDay3 adventDay3 = new();
@@ -20,7 +20,7 @@ public class AdventDay3UnitTests
         Assert.Equal(16, adventDay3.SumOfPriorities());
     }
     
-    [Fact]
+    [Fact(Skip = $"another test covers this test. {nameof(_004_identified_and_stored_items_and_calculate_sum_of_priorities)}")]
     public void _003_identified_and_stored_two_items_lowercase_p_and_uppercase_L_are_54_points()
     {
         AdventDay3 adventDay3 = new();
@@ -35,6 +35,7 @@ public class AdventDay3UnitTests
     [InlineData("p", 16)]
     [InlineData("L", 38)]
     [InlineData("pL", 54)]
+    [InlineData("pLPvts", 157)]
     public void _004_identified_and_stored_items_and_calculate_sum_of_priorities(string priorityItems, int expectedSumOfPriority)
     {
         AdventDay3 adventDay3 = new();
