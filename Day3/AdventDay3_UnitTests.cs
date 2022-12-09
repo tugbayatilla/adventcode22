@@ -1,3 +1,5 @@
+using Xunit.Sdk;
+
 namespace AdventOfCode22.Day3;
 
 public class AdventDay3UnitTests
@@ -54,7 +56,7 @@ public class AdventDay3UnitTests
         Assert.Equal(errorChar, _adventDay3.FindErrorInItems(items));
     }
     
-    [Fact]
+    [Fact(Skip = "Theory added. no need this one anymore.")]
     public void _006_Finding_batch_in_a_rucksack()
     {
         var rucksacks = new string[]
@@ -64,5 +66,23 @@ public class AdventDay3UnitTests
             "PmmdzqPrVvPwwTWBwg"
         };
         Assert.Equal('r', _adventDay3.FindBadge(rucksacks));
+    }
+    
+    [Theory]
+    [InlineData('r', new string[]
+    {
+        "vJrwpWtwJgWrhcsFMMfFFhFp",
+        "jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL",
+        "PmmdzqPrVvPwwTWBwg"
+    })]
+    [InlineData('Z', new string[]
+    {
+        "wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn",
+        "ttgJtRGJQctTZtZT",
+        "CrZsJsPPZsGzwwsLwLmpwMDw"
+    })]
+    public void _007_Finding_batch_in_a_rucksack(char expectedBadge, string[] rucksack)
+    {
+        Assert.Equal(expectedBadge, _adventDay3.FindBadge(rucksack));
     }
 }
