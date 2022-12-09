@@ -35,6 +35,7 @@ public class AdventDay4
         var firstRange = ConvertAssignmentToRange(splitDefinition.First());
         var secondRange = ConvertAssignmentToRange(splitDefinition.Last());
 
-        return Enumerable.SequenceEqual(firstRange.Intersect(secondRange), firstRange);
+        return Enumerable.SequenceEqual(firstRange.Intersect(secondRange), firstRange)
+            || Enumerable.SequenceEqual(secondRange.Intersect(firstRange), secondRange);
     }
 }

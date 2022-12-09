@@ -53,15 +53,21 @@ public class AdventDay4UnitTests
         Assert.Equal(expectedArray.AsEnumerable(), _adventDay4.ConvertAssignmentToRange(givenAssignment));
     }
     
-    [Fact(Skip = $"new theory test is cover this test. {nameof(_008_overlap_pairs_returns_true)}")]
+    [Fact(Skip = $"new theory test is cover this test. {nameof(_008_check_overlap_pairs_with_given_pair_definitions)}")]
     public void _007_overlap_pairs_returns_true()
     {
         Assert.True(_adventDay4.IsOverlap("1-1, 1-1"));
     }
     
     [Theory]
-    [InlineData("1-1, 1-1", true)]
-    public void _008_overlap_pairs_returns_true(string pairDefinition, bool expected)
+    [InlineData("1-1,1-1", true)]
+    [InlineData("2-4,6-8", false)]
+    [InlineData("2-3,4-5", false)]
+    [InlineData("5-7,7-9", false)]
+    [InlineData("2-8,3-7", true)]
+    [InlineData("6-6,4-6", true)]
+    [InlineData("2-6,4-8", false)]
+    public void _008_check_overlap_pairs_with_given_pair_definitions(string pairDefinition, bool expected)
     {
         Assert.Equal(expected, _adventDay4.IsOverlap(pairDefinition));
     }
