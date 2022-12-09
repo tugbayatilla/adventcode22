@@ -30,4 +30,20 @@ public class AdventDay3UnitTests
         
         Assert.Equal(16+38, adventDay3.SumOfPriorities());
     }
+    
+    [Theory]
+    [InlineData("p", 16)]
+    [InlineData("L", 38)]
+    [InlineData("pL", 54)]
+    public void _004_identified_and_stored_items_and_calculate_sum_of_priorities(string priorityItems, int expectedSumOfPriority)
+    {
+        AdventDay3 adventDay3 = new();
+
+        foreach (var priorityItem in priorityItems)
+        {
+            adventDay3.IdentifyAndStorePriorityItem(priorityItem.ToString());
+        }
+
+        Assert.Equal(expectedSumOfPriority, adventDay3.SumOfPriorities());
+    }
 }
