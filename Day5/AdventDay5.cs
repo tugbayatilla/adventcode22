@@ -11,11 +11,13 @@ public class AdventDay5
 
     public void RegisterCratesInStacksWithStringDefinition(string stackLineInfo)
     {
-        _stack.Add(null);
-        _stack.Add(null);
-        _stack.Add(null);
+        var stacks = ParseOneLineOfStackDefinition(stackLineInfo);
+        foreach (var stack in stacks)
+        {
+            _stack.Add(new List<string>() {stack});
+        }
     }
-    
+
     public IEnumerable<string> ParseOneLineOfStackDefinition(string stackLineInfo)
     {
         // fill empty spaces with meaningful data
@@ -32,6 +34,7 @@ public class AdventDay5
                 crates[i] = "";
             }
         }
+
         return crates;
     }
 }

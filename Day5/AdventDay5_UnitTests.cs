@@ -30,4 +30,16 @@ public class AdventDay5UnitTests
         Assert.Equal("[D]", crates[1]);
         Assert.Equal("", crates[2]);
     }
+    
+    [Fact]
+    public void _004_register_crates_in_stacks_returns_valid_values()
+    {
+        AdventDay5 adventDay5 = new();
+        adventDay5.RegisterCratesInStacksWithStringDefinition("    [D]    ");
+        var stacks = adventDay5.GetStacks().ToArray();
+        
+        Assert.Equal("", stacks[0].First());
+        Assert.Equal("[D]", stacks[1].First());
+        Assert.Equal("", stacks[2].First());
+    }
 }
