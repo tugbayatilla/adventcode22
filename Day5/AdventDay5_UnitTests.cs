@@ -18,4 +18,16 @@ public class AdventDay5UnitTests
         Assert.Equal(3, adventDay5.GetStacks().Count());
     }
 
+    [Fact]
+    public void _003_parse_one_line_of_stack_definition()
+    {
+        AdventDay5 adventDay5 = new();
+        var crates = adventDay5
+            .ParseOneLineOfStackDefinition("    [D]    ")
+            .ToArray();
+        
+        Assert.Equal("", crates[0]);
+        Assert.Equal("[D]", crates[1]);
+        Assert.Equal("", crates[2]);
+    }
 }
