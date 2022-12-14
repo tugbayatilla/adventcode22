@@ -8,6 +8,11 @@ public class Cargo
     }
 
     public Stack<string>[] ReturnValue { get; }
+
+    public Stack<string> GetStack(int stackId)
+    {
+        return ReturnValue[stackId];
+    }
 }
 
 public class AdventDay5
