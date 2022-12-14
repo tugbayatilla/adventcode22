@@ -18,37 +18,34 @@ public class CargoStack : Stack<string>
 
 public class Cargo
 {
+    private readonly List<CargoStack> _stacks = new();
+
     public Cargo(Stack<string>[] returnValue)
     {
         ReturnValue = returnValue;
+        _stacks.Add(new CargoStack(new Stack<string>()));
+        _stacks.Add(new CargoStack(new Stack<string>()));
     }
 
     public Stack<string>[] ReturnValue { get; }
 
     public CargoStack GetStack(int stackId)
     {
-        return new CargoStack(ReturnValue[stackId-1]);
+        return _stacks.Skip(stackId - 1).First();
     }
 }
 
 public class AdventDay5
 {
-    private Stack<string>[] _cargo = {new ()};
+    private readonly Cargo _myCargo = new(new CargoStack[] { });
 
     public Cargo GetCargo()
     {
-        return new Cargo(_cargo);
+        return _myCargo;
     }
 
     public void AddCrateToStack(int stackId, string crate)
     {
-        if (_cargo.Length < stackId)
-        {
-            Array.Resize(ref _cargo, stackId);
-        }
-
-        _cargo[stackId - 1] ??= new Stack<string>();
-        
-        _cargo[stackId - 1].Push(crate);
+        _myCargo.GetStack(stackId).AddCrate(crate);
     }
 }
