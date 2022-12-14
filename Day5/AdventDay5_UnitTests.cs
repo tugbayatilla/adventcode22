@@ -35,9 +35,12 @@ public class AdventDay5UnitTests
         _adventDay5.AddCrateToStack(2, "M");
         _adventDay5.AddCrateToStack(2, "C");
         _adventDay5.AddCrateToStack(2, "D");
+
+        var firstStack = _adventDay5.GetCurrentCargoState()[0];
+        var secondStack = _adventDay5.GetCurrentCargoState()[1];
         
-        Assert.Equal(2,_adventDay5.GetCurrentCargoState()[0].Count);
-        Assert.Equal(3,_adventDay5.GetCurrentCargoState()[1].Count);
+        Assert.Equal(2,firstStack.Count);
+        Assert.Equal(3,secondStack.Count);
         
     }
     
