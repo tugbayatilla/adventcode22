@@ -16,5 +16,12 @@ public class AdventDay5UnitTests
         AdventDay5 adventDay5 = new();
         Assert.IsAssignableFrom<IEnumerable<object>>(adventDay5.GetCurrentCargoState());
     }
+    
+    [Fact]
+    public void first_stack_contains_one_crate_named_Z()
+    {
+        AdventDay5 adventDay5 = new();
+        Assert.Equal("Z",adventDay5.GetCurrentCargoState().First());
+    }
 
 }

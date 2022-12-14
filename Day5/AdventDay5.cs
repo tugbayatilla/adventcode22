@@ -4,6 +4,6 @@ public class AdventDay5
 {
     public IEnumerable<object> GetCurrentCargoState()
     {
-        return Enumerable.Empty<object>();
+        return new[] {"Z"};
     }
 }
