@@ -1,12 +1,22 @@
 namespace AdventOfCode22.Day5;
 
+public class Cargo
+{
+    public Cargo(Stack<string>[] returnValue)
+    {
+        ReturnValue = returnValue;
+    }
+
+    public Stack<string>[] ReturnValue { get; }
+}
+
 public class AdventDay5
 {
     private Stack<string>[] _cargo = {new ()};
 
-    public Stack<string>[] GetCurrentCargoState()
+    public Cargo GetCurrentCargoState()
     {
-        return _cargo;
+        return new Cargo(_cargo);
     }
 
     public void AddCrateToStack(int stackId, string crate)
