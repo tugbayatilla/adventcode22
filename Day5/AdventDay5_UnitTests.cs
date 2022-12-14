@@ -29,16 +29,15 @@ public class AdventDay5UnitTests
     [Fact]
     public void cargo_has_two_stacks_and_first_has_2_and_second_has_3_crates()
     {
-        _adventDay5.AddCrateToStack(1, "Z");
-        _adventDay5.AddCrateToStack(1, "N");
+        var firstStack = _adventDay5.GetCargo().GetStack(1);
+        firstStack.AddCrate("Z");
+        firstStack.AddCrate("N");
         
-        _adventDay5.AddCrateToStack(2, "M");
-        _adventDay5.AddCrateToStack(2, "C");
-        _adventDay5.AddCrateToStack(2, "D");
+        var secondStack = _adventDay5.GetCargo().GetStack(2);
+        firstStack.AddCrate("M");
+        firstStack.AddCrate("C");
+        firstStack.AddCrate("D");
 
-        var firstStack = _adventDay5.GetCargo().GetStack(0).ReturnValue;
-        var secondStack = _adventDay5.GetCargo().GetStack(1).ReturnValue;
-        
         Assert.Equal(2,firstStack.Count);
         Assert.Equal(3,secondStack.Count);
         

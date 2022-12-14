@@ -10,7 +10,10 @@ public class CargoStack : Stack<string>
         }
     }
 
-    public Stack<string> ReturnValue { get; private set; }
+    public void AddCrate(string crate)
+    {
+        Push(crate);
+    }
 }
 
 public class Cargo
