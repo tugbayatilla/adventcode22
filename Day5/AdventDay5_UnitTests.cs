@@ -7,13 +7,13 @@ public class AdventDay5UnitTests
     [Fact]
     public void You_can_get_current_cargo_state()
     {
-        Assert.NotNull(_adventDay5.GetCurrentCargoState().ReturnValue);
+        Assert.NotNull(_adventDay5.GetCargo().ReturnValue);
     }
     
     [Fact]
     public void cargo_state_contains_list_of_stack()
     {
-        Assert.IsAssignableFrom<IEnumerable<object>>(_adventDay5.GetCurrentCargoState().ReturnValue);
+        Assert.IsAssignableFrom<IEnumerable<object>>(_adventDay5.GetCargo().ReturnValue);
     }
 
     [Fact]
@@ -22,8 +22,8 @@ public class AdventDay5UnitTests
         _adventDay5.AddCrateToStack(1, "Z");
         _adventDay5.AddCrateToStack(1, "N");
         
-        Assert.Equal("N",_adventDay5.GetCurrentCargoState().ReturnValue[0].Pop());
-        Assert.Equal("Z",_adventDay5.GetCurrentCargoState().ReturnValue[0].Pop());
+        Assert.Equal("N",_adventDay5.GetCargo().ReturnValue[0].Pop());
+        Assert.Equal("Z",_adventDay5.GetCargo().ReturnValue[0].Pop());
     }
     
     [Fact]
@@ -36,8 +36,8 @@ public class AdventDay5UnitTests
         _adventDay5.AddCrateToStack(2, "C");
         _adventDay5.AddCrateToStack(2, "D");
 
-        var firstStack = _adventDay5.GetCurrentCargoState().GetStack(0);
-        var secondStack = _adventDay5.GetCurrentCargoState().GetStack(1);
+        var firstStack = _adventDay5.GetCargo().GetStack(0);
+        var secondStack = _adventDay5.GetCargo().GetStack(1);
         
         Assert.Equal(2,firstStack.Count);
         Assert.Equal(3,secondStack.Count);

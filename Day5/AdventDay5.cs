@@ -19,7 +19,7 @@ public class AdventDay5
 {
     private Stack<string>[] _cargo = {new ()};
 
-    public Cargo GetCurrentCargoState()
+    public Cargo GetCargo()
     {
         return new Cargo(_cargo);
     }
