@@ -1,5 +1,18 @@
 namespace AdventOfCode22.Day5;
 
+public class CargoStack : Stack<string>
+{
+    public CargoStack(Stack<string> returnValue)
+    {
+        foreach (var val in returnValue)
+        {
+            Push(val);
+        }
+    }
+
+    public Stack<string> ReturnValue { get; private set; }
+}
+
 public class Cargo
 {
     public Cargo(Stack<string>[] returnValue)
@@ -9,9 +22,9 @@ public class Cargo
 
     public Stack<string>[] ReturnValue { get; }
 
-    public Stack<string> GetStack(int stackId)
+    public CargoStack GetStack(int stackId)
     {
-        return ReturnValue[stackId];
+        return new CargoStack(ReturnValue[stackId-1]);
     }
 }
 
