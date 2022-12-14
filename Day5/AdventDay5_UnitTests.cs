@@ -18,10 +18,14 @@ public class AdventDay5UnitTests
     }
     
     [Fact]
-    public void first_stack_contains_one_crate_named_Z()
+    public void add_two_crate_to_first_stack_with_order_Z_and_N_then_pop_out_with_order_N_and_Z()
     {
         AdventDay5 adventDay5 = new();
-        Assert.Equal("Z",adventDay5.GetCurrentCargoState().First());
+        adventDay5.AddCrateToStack(1, "Z");
+        adventDay5.AddCrateToStack(1, "N");
+        
+        Assert.Equal("N",adventDay5.GetCurrentCargoState()[0].Pop());
+        Assert.Equal("Z",adventDay5.GetCurrentCargoState()[0].Pop());
     }
 
 }
