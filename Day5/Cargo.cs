@@ -19,4 +19,10 @@ public class Cargo
     {
         return _stackList.Count;
     }
+
+    public void Move(int fromStackId, int toStackId, int numberOfCrates)
+    {
+        GetStackById(fromStackId).RemoveAt(0);
+        GetStackById(toStackId).Add("");
+    }
 }

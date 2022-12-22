@@ -130,4 +130,25 @@ public class AdventDay5UnitTests
         Assert.Equal(2, stack1.Count);
         Assert.Equal(2, stack2.Count);
     }
+    
+    [Fact]
+    public void _014_move_one_crate_from_first_stack_to_second_stack()
+    {
+        var cargo = _adventDay5.GetCargo();
+        cargo.AddStack();
+        cargo.AddStack();
+
+        var stack1 = cargo.GetStackById(1);
+        stack1.Add("A");
+        stack1.Add("B");
+        
+        var stack2 = cargo.GetStackById(2);
+        stack2.Add("C");
+        stack2.Add("D");
+        
+        cargo.Move(1, 2, 1);
+        
+        Assert.Equal(1, cargo.GetStackById(1).Count);
+        Assert.Equal(3, cargo.GetStackById(2).Count);
+    }
 }
