@@ -21,7 +21,18 @@ public class AdventDay5UnitTests
     public void _003_cargo_has_one_crate_in_one_stack()
     {
         AdventDay5 adventDay5 = new();
+        adventDay5.AddCrateToStack(1);
         var firstStack = adventDay5.GetCargoState().First();
         Assert.Equal(1,firstStack.Count());
+    }
+    
+    [Fact]
+    public void _004_cargo_has_two_crates_in_one_stack()
+    {
+        AdventDay5 adventDay5 = new();
+        adventDay5.AddCrateToStack(1);
+        adventDay5.AddCrateToStack(1);
+        var firstStack = adventDay5.GetCargoState().First();
+        Assert.Equal(2,firstStack.Count());
     }
 }
