@@ -21,9 +21,15 @@ public class AdventDay5UnitTests
     [Fact]
     public void _003_cargo_has_one_crate_in_one_stack()
     {
-        _adventDay5.AddCrateToStack(1, "");
+        AddCrateToStack(1, "");
+
         var firstStack = GetFirstStack();
         Assert.Equal(1, firstStack.Count());
+    }
+
+    private void AddCrateToStack(int stackId, string crateName)
+    {
+        _adventDay5.AddCrateToStack(stackId, crateName);
     }
 
     private IList<string> GetFirstStack()
