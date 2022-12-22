@@ -48,4 +48,11 @@ public class AdventDay5UnitTests
         _adventDay5.AddCrateToStack(1, "H");
         Assert.IsType<Cargo>(_adventDay5.GetCargo());
     }
+    
+    [Fact]
+    public void _007_cargo_can_get_stack_by_id_returns_not_null()
+    {
+        _adventDay5.AddCrateToStack(1, "H");
+        Assert.NotNull(_adventDay5.GetCargo().GetStackById(1));
+    }
 }
