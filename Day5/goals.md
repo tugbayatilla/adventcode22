@@ -1,6 +1,3 @@
-- get rid of AddCrateToStack
-  - Cargo returns getStack and it returns Stack object
-    - Stack object has AddCrate functionality
 - smell: get rid of _cargo field
 - smell: naming of _getCargo is not good, change it to _cargo
 - 
