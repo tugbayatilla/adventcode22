@@ -1,6 +1,5 @@
 - get rid of GetCargoState
   - cover, returns count of stacks in cargo
-  - cover, first stack in cargo
 - get rid of AddCrateToStack
   - Cargo returns getStack and it returns Stack object
     - Stack object has AddCrate functionality
