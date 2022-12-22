@@ -41,4 +41,11 @@ public class AdventDay5UnitTests
         var firstCrate = firstStack.First();
         Assert.Equal("H", firstCrate);
     }
+    
+    [Fact]
+    public void _006_get_cargo_returns_cargo_type()
+    {
+        _adventDay5.AddCrateToStack(1, "H");
+        Assert.IsType<Cargo>(_adventDay5.GetCargo());
+    }
 }
