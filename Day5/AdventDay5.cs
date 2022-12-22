@@ -13,4 +13,9 @@ public class AdventDay5
     {
         _cargo.Skip(stackId - 1).First().Add("");
     }
+
+    public void AddCrateToStack(int stackId, string crateName)
+    {
+        _cargo.Skip(stackId - 1).First().Add(crateName);
+    }
 }
