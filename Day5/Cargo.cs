@@ -9,12 +9,6 @@ public class Cargo
         return _stackList[stackId - 1];
     }
 
-    public int AddStack()
-    {
-        _stackList.Add(new List<string>());
-        return _stackList.Count;
-    }
-
     public int StackCount()
     {
         return _stackList.Count;
@@ -33,9 +27,10 @@ public class Cargo
         }
     }
 
-    public IList<string> AddStackWith(params string[] crates)
+    public IList<string> AddStack(params string[] crates)
     {
-        var stack = GetStackById(AddStack());
+        _stackList.Add(new List<string>());
+        var stack = GetStackById(_stackList.Count);
         crates.ToList().ForEach(p => stack.Add(p));
 
         return stack;
