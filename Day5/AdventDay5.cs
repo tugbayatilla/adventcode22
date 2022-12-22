@@ -3,19 +3,21 @@ namespace AdventOfCode22.Day5;
 public class AdventDay5
 {
     private readonly List<List<string>> _cargo = new() {new()};
+    private readonly Cargo _getCargo = new Cargo();
 
     public IEnumerable<IEnumerable<string>> GetCargoState()
     {
         return _cargo;
     }
-    
+
     public void AddCrateToStack(int stackId, string crateName)
     {
         _cargo.Skip(stackId - 1).First().Add(crateName);
+        _getCargo.GetStackById(stackId).Add(crateName);
     }
 
     public Cargo GetCargo()
     {
-        return new Cargo();
+        return _getCargo;
     }
 }

@@ -2,8 +2,10 @@ namespace AdventOfCode22.Day5;
 
 public class Cargo
 {
-    public object GetStackById(int stackId)
+    private readonly List<string> _getStackById = new List<string>();
+
+    public IList<string> GetStackById(int stackId)
     {
-        return new object();
+        return _getStackById;
     }
 }
