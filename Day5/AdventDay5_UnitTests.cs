@@ -29,7 +29,9 @@ public class AdventDay5UnitTests
 
     private void AddCrateToStack(int stackId, string crateName)
     {
-        _adventDay5.AddCrateToStack(stackId, crateName);
+        var cargo = _adventDay5.GetCargo();
+        var stack = cargo.GetStackById(stackId);
+        stack.Add(crateName);
     }
 
     private IList<string> GetFirstStack()
@@ -79,14 +81,14 @@ public class AdventDay5UnitTests
         _adventDay5.AddCrateToStack(1, "");
         Assert.Single(GetFirstStack());
     }
-    
+
     [Fact]
     public void _010_cargo_has_one_crate_named_H_in_stack_1()
     {
         _adventDay5.AddCrateToStack(1, "H");
-        Assert.Equal("H",GetFirstStack()[0]);
+        Assert.Equal("H", GetFirstStack()[0]);
     }
-    
+
     [Fact(Skip = $"same as {nameof(_004_cargo_has_two_crates_in_one_stack)}")]
     public void _011_cargo_has_two_crates_in_one_stack()
     {
