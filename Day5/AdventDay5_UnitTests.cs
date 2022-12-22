@@ -9,5 +9,11 @@ public class AdventDay5UnitTests
         AdventDay5 adventDay5 = new();
         Assert.NotNull(adventDay5.GetCargoState());
     }
-
+    
+    [Fact]
+    public void _002_cargo_has_one_emtpy_stack()
+    {
+        AdventDay5 adventDay5 = new();
+        Assert.Equal(1,adventDay5.GetCargoState().Count());
+    }
 }
