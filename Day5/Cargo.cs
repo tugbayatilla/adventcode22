@@ -23,7 +23,8 @@ public class Cargo
     public void Move(int fromStackId, int toStackId, int numberOfCrates)
     {
         var fromStack = GetStackById(fromStackId);
-        for (var i = 0; i < numberOfCrates; i++)
+        var movingCount = fromStack.Count < numberOfCrates ? fromStack.Count : numberOfCrates;
+        for (var i = 0; i < movingCount; i++)
         {
             var lastCrateFromStack = fromStack.Last();
             fromStack.Remove(lastCrateFromStack);
