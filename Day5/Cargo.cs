@@ -8,4 +8,9 @@ public class Cargo
     {
         return _getStackById;
     }
+
+    public int AddStack()
+    {
+        return 1;
+    }
 }

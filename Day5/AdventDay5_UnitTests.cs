@@ -13,7 +13,9 @@ public class AdventDay5UnitTests
     [Fact]
     public void _002_cargo_has_one_emtpy_stack()
     {
-        Assert.Equal(1, _adventDay5.GetCargoState().Count());
+        var stackId = _adventDay5.GetCargo().AddStack();
+        var stack = _adventDay5.GetCargo().GetStackById(stackId);
+        Assert.Equal(0, stack.Count);
     }
 
     [Fact]
