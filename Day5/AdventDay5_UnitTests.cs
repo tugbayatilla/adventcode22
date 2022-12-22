@@ -109,4 +109,25 @@ public class AdventDay5UnitTests
         cargo.AddStack();
         Assert.Equal(2, cargo.StackCount());
     }
+    
+    [Fact]
+    public void _013_cargo_has_two_crates_in_each_two_stacks()
+    {
+        var cargo = _adventDay5.GetCargo();
+        cargo.AddStack();
+        cargo.AddStack();
+
+
+        var stack1 = cargo.GetStackById(1);
+        stack1.Add("A");
+        stack1.Add("B");
+        
+        var stack2 = cargo.GetStackById(2);
+        stack2.Add("C");
+        stack2.Add("D");
+        
+        
+        Assert.Equal(2, stack1.Count);
+        Assert.Equal(2, stack2.Count);
+    }
 }
