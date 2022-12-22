@@ -1,10 +1,13 @@
 # Goals
 
-- crate can only move to another stack if exist
-- stack can be an object class
+- parse data file
+  - read until emtpy line, first part will be cargo, second part will be movements
+  - parse create cargo crates and stacks according to data
+  - parse movements 
 
 
 # Smells
 
-- Move method
-  - numberOfCrates never used
+# Improvements
+
+- stack can be an object class
