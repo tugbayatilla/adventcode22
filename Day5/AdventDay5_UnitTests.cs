@@ -79,7 +79,7 @@ public class AdventDay5UnitTests
         Assert.Equal("H",GetFirstStack()[0]);
     }
     
-    [Fact]
+    [Fact(Skip = $"same as {nameof(_004_cargo_has_two_crates_in_one_stack)}")]
     public void _011_cargo_has_two_crates_in_one_stack()
     {
         _adventDay5.AddCrateToStack(1, "");
