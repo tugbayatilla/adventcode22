@@ -68,4 +68,11 @@ public class AdventDay5UnitTests
         _adventDay5.AddCrateToStack(1, "");
         Assert.Single(_adventDay5.GetCargo().GetStackById(1));
     }
+    
+    [Fact]
+    public void _010_cargo_has_one_crate_named_H_in_stack_1()
+    {
+        _adventDay5.AddCrateToStack(1, "H");
+        Assert.Equal("H",_adventDay5.GetCargo().GetStackById(1)[0]);
+    }
 }
