@@ -171,4 +171,33 @@ public class AdventDay5UnitTests
         
         Assert.True(cargo.GetStackById(2).SequenceEqual(new []{"C","D","B"}));
     }
+    
+    [Theory]
+    [InlineData(1, new []{"A","B"}, new []{"C","D"}, new []{"C","D","B"})]
+    public void _016_move_from_stack_to_stack_and_get_the_result(
+        int numberOfCratesToMove, 
+        string[] fromStack, 
+        string[] toStack, 
+        string[] expectedToStack)
+    {
+        var cargo = _adventDay5.GetCargo();
+        cargo.AddStack();
+        cargo.AddStack();
+
+        var stack1 = cargo.GetStackById(1);
+        for (var i = 0; i < fromStack.Count(); i++)
+        {
+            stack1.Add(fromStack[i]);
+        }
+        
+        var stack2 = cargo.GetStackById(2);
+        for (var i = 0; i < toStack.Count(); i++)
+        {
+            stack2.Add(toStack[i]);
+        }
+        
+        cargo.Move(1, 2, numberOfCratesToMove);
+        
+        Assert.True(cargo.GetStackById(2).SequenceEqual(expectedToStack));
+    }
 }
