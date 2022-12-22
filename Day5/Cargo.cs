@@ -6,7 +6,7 @@ public class Cargo
 
     public IList<string> GetStackById(int stackId)
     {
-        return _stackList[stackId-1];
+        return _stackList[stackId - 1];
     }
 
     public int AddStack()
@@ -23,9 +23,12 @@ public class Cargo
     public void Move(int fromStackId, int toStackId, int numberOfCrates)
     {
         var fromStack = GetStackById(fromStackId);
-        var lastCrateFromStack = fromStack.Last();
-        fromStack.Remove(lastCrateFromStack);
-        
-        GetStackById(toStackId).Add(lastCrateFromStack);
+        for (var i = 0; i < numberOfCrates; i++)
+        {
+            var lastCrateFromStack = fromStack.Last();
+            fromStack.Remove(lastCrateFromStack);
+
+            GetStackById(toStackId).Add(lastCrateFromStack);
+        }
     }
 }
