@@ -9,7 +9,7 @@ public class AdventDay5
         return _cargo;
     }
     
-    public void AddCrateToStack(int stackId, string crateName = "")
+    public void AddCrateToStack(int stackId, string crateName)
     {
         _cargo.Skip(stackId - 1).First().Add(crateName);
     }

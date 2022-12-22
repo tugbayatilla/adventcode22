@@ -19,7 +19,7 @@ public class AdventDay5UnitTests
     [Fact]
     public void _003_cargo_has_one_crate_in_one_stack()
     {
-        _adventDay5.AddCrateToStack(1);
+        _adventDay5.AddCrateToStack(1, "");
         var firstStack = _adventDay5.GetCargoState().First();
         Assert.Equal(1, firstStack.Count());
     }
@@ -27,8 +27,8 @@ public class AdventDay5UnitTests
     [Fact]
     public void _004_cargo_has_two_crates_in_one_stack()
     {
-        _adventDay5.AddCrateToStack(1);
-        _adventDay5.AddCrateToStack(1);
+        _adventDay5.AddCrateToStack(1, "");
+        _adventDay5.AddCrateToStack(1, "");
         var firstStack = _adventDay5.GetCargoState().First();
         Assert.Equal(2, firstStack.Count());
     }
