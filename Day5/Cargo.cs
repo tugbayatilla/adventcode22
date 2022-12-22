@@ -32,4 +32,12 @@ public class Cargo
             GetStackById(toStackId).Add(lastCrateFromStack);
         }
     }
+
+    public IList<string> AddStackWith(params string[] crates)
+    {
+        var stack = GetStackById(AddStack());
+        crates.ToList().ForEach(p => stack.Add(p));
+
+        return stack;
+    }
 }
