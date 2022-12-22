@@ -150,6 +150,7 @@ public class AdventDay5UnitTests
     [InlineData(1, new []{"A","B"}, new []{"C","D"}, new []{"C","D","B"})]
     [InlineData(2, new []{"A","B"}, new []{"C","D"}, new []{"C","D","B", "A"})]
     [InlineData(3, new []{"A","B"}, new []{"C","D"}, new []{"C","D","B", "A"})]
+    [InlineData(3, new string[]{}, new []{"C","D"}, new []{"C","D"})]
     public void _016_move_from_stack_to_stack_and_get_the_result(
         int numberOfCratesToMove, 
         string[] fromStack, 
