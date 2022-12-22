@@ -21,13 +21,13 @@ public class AdventDay5UnitTests
     [Fact]
     public void _003_cargo_has_one_crate_in_one_stack()
     {
-        AddCrateToStack(1, "");
+        AddCrateToNewStack(1, "");
 
         var firstStack = GetFirstStack();
         Assert.Equal(1, firstStack.Count());
     }
 
-    private void AddCrateToStack(int stackId, string crateName)
+    private void AddCrateToNewStack(int stackId, string crateName)
     {
         var cargo = _adventDay5.GetCargo();
         cargo.AddStack();
@@ -44,15 +44,15 @@ public class AdventDay5UnitTests
     [Fact]
     public void _004_cargo_has_two_crates_in_one_stack()
     {
-        AddCrateToStack(1, "");
-        AddCrateToStack(1, "");
+        AddCrateToNewStack(1, "");
+        AddCrateToNewStack(1, "");
         Assert.Equal(2, GetFirstStack().Count());
     }
 
     [Fact]
     public void _005_cargo_has_one_crate_named_H_in_one_stack()
     {
-        AddCrateToStack(1, "H");
+        AddCrateToNewStack(1, "H");
         var firstCrate = GetFirstStack().First();
         Assert.Equal("H", firstCrate);
     }
@@ -60,14 +60,14 @@ public class AdventDay5UnitTests
     [Fact]
     public void _006_get_cargo_returns_cargo_type()
     {
-        AddCrateToStack(1, "H");
+        AddCrateToNewStack(1, "H");
         Assert.IsType<Cargo>(_adventDay5.GetCargo());
     }
 
     [Fact]
     public void _007_cargo_can_get_stack_by_id_returns_not_null()
     {
-        AddCrateToStack(1, "H");
+        AddCrateToNewStack(1, "H");
         Assert.NotNull(GetFirstStack());
     }
 
@@ -82,22 +82,22 @@ public class AdventDay5UnitTests
     [Fact]
     public void _009_cargo_has_one_crate_in_stack_1()
     {
-        AddCrateToStack(1, "");
+        AddCrateToNewStack(1, "");
         Assert.Single(GetFirstStack());
     }
 
     [Fact]
     public void _010_cargo_has_one_crate_named_H_in_stack_1()
     {
-        AddCrateToStack(1, "H");
+        AddCrateToNewStack(1, "H");
         Assert.Equal("H", GetFirstStack()[0]);
     }
 
     [Fact(Skip = $"same as {nameof(_004_cargo_has_two_crates_in_one_stack)}")]
     public void _011_cargo_has_two_crates_in_one_stack()
     {
-        AddCrateToStack(1, "");
-        AddCrateToStack(1, "");
+        AddCrateToNewStack(1, "");
+        AddCrateToNewStack(1, "");
         Assert.Equal(2, GetFirstStack().Count());
     }
     
