@@ -22,7 +22,10 @@ public class Cargo
 
     public void Move(int fromStackId, int toStackId, int numberOfCrates)
     {
-        GetStackById(fromStackId).RemoveAt(0);
-        GetStackById(toStackId).Add("");
+        var fromStack = GetStackById(fromStackId);
+        var lastCrateFromStack = fromStack.Last();
+        fromStack.Remove(lastCrateFromStack);
+        
+        GetStackById(toStackId).Add(lastCrateFromStack);
     }
 }

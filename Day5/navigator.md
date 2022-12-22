@@ -1,6 +1,5 @@
 # Goals
 
-- moving order is important
 - crate can only move to another stack if exist
 
 

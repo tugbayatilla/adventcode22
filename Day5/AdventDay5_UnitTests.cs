@@ -151,4 +151,24 @@ public class AdventDay5UnitTests
         Assert.Equal(1, cargo.GetStackById(1).Count);
         Assert.Equal(3, cargo.GetStackById(2).Count);
     }
+    
+    [Fact]
+    public void _015_move_B_from_stack_1_and_stack_2_will_be_in_order_of_C_D_B()
+    {
+        var cargo = _adventDay5.GetCargo();
+        cargo.AddStack();
+        cargo.AddStack();
+
+        var stack1 = cargo.GetStackById(1);
+        stack1.Add("A");
+        stack1.Add("B");
+        
+        var stack2 = cargo.GetStackById(2);
+        stack2.Add("C");
+        stack2.Add("D");
+        
+        cargo.Move(1, 2, 1);
+        
+        Assert.True(cargo.GetStackById(2).SequenceEqual(new []{"C","D","B"}));
+    }
 }
