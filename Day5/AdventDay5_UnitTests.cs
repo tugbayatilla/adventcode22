@@ -175,4 +175,14 @@ public class AdventDay5UnitTests
         Assert.NotNull(cargo);
         Assert.NotNull(movements);
     }
+    
+    [Fact]
+    public void _018_file_data_contains_one_stack_with_two_crates()
+    {
+        var stackWithTwoCrates = new [] {"[_]", "[__]", " 1 "};
+        (Cargo cargo, _) = _adventDay5.ParseFile(stackWithTwoCrates);
+        
+        Assert.Equal(1, cargo.StackCount());
+        Assert.Equal(2, cargo.GetStackById(1).Count);
+    }
 }

@@ -11,6 +11,11 @@ public class AdventDay5
 
     public (Cargo, Movements) ParseFile(IEnumerable<string> lines)
     {
-        return (new Cargo(), new Movements());
+        var cargo = new Cargo();
+        var stack = cargo.AddStack();
+        stack.Add("");
+        stack.Add("");
+        
+        return (cargo, new Movements());
     }
 }
