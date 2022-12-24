@@ -1,13 +1,17 @@
-# Goals
+# Goals (WIP 3)
 
 - parse data file
   - read until emtpy line, first part will be cargo, second part will be movements
-  - parse create cargo crates and stacks according to data
   - parse movements 
 
 
-# Smells
+# Smells (WIP 3)
 
-# Improvements
+- ParseFile method 
+  - name does not fit the purpose
+  - too complex
+  - YAGNI, returns movements 
+
+# Improvements (WIP 3)
 
 - stack can be an object class
