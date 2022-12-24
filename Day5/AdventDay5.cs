@@ -12,15 +12,27 @@ public class AdventDay5
     public (Cargo, Movements) ParseFile(IEnumerable<string> lines)
     {
         var cargo = new Cargo();
-        var stack = cargo.AddStack();
-        foreach (var line in lines.OrderByDescending(s => s))
+        if (lines.Any())
         {
-            if (line.Contains("["))
+            var lastLine = lines.Last();
+            var stackIdList = lastLine.Split(" ", StringSplitOptions.RemoveEmptyEntries);
+            var numberOfStacks = stackIdList.Length;
+
+            for (int i = 1; i <= numberOfStacks; i++)
             {
-                stack.Add(line.Substring(1,1));
+                cargo.AddStack();
+                foreach (var line in lines.OrderByDescending(s => s))
+                {
+                    if (line.Contains("["))
+                    {
+                        var stack = cargo.GetStackById(i);
+                        stack.Add(line.Substring(1, 1));
+                    }
+                }
             }
         }
-        
+
+
         return (cargo, new Movements());
     }
 }

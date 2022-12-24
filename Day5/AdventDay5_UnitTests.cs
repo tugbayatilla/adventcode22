@@ -195,4 +195,13 @@ public class AdventDay5UnitTests
 
         Assert.True(cargo.GetStackById(1).SequenceEqual(new[] {"B", "A"}));
     }
+    
+    [Fact]
+    public void _020_file_data_contains_two_stacks_with_two_crates_each()
+    {
+        var stackWithTwoCrates = new[] {"[_] [_]", "[_] [_]", " 1   2 "};
+        (Cargo cargo, _) = _adventDay5.ParseFile(stackWithTwoCrates);
+
+        Assert.Equal(2, cargo.StackCount());
+    }
 }
