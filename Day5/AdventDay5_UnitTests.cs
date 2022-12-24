@@ -204,4 +204,14 @@ public class AdventDay5UnitTests
 
         Assert.Equal(2, cargo.StackCount());
     }
+    
+    [Theory]
+    [InlineData("Day5/test01.data", 1, new []{"Z", "N"})]
+    public void _021_in_test01_data_given_stack_contains_given_crates(string filePath, int stackId, string[] crates)
+    {
+        var lines = AdventUtils.ReadDataFromAFile(filePath);
+        (Cargo cargo, _) = _adventDay5.ParseFile(lines);
+
+        Assert.True(cargo.GetStackById(stackId).SequenceEqual(crates));
+    }
 }

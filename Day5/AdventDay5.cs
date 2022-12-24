@@ -3,7 +3,7 @@ namespace AdventOfCode22.Day5;
 public class AdventDay5
 {
     private readonly Cargo _cargo = new Cargo();
-    
+
     public Cargo GetCargo()
     {
         return _cargo;
@@ -21,12 +21,25 @@ public class AdventDay5
             for (int i = 1; i <= numberOfStacks; i++)
             {
                 cargo.AddStack();
-                foreach (var line in lines.OrderByDescending(s => s))
+            }
+
+            foreach (var line in lines.OrderByDescending(s => s))
+            {
+                var fixedLine = line.Replace("    ", " [-] ");
+                var trimedFixLine = fixedLine.Trim();
+
+                var crates = trimedFixLine.Split(' ');
+                for (var index = 0; index < crates.Length; index++)
                 {
-                    if (line.Contains("["))
+                    var crate = crates[index];
+                    if (crate.Contains("[") && !crate.Contains("[-]"))
                     {
-                        var stack = cargo.GetStackById(i);
-                        stack.Add(line.Substring(1, 1));
+                        var stack = cargo.GetStackById(index+1);
+                        var crateName = crate.Substring(1, 1);
+                        if (!string.IsNullOrEmpty(crateName))
+                        {
+                            stack.Add(crateName);
+                        }
                     }
                 }
             }
