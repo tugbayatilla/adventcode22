@@ -13,8 +13,13 @@ public class AdventDay5
     {
         var cargo = new Cargo();
         var stack = cargo.AddStack();
-        stack.Add("");
-        stack.Add("");
+        foreach (var line in lines.OrderByDescending(s => s))
+        {
+            if (line.Contains("["))
+            {
+                stack.Add(line.Substring(1,1));
+            }
+        }
         
         return (cargo, new Movements());
     }
