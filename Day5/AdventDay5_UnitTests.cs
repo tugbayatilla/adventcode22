@@ -183,6 +183,7 @@ public class AdventDay5UnitTests
         (Cargo cargo, _) = _adventDay5.ParseFile(stackWithTwoCrates);
         
         Assert.Equal(1, cargo.StackCount());
-        Assert.Equal(2, cargo.GetStackById(1).Count);
+        var cratesCount = cargo.GetStackById(1).Count;
+        Assert.Equal(2, cratesCount);
     }
 }
