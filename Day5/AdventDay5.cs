@@ -22,13 +22,13 @@ public class AdventDay5
             {
                 cargo.AddStack();
             }
-
-            foreach (var line in lines.OrderByDescending(s => s))
+            
+            foreach (var line in lines.OrderByDescending(s=>s))
             {
                 var fixedLine = line.Replace("    ", " [-] ");
-                var trimedFixLine = fixedLine.Trim();
+                var trimmedFixLine = fixedLine.Trim();
 
-                var crates = trimedFixLine.Split(' ');
+                var crates = trimmedFixLine.Split(' ');
                 for (var index = 0; index < crates.Length; index++)
                 {
                     var crate = crates[index];

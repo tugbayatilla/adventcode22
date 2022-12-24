@@ -207,6 +207,8 @@ public class AdventDay5UnitTests
     
     [Theory]
     [InlineData("Day5/test01.data", 1, new []{"Z", "N"})]
+    [InlineData("Day5/test01.data", 2, new []{"M", "C", "D"})]
+    [InlineData("Day5/test01.data", 3, new []{"P"})]
     public void _021_in_test01_data_given_stack_contains_given_crates(string filePath, int stackId, string[] crates)
     {
         var lines = AdventUtils.ReadDataFromAFile(filePath);
