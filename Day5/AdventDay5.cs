@@ -8,4 +8,9 @@ public class AdventDay5
     {
         return _cargo;
     }
+
+    public (Cargo, Movements) ParseFile(IEnumerable<string> lines)
+    {
+        return (new Cargo(), new Movements());
+    }
 }

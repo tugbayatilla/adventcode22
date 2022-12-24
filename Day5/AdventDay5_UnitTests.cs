@@ -166,4 +166,13 @@ public class AdventDay5UnitTests
         
         Assert.True(cargo.GetStackById(2).SequenceEqual(expectedToStack));
     }
+    
+    [Fact]
+    public void _017_file_data_returns_not_null_cargo_and_movements()
+    {
+        (Cargo cargo, Movements movements) = _adventDay5.ParseFile(Enumerable.Empty<string>());
+        
+        Assert.NotNull(cargo);
+        Assert.NotNull(movements);
+    }
 }
