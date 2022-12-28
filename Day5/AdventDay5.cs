@@ -62,7 +62,6 @@ public class AdventDay5
             if (split.Length != 6) continue;
 
             var movement = new Movement(
-                int.Parse(split[1]),
                 int.Parse(split[3]),
                 int.Parse(split[5]));
             movements.Add(movement);

@@ -235,8 +235,8 @@ public class AdventDay5UnitTests
     [InlineData("Day5/test02.data", 2, 2, 2, 1)]
     [InlineData("Day5/test02.data", 3, 1, 1, 2)]
     
-    public void _023_in_test02_data_given_movements(string filePath, int movementIndex, int from, int to,
-        int movementCount)
+    public void _023_in_test02_data_given_movements(string filePath, int movementIndex,
+        int movementCount, int from, int to)
     {
         var lines = AdventUtils.ReadDataFromAFile(filePath);
         (_, Movements movements) = _adventDay5.ParseLines(lines);
