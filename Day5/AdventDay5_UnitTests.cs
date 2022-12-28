@@ -127,7 +127,7 @@ public class AdventDay5UnitTests
         var stack2 = cargo.AddStack("C", "D");
 
 
-        cargo.Move(1, 2, 1);
+        cargo.Move(new Movement(1, 2, 1));
 
         Assert.Equal(1, stack1.Count);
         Assert.Equal(3, stack2.Count);
@@ -141,7 +141,7 @@ public class AdventDay5UnitTests
         cargo.AddStack("A", "B");
         cargo.AddStack("C", "D");
 
-        cargo.Move(1, 2, 1);
+        cargo.Move(new Movement(1, 2, 1));
 
         Assert.True(cargo.GetStackById(2).SequenceEqual(new[] {"C", "D", "B"}));
     }
@@ -162,7 +162,7 @@ public class AdventDay5UnitTests
         cargo.AddStack(fromStack);
         cargo.AddStack(toStack);
 
-        cargo.Move(1, 2, numberOfCratesToMove);
+        cargo.Move(new Movement(1, 2, numberOfCratesToMove));
 
         Assert.True(cargo.GetStackById(2).SequenceEqual(expectedToStack));
     }
@@ -234,7 +234,6 @@ public class AdventDay5UnitTests
     [InlineData("Day5/test02.data", 1, 3, 1, 3)]
     [InlineData("Day5/test02.data", 2, 2, 2, 1)]
     [InlineData("Day5/test02.data", 3, 1, 1, 2)]
-    
     public void _023_in_test02_data_given_movements(string filePath, int movementIndex,
         int movementCount, int from, int to)
     {
@@ -243,13 +242,12 @@ public class AdventDay5UnitTests
 
         Assert.Equal(new Movement(from, to, movementCount), movements.GetByIndex(movementIndex));
     }
-    
+
     [Theory]
     [InlineData("Day5/test02.data", 0, 1, 2)]
     [InlineData("Day5/test02.data", 0, 2, 3)]
     [InlineData("Day5/test02.data", 0, 3, 1)]
     [InlineData("Day5/test02.data", 1, 1, 3)]
-    
     public void _024_in_test02_data_given_movements_applied_to_cargo_and_get_final(
         string filePath, int movementCount, int stackId, int numberOfCrates)
     {
@@ -260,7 +258,7 @@ public class AdventDay5UnitTests
         {
             cargo.Move(movements.GetByIndex(i));
         }
-        
+
         Assert.Equal(numberOfCrates, cargo.GetStackById(stackId).Count());
     }
 }

@@ -14,16 +14,16 @@ public class Cargo
         return _stackList.Count;
     }
 
-    public void Move(int fromStackId, int toStackId, int numberOfCrates)
+    public void Move(Movement movement)
     {
-        var fromStack = GetStackById(fromStackId);
-        var movingCount = fromStack.Count < numberOfCrates ? fromStack.Count : numberOfCrates;
+        var fromStack = GetStackById(movement.From);
+        var movingCount = fromStack.Count < movement.MovementCount ? fromStack.Count : movement.MovementCount;
         for (var i = 0; i < movingCount; i++)
         {
             var lastCrateFromStack = fromStack.Last();
             fromStack.Remove(lastCrateFromStack);
 
-            GetStackById(toStackId).Add(lastCrateFromStack);
+            GetStackById(movement.To).Add(lastCrateFromStack);
         }
     }
 
@@ -34,10 +34,5 @@ public class Cargo
         crates.ToList().ForEach(p => stack.Add(p));
 
         return stack;
-    }
-
-    public void Move(Movement movement)
-    {
-        Move(movement.From, movement.To, movement.MovementCount);
     }
 }
