@@ -9,7 +9,7 @@ public class AdventDay5
         return _cargo;
     }
 
-    public (Cargo, Movements) ParseFile(IEnumerable<string> lines)
+    public (Cargo, Movements) ParseLines(IEnumerable<string> lines)
     {
         var cargo = new Cargo();
         if (lines.Any())

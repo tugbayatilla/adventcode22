@@ -170,7 +170,7 @@ public class AdventDay5UnitTests
     [Fact]
     public void _017_file_data_returns_not_null_cargo_and_movements()
     {
-        (Cargo cargo, Movements movements) = _adventDay5.ParseFile(Enumerable.Empty<string>());
+        (Cargo cargo, Movements movements) = _adventDay5.ParseLines(Enumerable.Empty<string>());
 
         Assert.NotNull(cargo);
         Assert.NotNull(movements);
@@ -180,7 +180,7 @@ public class AdventDay5UnitTests
     public void _018_file_data_contains_one_stack_with_two_crates()
     {
         var stackWithTwoCrates = new[] {"[_]", "[__]", " 1 "};
-        (Cargo cargo, _) = _adventDay5.ParseFile(stackWithTwoCrates);
+        (Cargo cargo, _) = _adventDay5.ParseLines(stackWithTwoCrates);
 
         Assert.Equal(1, cargo.StackCount());
         var cratesCount = cargo.GetStackById(1).Count;
@@ -191,7 +191,7 @@ public class AdventDay5UnitTests
     public void _019_file_data_contains_one_stack_with_two_crates_names_B_and_B()
     {
         var stackWithTwoCrates = new[] {"[A]", "[B]", " 1 "};
-        (Cargo cargo, _) = _adventDay5.ParseFile(stackWithTwoCrates);
+        (Cargo cargo, _) = _adventDay5.ParseLines(stackWithTwoCrates);
 
         Assert.True(cargo.GetStackById(1).SequenceEqual(new[] {"B", "A"}));
     }
@@ -200,7 +200,7 @@ public class AdventDay5UnitTests
     public void _020_file_data_contains_two_stacks_with_two_crates_each()
     {
         var stackWithTwoCrates = new[] {"[_] [_]", "[_] [_]", " 1   2 "};
-        (Cargo cargo, _) = _adventDay5.ParseFile(stackWithTwoCrates);
+        (Cargo cargo, _) = _adventDay5.ParseLines(stackWithTwoCrates);
 
         Assert.Equal(2, cargo.StackCount());
     }
@@ -212,7 +212,7 @@ public class AdventDay5UnitTests
     public void _021_in_test01_data_given_stack_contains_given_crates(string filePath, int stackId, string[] crates)
     {
         var lines = AdventUtils.ReadDataFromAFile(filePath);
-        (Cargo cargo, _) = _adventDay5.ParseFile(lines);
+        (Cargo cargo, _) = _adventDay5.ParseLines(lines);
 
         Assert.True(cargo.GetStackById(stackId).SequenceEqual(crates));
     }
