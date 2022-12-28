@@ -12,27 +12,25 @@ public class AdventDay5
     public (Cargo, Movements) ParseLines(IEnumerable<string> lines)
     {
         var cargo = new Cargo();
-        if (lines.Any())
+
+        var numberOfStacks = FindTheNumberOfStacks(lines);
+
+        for (int i = 1; i <= numberOfStacks; i++)
         {
-            var numberOfStacks = FindTheNumberOfStacks(lines);
+            cargo.AddStack();
+        }
 
-            for (int i = 1; i <= numberOfStacks; i++)
+        foreach (var line in lines.OrderByDescending(s => s))
+        {
+            var fixedLine = line.Replace("    ", " [-] ");
+            var trimmedFixLine = fixedLine.Trim();
+
+            var crates = trimmedFixLine.Split(' ');
+            for (var index = 0; index < crates.Length; index++)
             {
-                cargo.AddStack();
-            }
+                var crate = crates[index];
 
-            foreach (var line in lines.OrderByDescending(s => s))
-            {
-                var fixedLine = line.Replace("    ", " [-] ");
-                var trimmedFixLine = fixedLine.Trim();
-
-                var crates = trimmedFixLine.Split(' ');
-                for (var index = 0; index < crates.Length; index++)
-                {
-                    var crate = crates[index];
-
-                    AddCrateToStack(crate, cargo, index);
-                }
+                AddCrateToStack(crate, cargo, index);
             }
         }
 
@@ -42,10 +40,10 @@ public class AdventDay5
 
     private int FindTheNumberOfStacks(IEnumerable<string> lines)
     {
-        var lastLine = lines.Last();
-        var stackIdList = lastLine.Split(" ", StringSplitOptions.RemoveEmptyEntries);
-        var numberOfStacks = stackIdList.Length;
-        return numberOfStacks;
+        var lastLine = lines.LastOrDefault();
+        var stackIdList = lastLine?.Split(" ", StringSplitOptions.RemoveEmptyEntries);
+        var numberOfStacks = stackIdList?.Length;
+        return numberOfStacks ?? 0;
     }
 
     private static void AddCrateToStack(string crate, Cargo cargo, int index)
