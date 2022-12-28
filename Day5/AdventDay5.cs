@@ -14,9 +14,7 @@ public class AdventDay5
         var cargo = new Cargo();
         if (lines.Any())
         {
-            var lastLine = lines.Last();
-            var stackIdList = lastLine.Split(" ", StringSplitOptions.RemoveEmptyEntries);
-            var numberOfStacks = stackIdList.Length;
+            var numberOfStacks = FindTheNumberOfStacks(lines);
 
             for (int i = 1; i <= numberOfStacks; i++)
             {
@@ -40,6 +38,14 @@ public class AdventDay5
 
 
         return (cargo, new Movements());
+    }
+
+    private int FindTheNumberOfStacks(IEnumerable<string> lines)
+    {
+        var lastLine = lines.Last();
+        var stackIdList = lastLine.Split(" ", StringSplitOptions.RemoveEmptyEntries);
+        var numberOfStacks = stackIdList.Length;
+        return numberOfStacks;
     }
 
     private static void AddCrateToStack(string crate, Cargo cargo, int index)
