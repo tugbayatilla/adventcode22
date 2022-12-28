@@ -231,6 +231,10 @@ public class AdventDay5UnitTests
 
     [Theory]
     [InlineData("Day5/test02.data", 0, 1, 2, 1)]
+    [InlineData("Day5/test02.data", 1, 3, 1, 3)]
+    [InlineData("Day5/test02.data", 2, 2, 2, 1)]
+    [InlineData("Day5/test02.data", 3, 1, 1, 2)]
+    
     public void _023_in_test02_data_given_movements(string filePath, int movementIndex, int from, int to,
         int movementCount)
     {
