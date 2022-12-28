@@ -223,9 +223,20 @@ public class AdventDay5UnitTests
         int movementCount)
     {
         Movements movements = new Movements();
-        Movement givenMovement = new (from, to, movementCount);
+        Movement givenMovement = new(from, to, movementCount);
         movements.Add(givenMovement);
-        
+
         Assert.Equal(givenMovement, movements.GetByIndex(0));
+    }
+
+    [Theory]
+    [InlineData("Day5/test02.data", 0, 1, 2, 1)]
+    public void _023_in_test02_data_given_movements(string filePath, int movementIndex, int from, int to,
+        int movementCount)
+    {
+        var lines = AdventUtils.ReadDataFromAFile(filePath);
+        (_, Movements movements) = _adventDay5.ParseLines(lines);
+
+        Assert.Equal(new Movement(from, to, movementCount), movements.GetByIndex(movementIndex));
     }
 }

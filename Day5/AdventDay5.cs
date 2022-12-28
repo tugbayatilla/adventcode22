@@ -20,7 +20,8 @@ public class AdventDay5
             cargo.AddStack();
         }
 
-        foreach (var line in lines.Reverse())
+        var cargoData = lines.TakeWhile(p => p != "");
+        foreach (var line in cargoData.Reverse())
         {
             var fixedLine = FixEmptySpacesInALineToEaseSplitting(line);
 
@@ -33,8 +34,22 @@ public class AdventDay5
             }
         }
 
+        var movements = new Movements();
+        var movementData = lines.Except(cargoData);
+        foreach (var data in movementData)
+        {
+            var split = data.Split(" ");
+            
+            if(split.Length != 6) continue;
+            
+            var movement = new Movement(
+                int.Parse(split[1]),
+                int.Parse(split[3]),
+                int.Parse(split[5]));
+            movements.Add(movement);
+        }
 
-        return (cargo, new Movements());
+        return (cargo, movements);
     }
 
     private string FixEmptySpacesInALineToEaseSplitting(string line)
