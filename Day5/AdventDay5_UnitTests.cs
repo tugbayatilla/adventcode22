@@ -195,7 +195,7 @@ public class AdventDay5UnitTests
 
         Assert.True(cargo.GetStackById(1).SequenceEqual(new[] {"B", "A"}));
     }
-    
+
     [Fact]
     public void _020_file_data_contains_two_stacks_with_two_crates_each()
     {
@@ -204,16 +204,28 @@ public class AdventDay5UnitTests
 
         Assert.Equal(2, cargo.StackCount());
     }
-    
+
     [Theory]
-    [InlineData("Day5/test01.data", 1, new []{"Z", "N"})]
-    [InlineData("Day5/test01.data", 2, new []{"M", "C", "D"})]
-    [InlineData("Day5/test01.data", 3, new []{"P"})]
+    [InlineData("Day5/test01.data", 1, new[] {"Z", "N"})]
+    [InlineData("Day5/test01.data", 2, new[] {"M", "C", "D"})]
+    [InlineData("Day5/test01.data", 3, new[] {"P"})]
     public void _021_in_test01_data_given_stack_contains_given_crates(string filePath, int stackId, string[] crates)
     {
         var lines = AdventUtils.ReadDataFromAFile(filePath);
         (Cargo cargo, _) = _adventDay5.ParseLines(lines);
 
         Assert.True(cargo.GetStackById(stackId).SequenceEqual(crates));
+    }
+
+    [Theory]
+    [InlineData(1, 2, 1)]
+    public void _022_add_one_movement_and_get_same_movement_from_movements(int from, int to,
+        int movementCount)
+    {
+        Movements movements = new Movements();
+        Movement givenMovement = new (from, to, movementCount);
+        movements.Add(givenMovement);
+        
+        Assert.Equal(givenMovement, movements.GetByIndex(0));
     }
 }
