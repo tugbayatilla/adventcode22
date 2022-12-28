@@ -20,14 +20,14 @@ public class AdventDay5
             cargo.AddStack();
         }
 
-        var cargoData = ParseCargo(lines, cargo);
+        ParseCargo(lines, cargo);
 
-        var movements = ParseMovements(lines, cargoData);
+        var movements = ParseMovements(lines);
 
         return (cargo, movements);
     }
 
-    private IEnumerable<string> ParseCargo(IEnumerable<string> lines, Cargo cargo)
+    private void ParseCargo(IEnumerable<string> lines, Cargo cargo)
     {
         var cargoData = lines.TakeWhile(p => p != "");
         foreach (var line in cargoData.Reverse())
@@ -42,14 +42,13 @@ public class AdventDay5
                 AddCrateToStack(crate, cargo, index);
             }
         }
-
-        return cargoData;
     }
 
-    private static Movements ParseMovements(IEnumerable<string> lines, IEnumerable<string> cargoData)
+    private static Movements ParseMovements(IEnumerable<string> lines)
     {
         var movements = new Movements();
-        var movementData = lines.Except(cargoData);
+
+        var movementData = lines.SkipWhile(p => p != "").Skip(1);
         foreach (var data in movementData)
         {
             var split = data.Split(" ");
