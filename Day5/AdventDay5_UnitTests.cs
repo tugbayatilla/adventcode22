@@ -261,4 +261,21 @@ public class AdventDay5UnitTests
 
         Assert.Equal(numberOfCrates, cargo.GetStackById(stackId).Count());
     }
+
+    [Theory]
+    [InlineData("Day5/test02.data", "CMZ")]
+    public void _025_part1_result_After_Rearrangement_Crates_From_Top_Of_Each_Stacks(string filePath, string result)
+    {
+        Assert.Equal(result, _adventDay5.AfterRearrangementCratesFromTopOfEachStacks(filePath));
+    }
+    
+    [Theory]
+    [InlineData("Day5/test02.data", 3)]
+    public void _026_Fix_cargo_stack_count_should_be_given(string filePath, int stackCount)
+    {
+        var lines = AdventUtils.ReadDataFromAFile(filePath);
+        (Cargo cargo, _) = _adventDay5.ParseLines(lines);
+        
+        Assert.Equal(stackCount, cargo.StackCount());
+    }
 }

@@ -9,6 +9,7 @@
  
 - AdventDay5.AddCrateToStack
   - nested if, too complex, hard to read
+- cargo count is more than expected.
 
 # Improvements (WIP 3)
 

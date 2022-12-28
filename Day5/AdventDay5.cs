@@ -1,3 +1,5 @@
+using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
+
 namespace AdventOfCode22.Day5;
 
 public class AdventDay5
@@ -83,7 +85,7 @@ public class AdventDay5
 
     private int FindTheNumberOfStacks(IEnumerable<string> lines)
     {
-        var lastLine = lines.LastOrDefault();
+        var lastLine = lines.TakeWhile(p => p != "").Last();
         var stackIdList = lastLine?.Split(" ", StringSplitOptions.RemoveEmptyEntries);
         var numberOfStacks = stackIdList?.Length;
         return numberOfStacks ?? 0;
@@ -105,5 +107,25 @@ public class AdventDay5
     private static string GetCrateNameFromRawDefinition(string crateDefinition)
     {
         return crateDefinition.Substring(1, 1);
+    }
+
+    public string AfterRearrangementCratesFromTopOfEachStacks(string filePath)
+    {
+        var lines = AdventUtils.ReadDataFromAFile(filePath);
+        (Cargo cargo, Movements movements) = ParseLines(lines);
+
+        foreach (var movement in movements)
+        {
+            cargo.Move(movement);
+        }
+
+        var result = "";
+        for (var stackId = 1; stackId <= cargo.StackCount(); stackId++)
+        {
+            var stack = cargo.GetStackById(stackId);
+            result += stack.Last();
+        }
+
+        return result;
     }
 }
