@@ -9,14 +9,8 @@ public class AdventDay5
         return _cargo;
     }
 
-    public (Cargo, Movements) ParseLines(IEnumerable<string> lines)
-    {
-        var cargo = ParseCargo(lines);
-
-        var movements = ParseMovements(lines);
-
-        return (cargo, movements);
-    }
+    public (Cargo, Movements) ParseLines(IEnumerable<string> lines) 
+        => (ParseCargo(lines), ParseMovements(lines));
 
     private Cargo ParseCargo(IEnumerable<string> lines)
     {
