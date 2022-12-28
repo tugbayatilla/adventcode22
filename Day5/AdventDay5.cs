@@ -34,7 +34,7 @@ public class AdventDay5
                     var crate = crates[index];
                     if (crate.Contains("[") && !crate.Contains("[-]"))
                     {
-                        var crateName = crate.Substring(1, 1);
+                        var crateName = GetCrateNameFromRawDefinition(crate);
                         if (!string.IsNullOrEmpty(crateName))
                         {
                             var stack = cargo.GetStackById(index+1);
@@ -47,5 +47,10 @@ public class AdventDay5
 
 
         return (cargo, new Movements());
+    }
+
+    private static string GetCrateNameFromRawDefinition(string crateDefinition)
+    {
+        return crateDefinition.Substring(1, 1);
     }
 }
