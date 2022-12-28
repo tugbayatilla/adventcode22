@@ -34,10 +34,10 @@ public class AdventDay5
                     var crate = crates[index];
                     if (crate.Contains("[") && !crate.Contains("[-]"))
                     {
-                        var stack = cargo.GetStackById(index+1);
                         var crateName = crate.Substring(1, 1);
                         if (!string.IsNullOrEmpty(crateName))
                         {
+                            var stack = cargo.GetStackById(index+1);
                             stack.Add(crateName);
                         }
                     }
