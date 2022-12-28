@@ -20,6 +20,15 @@ public class AdventDay5
             cargo.AddStack();
         }
 
+        var cargoData = ParseCargo(lines, cargo);
+
+        var movements = ParseMovements(lines, cargoData);
+
+        return (cargo, movements);
+    }
+
+    private IEnumerable<string> ParseCargo(IEnumerable<string> lines, Cargo cargo)
+    {
         var cargoData = lines.TakeWhile(p => p != "");
         foreach (var line in cargoData.Reverse())
         {
@@ -34,14 +43,19 @@ public class AdventDay5
             }
         }
 
+        return cargoData;
+    }
+
+    private static Movements ParseMovements(IEnumerable<string> lines, IEnumerable<string> cargoData)
+    {
         var movements = new Movements();
         var movementData = lines.Except(cargoData);
         foreach (var data in movementData)
         {
             var split = data.Split(" ");
-            
-            if(split.Length != 6) continue;
-            
+
+            if (split.Length != 6) continue;
+
             var movement = new Movement(
                 int.Parse(split[1]),
                 int.Parse(split[3]),
@@ -49,7 +63,7 @@ public class AdventDay5
             movements.Add(movement);
         }
 
-        return (cargo, movements);
+        return movements;
     }
 
     private string FixEmptySpacesInALineToEaseSplitting(string line)
