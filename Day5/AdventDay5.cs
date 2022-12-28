@@ -22,9 +22,9 @@ public class AdventDay5
 
         foreach (var line in lines.Reverse())
         {
-            var trimmedFixLine = FixEmptySpacesInALineToEaseSplitting(line);
+            var fixedLine = FixEmptySpacesInALineToEaseSplitting(line);
 
-            var crates = trimmedFixLine.Split(' ');
+            var crates = fixedLine.Split(' ');
             for (var index = 0; index < crates.Length; index++)
             {
                 var crate = crates[index];
