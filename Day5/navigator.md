@@ -6,11 +6,9 @@
 
 
 # Smells (WIP 3)
-
-- ParseFile method 
-  - name does not fit the purpose
-  - too complex
-  - YAGNI, returns movements 
+ 
+- AdventDay5.AddCrateToStack
+  - nested if, too complex, hard to read
 
 # Improvements (WIP 3)
 
