@@ -22,8 +22,8 @@ public class AdventDay5
             {
                 cargo.AddStack();
             }
-            
-            foreach (var line in lines.OrderByDescending(s=>s))
+
+            foreach (var line in lines.OrderByDescending(s => s))
             {
                 var fixedLine = line.Replace("    ", " [-] ");
                 var trimmedFixLine = fixedLine.Trim();
@@ -32,21 +32,27 @@ public class AdventDay5
                 for (var index = 0; index < crates.Length; index++)
                 {
                     var crate = crates[index];
-                    if (crate.Contains("[") && !crate.Contains("[-]"))
-                    {
-                        var crateName = GetCrateNameFromRawDefinition(crate);
-                        if (!string.IsNullOrEmpty(crateName))
-                        {
-                            var stack = cargo.GetStackById(index+1);
-                            stack.Add(crateName);
-                        }
-                    }
+
+                    AddCrateToStack(crate, cargo, index);
                 }
             }
         }
 
 
         return (cargo, new Movements());
+    }
+
+    private static void AddCrateToStack(string crate, Cargo cargo, int index)
+    {
+        if (crate.Contains("[") && !crate.Contains("[-]"))
+        {
+            var crateName = GetCrateNameFromRawDefinition(crate);
+            if (!string.IsNullOrEmpty(crateName))
+            {
+                var stack = cargo.GetStackById(index + 1);
+                stack.Add(crateName);
+            }
+        }
     }
 
     private static string GetCrateNameFromRawDefinition(string crateDefinition)
