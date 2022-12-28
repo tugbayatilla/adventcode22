@@ -20,10 +20,9 @@ public class AdventDay5
             cargo.AddStack();
         }
 
-        foreach (var line in lines.OrderByDescending(s => s))
+        foreach (var line in lines.Reverse())
         {
-            var fixedLine = line.Replace("    ", " [-] ");
-            var trimmedFixLine = fixedLine.Trim();
+            var trimmedFixLine = FixEmptySpacesInALineToEaseSplitting(line);
 
             var crates = trimmedFixLine.Split(' ');
             for (var index = 0; index < crates.Length; index++)
@@ -36,6 +35,16 @@ public class AdventDay5
 
 
         return (cargo, new Movements());
+    }
+
+    private string FixEmptySpacesInALineToEaseSplitting(string line)
+    {
+        var emptySlotDefinitionInStack = "    ";
+        var emptySlotNewDefinitionInStack = " [-] ";
+
+        var fixedLine = line.Replace(emptySlotDefinitionInStack, emptySlotNewDefinitionInStack);
+        var trimmedFixLine = fixedLine.Trim();
+        return trimmedFixLine;
     }
 
     private int FindTheNumberOfStacks(IEnumerable<string> lines)
