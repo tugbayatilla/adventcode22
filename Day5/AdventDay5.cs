@@ -21,13 +21,16 @@ public class AdventDay5
     private Cargo ParseCargo(IEnumerable<string> lines)
     {
         var cargo = new Cargo();
-        var numberOfStacks = FindTheNumberOfStacks(lines);
-
-        for (int i = 1; i <= numberOfStacks; i++)
-        {
-            cargo.AddStack();
-        }
         
+        CreateStacksInCargo(lines, cargo);
+
+        CreateCratesInStacksInCargo(lines, cargo);
+
+        return cargo;
+    }
+
+    private void CreateCratesInStacksInCargo(IEnumerable<string> lines, Cargo cargo)
+    {
         var cargoData = lines.TakeWhile(p => p != "");
         foreach (var line in cargoData.Reverse())
         {
@@ -41,8 +44,16 @@ public class AdventDay5
                 AddCrateToStack(crate, cargo, index);
             }
         }
+    }
 
-        return cargo;
+    private void CreateStacksInCargo(IEnumerable<string> lines, Cargo cargo)
+    {
+        var numberOfStacks = FindTheNumberOfStacks(lines);
+
+        for (int i = 1; i <= numberOfStacks; i++)
+        {
+            cargo.AddStack();
+        }
     }
 
     private static Movements ParseMovements(IEnumerable<string> lines)
