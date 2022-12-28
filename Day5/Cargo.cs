@@ -35,4 +35,9 @@ public class Cargo
 
         return stack;
     }
+
+    public void Move(Movement movement)
+    {
+        Move(movement.From, movement.To, movement.MovementCount);
+    }
 }

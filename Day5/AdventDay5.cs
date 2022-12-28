@@ -63,7 +63,8 @@ public class AdventDay5
 
             var movement = new Movement(
                 int.Parse(split[3]),
-                int.Parse(split[5]));
+                int.Parse(split[5]),
+                int.Parse(split[1]));
             movements.Add(movement);
         }
 

@@ -243,4 +243,24 @@ public class AdventDay5UnitTests
 
         Assert.Equal(new Movement(from, to, movementCount), movements.GetByIndex(movementIndex));
     }
+    
+    [Theory]
+    [InlineData("Day5/test02.data", 0, 1, 2)]
+    [InlineData("Day5/test02.data", 0, 2, 3)]
+    [InlineData("Day5/test02.data", 0, 3, 1)]
+    [InlineData("Day5/test02.data", 1, 1, 3)]
+    
+    public void _024_in_test02_data_given_movements_applied_to_cargo_and_get_final(
+        string filePath, int movementCount, int stackId, int numberOfCrates)
+    {
+        var lines = AdventUtils.ReadDataFromAFile(filePath);
+        (Cargo cargo, Movements movements) = _adventDay5.ParseLines(lines);
+
+        for (var i = 0; i < movementCount; i++)
+        {
+            cargo.Move(movements.GetByIndex(i));
+        }
+        
+        Assert.Equal(numberOfCrates, cargo.GetStackById(stackId).Count());
+    }
 }
