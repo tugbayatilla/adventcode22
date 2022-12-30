@@ -1,5 +1,3 @@
-using System.Diagnostics;
-
 namespace AdventOfCode22.Day2;
 
 public class AdventDay2

@@ -1,5 +1,3 @@
-using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
-
 namespace AdventOfCode22.Day5;
 
 public class AdventDay5

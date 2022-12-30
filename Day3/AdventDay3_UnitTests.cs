@@ -1,5 +1,3 @@
-using Xunit.Sdk;
-
 namespace AdventOfCode22.Day3;
 
 public class AdventDay3UnitTests

@@ -1,5 +1,3 @@
-using System.Security.Cryptography;
-
 namespace AdventOfCode22.Day5;
 
 public class AdventDay5UnitTests
