@@ -278,4 +278,25 @@ public class AdventDay5UnitTests
         
         Assert.Equal(stackCount, cargo.StackCount());
     }
+    
+    [Theory]
+    [InlineData("Day5/test03.data", "ZGQCWCFG")]
+    public void _027_stack_does_not_have_any_crates(string filePath, string result)
+    {
+        Assert.Equal(result, _adventDay5.AfterRearrangementCratesFromTopOfEachStacks(filePath));
+    }
+    
+    [Theory]
+    [InlineData("Day5/AdventDay5.data", "CMZ")]
+    public void _027_part1_result(string filePath, string result)
+    {
+        Assert.Equal(result, _adventDay5.AfterRearrangementCratesFromTopOfEachStacks(filePath));
+    }
+    
+    [Theory(DisplayName = "stack does not have any crates")]
+    [InlineData("Day5/test03.data", "ZGQCWCFG")]
+    public void _027_corrupted_data_input(string filePath, string result)
+    {
+        Assert.Equal(result, _adventDay5.AfterRearrangementCratesFromTopOfEachStacks(filePath));
+    }
 }

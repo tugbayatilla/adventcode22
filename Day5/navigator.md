@@ -3,6 +3,9 @@
 - parse data file
   - read until emtpy line, first part will be cargo, second part will be movements
   - parse movements 
+- AfterRearrangementCratesFromTopOfEachStacks
+  - if there is no crate in stack, it will fail, write test and implement
+  - 
 
 
 # Smells (WIP 3)

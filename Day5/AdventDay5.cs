@@ -123,7 +123,7 @@ public class AdventDay5
         for (var stackId = 1; stackId <= cargo.StackCount(); stackId++)
         {
             var stack = cargo.GetStackById(stackId);
-            result += stack.Last();
+            result += stack.LastOrDefault();
         }
 
         return result;
