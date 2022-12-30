@@ -268,35 +268,61 @@ public class AdventDay5UnitTests
     {
         Assert.Equal(result, _adventDay5.AfterRearrangementCratesFromTopOfEachStacks(filePath));
     }
-    
+
     [Theory]
     [InlineData("Day5/test02.data", 3)]
     public void _026_Fix_cargo_stack_count_should_be_given(string filePath, int stackCount)
     {
         var lines = AdventUtils.ReadDataFromAFile(filePath);
         (Cargo cargo, _) = _adventDay5.ParseLines(lines);
-        
+
         Assert.Equal(stackCount, cargo.StackCount());
     }
-    
+
     [Theory]
     [InlineData("Day5/test03.data", "ZGQCWCFG")]
     public void _027_stack_does_not_have_any_crates(string filePath, string result)
     {
         Assert.Equal(result, _adventDay5.AfterRearrangementCratesFromTopOfEachStacks(filePath));
     }
-    
+
     [Theory]
-    [InlineData("Day5/AdventDay5.data", "CMZ")]
-    public void _027_part1_result(string filePath, string result)
+    [InlineData("Day5/AdventDay5.data", "RMVWJPFGV")]
+    public void _028_part1_actual_data_result(string filePath, string result)
     {
         Assert.Equal(result, _adventDay5.AfterRearrangementCratesFromTopOfEachStacks(filePath));
     }
-    
-    [Theory(DisplayName = "stack does not have any crates")]
-    [InlineData("Day5/test03.data", "ZGQCWCFG")]
-    public void _027_corrupted_data_input(string filePath, string result)
+
+    [Theory]
+    [InlineData("Day5/test02.data", 0, 1, new[] {"Z", "N"})]
+    [InlineData("Day5/test02.data", 0, 2, new[] {"M", "C", "D"})]
+    [InlineData("Day5/test02.data", 0, 3, new[] {"P"})]
+    [InlineData("Day5/test02.data", 1, 1, new[] {"Z", "N", "D"})]
+    [InlineData("Day5/test02.data", 1, 2, new[] {"M", "C"})]
+    [InlineData("Day5/test02.data", 1, 3, new[] {"P"})]
+    [InlineData("Day5/test02.data", 2, 1, new string[] { })]
+    [InlineData("Day5/test02.data", 2, 2, new[] {"M", "C"})]
+    [InlineData("Day5/test02.data", 2, 3, new[] {"P", "D", "N", "Z"})]
+    [InlineData("Day5/test02.data", 3, 1, new[] {"C", "M"})]
+    [InlineData("Day5/test02.data", 3, 2, new string[] { })]
+    [InlineData("Day5/test02.data", 3, 3, new[] {"P", "D", "N", "Z"})]
+    [InlineData("Day5/test02.data", 4, 1, new[] {"C"})]
+    [InlineData("Day5/test02.data", 4, 2, new[] {"M"})]
+    [InlineData("Day5/test02.data", 4, 3, new[] {"P", "D", "N", "Z"})]
+    public void _029_in_test02_data_given_movements_applied_to_cargo_and_get_final_crates(
+        string filePath,
+        int movementCount,
+        int stackId,
+        string[] lastStateOfCrates)
     {
-        Assert.Equal(result, _adventDay5.AfterRearrangementCratesFromTopOfEachStacks(filePath));
+        var lines = AdventUtils.ReadDataFromAFile(filePath);
+        (Cargo cargo, Movements movements) = _adventDay5.ParseLines(lines);
+
+        for (var i = 0; i < movementCount; i++)
+        {
+            cargo.Move(movements.GetByIndex(i));
+        }
+
+        Assert.True(cargo.GetStackById(stackId).SequenceEqual(lastStateOfCrates));
     }
 }

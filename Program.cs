@@ -2,6 +2,7 @@ using AdventOfCode22;
 using AdventOfCode22.Day2;
 using AdventOfCode22.Day3;
 using AdventOfCode22.Day4;
+using AdventOfCode22.Day5;
 
 AdventCode adventDay1 = new();
 var content = adventDay1.ReadDataFromFile("Day1/adventDay1.data");
@@ -58,4 +59,9 @@ Console.WriteLine($"Day4: {count} -- part1: how many assignment pairs does one r
 int countPartially = adventDay4Data.Count(p => adventDay4.IsOverlapPartially(p));
 Console.WriteLine($"Day4: {countPartially} -- part2: how many assignment pairs do the ranges overlap");
 
+
+AdventDay5 adventDay5 = new();
+var day5Part1Result = adventDay5.AfterRearrangementCratesFromTopOfEachStacks("Day5/AdventDay5.data");
+Console.WriteLine($"Day5: {day5Part1Result} -- part1: After the rearrangement procedure completes, what crate ends up on top of each stack?");
+// RMVWJPFGV -> wrong answer
 

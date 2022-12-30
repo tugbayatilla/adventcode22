@@ -32,7 +32,7 @@ public class AdventDay5
         {
             var fixedLine = FixEmptySpacesInALineToEaseSplitting(line);
 
-            var crates = fixedLine.Split(' ');
+            var crates = fixedLine.Split(' ', StringSplitOptions.RemoveEmptyEntries);
             for (var index = 0; index < crates.Length; index++)
             {
                 var crate = crates[index];
@@ -98,8 +98,17 @@ public class AdventDay5
             var crateName = GetCrateNameFromRawDefinition(crate);
             if (!string.IsNullOrEmpty(crateName))
             {
-                var stack = cargo.GetStackById(index + 1);
-                stack.Add(crateName);
+                try
+                {
+                    var stack = cargo.GetStackById(index + 1);
+                    stack.Add(crateName);
+
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    throw;
+                }
             }
         }
     }
