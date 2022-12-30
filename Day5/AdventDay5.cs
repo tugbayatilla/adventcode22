@@ -85,7 +85,7 @@ public class AdventDay5
 
     private int FindTheNumberOfStacks(IEnumerable<string> lines)
     {
-        var lastLine = lines.TakeWhile(p => p != "").Last();
+        var lastLine = lines.TakeWhile(p => p != "").LastOrDefault();
         var stackIdList = lastLine?.Split(" ", StringSplitOptions.RemoveEmptyEntries);
         var numberOfStacks = stackIdList?.Length;
         return numberOfStacks ?? 0;
