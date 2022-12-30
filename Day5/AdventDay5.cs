@@ -109,14 +109,15 @@ public class AdventDay5
 
     public string AfterRearrangementCratesFromTopOfEachStacks(string filePath)
     {
-        var lines = AdventUtils.ReadDataFromAFile(filePath);
-        (Cargo cargo, Movements movements) = ParseLines(lines);
+        var cargo = Rearrange(filePath);
 
-        foreach (var movement in movements)
-        {
-            cargo.Move(movement);
-        }
+        var result = GetTopCratesFromEachStack(cargo);
 
+        return result;
+    }
+
+    private static string GetTopCratesFromEachStack(Cargo cargo)
+    {
         var result = "";
         for (var stackId = 1; stackId <= cargo.StackCount(); stackId++)
         {
@@ -125,5 +126,18 @@ public class AdventDay5
         }
 
         return result;
+    }
+
+    private Cargo Rearrange(string filePath)
+    {
+        var lines = AdventUtils.ReadDataFromAFile(filePath);
+        (Cargo cargo, Movements movements) = ParseLines(lines);
+
+        foreach (var movement in movements)
+        {
+            cargo.Move(movement);
+        }
+
+        return cargo;
     }
 }
