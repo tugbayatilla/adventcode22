@@ -130,12 +130,24 @@ public class AdventDay5
     {
         var lines = AdventUtils.ReadDataFromAFile(filePath);
         (Cargo cargo, Movements movements) = ParseLines(lines);
-
+        
+        DisplayMove(cargo, new Movement(0,0,0));
+        
         foreach (var movement in movements)
         {
             cargo.Move(movement);
+            DisplayMove(cargo, movement);
         }
 
         return cargo;
     }
+
+    private void DisplayMove(Cargo cargo, Movement movement)
+    {
+        var filePath = "Day5/AdventDay5.result";
+        File.AppendAllText(filePath, movement.ToString());
+        File.AppendAllText(filePath, cargo.Draw());
+        File.AppendAllText(filePath, $"-------------------------------{Environment.NewLine}");
+    }
+
 }

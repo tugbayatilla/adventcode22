@@ -235,7 +235,7 @@ public class AdventDay5UnitTests
         Assert.Equal(result, _adventDay5.AfterRearrangementCratesFromTopOfEachStacks(filePath));
     }
 
-    [Theory]
+    [Theory(DisplayName = "this should fail")]
     [InlineData("Day5/AdventDay5.data", "RMVWJPFGV")]
     public void _028_part1_actual_data_result(string filePath, string result)
     {
@@ -287,5 +287,15 @@ public class AdventDay5UnitTests
         var after = cargo.CrateCount();
         
         Assert.Equal(before, after);
+    }
+
+    [Fact]
+    public void dummy_test()
+    {
+        var adventDay5Data = AdventUtils.ReadDataFromAFile("Day5/AdventDay5.data");
+        (Cargo cargo, _) = _adventDay5.ParseLines(adventDay5Data);
+        cargo.Draw();
+        
+        Assert.True(false);
     }
 }
