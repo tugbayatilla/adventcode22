@@ -11,13 +11,13 @@ public class AdventDay5
         return _cargo;
     }
 
-    public (Cargo, Movements) ParseLines(IEnumerable<string> lines) 
+    public (Cargo, Movements) ParseLines(IEnumerable<string> lines)
         => (ParseCargo(lines), ParseMovements(lines));
 
     private Cargo ParseCargo(IEnumerable<string> lines)
     {
         var cargo = new Cargo();
-        
+
         CreateStacksInCargo(lines, cargo);
 
         CreateCratesInStacksInCargo(lines, cargo);
@@ -96,20 +96,9 @@ public class AdventDay5
         if (crate.Contains("[") && !crate.Contains("[-]"))
         {
             var crateName = GetCrateNameFromRawDefinition(crate);
-            if (!string.IsNullOrEmpty(crateName))
-            {
-                try
-                {
-                    var stack = cargo.GetStackById(index + 1);
-                    stack.Add(crateName);
 
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                    throw;
-                }
-            }
+            var stack = cargo.GetStackById(index + 1);
+            stack.Add(crateName);
         }
     }
 
