@@ -5,13 +5,7 @@ namespace AdventOfCode22.Day5;
 public class AdventDay5UnitTests
 {
     private readonly AdventDay5 _adventDay5 = new();
-
-    [Fact(Skip = "GetCargoState is removed")]
-    public void _001_get_cargo_is_null()
-    {
-        Assert.True(true);
-    }
-
+    
     [Fact]
     public void _002_cargo_has_one_emtpy_stack()
     {
@@ -22,15 +16,7 @@ public class AdventDay5UnitTests
     [Fact]
     public void _003_cargo_has_one_crate_in_one_stack()
     {
-        var cargo = _adventDay5.GetCargo();
-
-        Assert.Equal(1, cargo.AddStack("A").Count);
-    }
-
-    private IList<string> GetFirstStack()
-    {
-        var cargo = _adventDay5.GetCargo();
-        return cargo.GetStackById(1);
+        Assert.Equal(1, _adventDay5.GetCargo().AddStack("A").Count);
     }
 
     [Fact]
@@ -39,7 +25,7 @@ public class AdventDay5UnitTests
         var cargo = _adventDay5.GetCargo();
         cargo.AddStack("A", "B");
 
-        Assert.Equal(2, GetFirstStack().Count());
+        Assert.Equal(2, cargo.GetStackById(1).Count());
     }
 
     [Fact]
@@ -47,8 +33,8 @@ public class AdventDay5UnitTests
     {
         var cargo = _adventDay5.GetCargo();
         cargo.AddStack("H");
-
-        var firstCrate = GetFirstStack().First();
+        
+        var firstCrate = cargo.GetStackById(1).First();
         Assert.Equal("H", firstCrate);
     }
 
@@ -63,41 +49,17 @@ public class AdventDay5UnitTests
     {
         var cargo = _adventDay5.GetCargo();
         cargo.AddStack("H");
-        Assert.NotNull(GetFirstStack());
+        Assert.NotNull(cargo.GetStackById(1));
     }
 
     [Fact()]
     public void _008_cargo_has_one_emtpy_stack()
     {
         _adventDay5.GetCargo().AddStack();
-        Assert.Empty(GetFirstStack());
-    }
-
-    [Fact(Skip = $"same as {nameof(_008_cargo_has_one_emtpy_stack)}")]
-    public void _009_cargo_has_one_crate_in_stack_1()
-    {
         var cargo = _adventDay5.GetCargo();
-        cargo.AddStack("");
-        Assert.Single(GetFirstStack());
+        Assert.Empty(cargo.GetStackById(1));
     }
-
-    [Fact]
-    public void _010_cargo_has_one_crate_named_H_in_stack_1()
-    {
-        var cargo = _adventDay5.GetCargo();
-        cargo.AddStack("H");
-        Assert.Equal("H", GetFirstStack()[0]);
-    }
-
-    [Fact(Skip = $"same as {nameof(_004_cargo_has_two_crates_in_one_stack)}")]
-    public void _011_cargo_has_two_crates_in_one_stack()
-    {
-        var cargo = _adventDay5.GetCargo();
-        cargo.AddStack("");
-        var cargo1 = _adventDay5.GetCargo();
-        cargo1.AddStack("");
-        Assert.Equal(2, GetFirstStack().Count());
-    }
+    
 
     [Fact]
     public void _012_cargo_has_two_stacks()
@@ -133,19 +95,6 @@ public class AdventDay5UnitTests
 
         Assert.Equal(1, stack1.Count);
         Assert.Equal(3, stack2.Count);
-    }
-
-    [Fact(Skip = $"because of {nameof(_016_move_from_stack_to_stack_and_get_the_result)}")]
-    public void _015_move_B_from_stack_1_and_stack_2_will_be_in_order_of_C_D_B()
-    {
-        var cargo = _adventDay5.GetCargo();
-
-        cargo.AddStack("A", "B");
-        cargo.AddStack("C", "D");
-
-        cargo.Move(new Movement(1, 2, 1));
-
-        Assert.True(cargo.GetStackById(2).SequenceEqual(new[] {"C", "D", "B"}));
     }
 
     [Theory]
