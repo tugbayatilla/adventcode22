@@ -17,13 +17,16 @@ public class Cargo
     public void Move(Movement movement)
     {
         var fromStack = GetStackById(movement.From);
+        var toStack = GetStackById(movement.To);
+        
         var movingCount = fromStack.Count < movement.MovementCount ? fromStack.Count : movement.MovementCount;
+        
         for (var i = 0; i < movingCount; i++)
         {
             var lastCrateFromStack = fromStack.Last();
             fromStack.Remove(lastCrateFromStack);
 
-            GetStackById(movement.To).Add(lastCrateFromStack);
+            toStack.Add(lastCrateFromStack);
         }
     }
 
