@@ -38,4 +38,9 @@ public class Cargo
 
         return stack;
     }
+
+    public int CrateCount()
+    {
+        return _stackList.Select(p => p.Count).Sum();
+    }
 }

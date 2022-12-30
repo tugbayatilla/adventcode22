@@ -1,3 +1,5 @@
+using System.Security.Cryptography;
+
 namespace AdventOfCode22.Day5;
 
 public class AdventDay5UnitTests
@@ -324,5 +326,19 @@ public class AdventDay5UnitTests
         }
 
         Assert.True(cargo.GetStackById(stackId).SequenceEqual(lastStateOfCrates));
+    }
+    
+    [Theory]
+    [InlineData("Day5/AdventDay5.data")]
+    public void _030_after_rearrangement_crate_numbers_should_be_same(string filePath)
+    {
+        var lines = AdventUtils.ReadDataFromAFile(filePath);
+        (Cargo cargo, _) = _adventDay5.ParseLines(lines);
+
+        var before = cargo.CrateCount();
+        _adventDay5.AfterRearrangementCratesFromTopOfEachStacks(filePath);
+        var after = cargo.CrateCount();
+        
+        Assert.Equal(before, after);
     }
 }
