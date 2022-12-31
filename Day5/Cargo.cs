@@ -30,15 +30,6 @@ public class Cargo
         }
     }
 
-    public IList<string> AddStack(params string[] crates)
-    {
-        _stackList.Add(new AdventStack());
-        var stack = GetStackById(_stackList.Count);
-        crates.ToList().ForEach(p => stack.Add(p));
-
-        return stack;
-    }
-
     public AdventStack CreateStackById(int stackId)
     {
         var stack = new AdventStack(){Id = stackId};
