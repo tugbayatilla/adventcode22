@@ -2,7 +2,7 @@ namespace AdventOfCode22.Day5;
 
 public class Cargo
 {
-    private readonly List<List<string>> _stackList = new();
+    private readonly List<Stack> _stackList = new();
 
     public IList<string> GetStackById(int stackId)
     {
@@ -32,7 +32,7 @@ public class Cargo
 
     public IList<string> AddStack(params string[] crates)
     {
-        _stackList.Add(new List<string>());
+        _stackList.Add(new Stack());
         var stack = GetStackById(_stackList.Count);
         crates.ToList().ForEach(p => stack.Add(p));
 
