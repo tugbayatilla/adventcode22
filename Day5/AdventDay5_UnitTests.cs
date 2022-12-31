@@ -55,8 +55,8 @@ public class AdventDay5UnitTests
     public void _012_cargo_has_two_stacks()
     {
         var cargo = _adventDay5.GetCargo();
-        cargo.AddStack();
-        cargo.AddStack();
+        cargo.CreateStackById(1);
+        cargo.CreateStackById(2);
         Assert.Equal(2, cargo.StackCount());
     }
 
@@ -65,8 +65,8 @@ public class AdventDay5UnitTests
     {
         var cargo = _adventDay5.GetCargo();
 
-        var stack1 = cargo.AddStack("A", "B");
-        var stack2 = cargo.AddStack("C", "D");
+        var stack1 = cargo.CreateStackById(1).AddCrates("A", "B");
+        var stack2 = cargo.CreateStackById(2).AddCrates("C", "D");
 
         Assert.Equal(2, stack1.Count);
         Assert.Equal(2, stack2.Count);
@@ -77,10 +77,9 @@ public class AdventDay5UnitTests
     {
         var cargo = _adventDay5.GetCargo();
 
-        var stack1 = cargo.AddStack("A", "B");
-        var stack2 = cargo.AddStack("C", "D");
-
-
+        var stack1 = cargo.CreateStackById(1).AddCrates("A", "B");
+        var stack2 = cargo.CreateStackById(2).AddCrates("C", "D");
+        
         cargo.Move(new Movement(1, 2, 1));
 
         Assert.Equal(1, stack1.Count);
@@ -100,10 +99,10 @@ public class AdventDay5UnitTests
     {
         var cargo = _adventDay5.GetCargo();
 
-        cargo.AddStack(fromStack);
-        cargo.AddStack(toStack);
+        var stack1 = cargo.CreateStackById(1).AddCrates(fromStack);
+        var stack2 = cargo.CreateStackById(2).AddCrates(toStack);
 
-        cargo.Move(new Movement(1, 2, numberOfCratesToMove));
+        cargo.Move(new Movement(stack1.Id, stack2.Id, numberOfCratesToMove));
 
         Assert.True(cargo.GetStackById(2).SequenceEqual(expectedToStack));
     }

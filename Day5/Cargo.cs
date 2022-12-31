@@ -2,11 +2,11 @@ namespace AdventOfCode22.Day5;
 
 public class Cargo
 {
-    private readonly List<Stack> _stackList = new();
+    private readonly List<AdventStack> _stackList = new();
 
-    public IList<string> GetStackById(int stackId)
+    public AdventStack GetStackById(int stackId)
     {
-        return _stackList[stackId - 1];
+        return _stackList.First(p => p.Id == stackId);
     }
 
     public int StackCount()
@@ -18,9 +18,9 @@ public class Cargo
     {
         var fromStack = GetStackById(movement.From);
         var toStack = GetStackById(movement.To);
-        
+
         var movingCount = fromStack.Count < movement.Move ? fromStack.Count : movement.Move;
-        
+
         for (var i = 0; i < movingCount; i++)
         {
             var lastCrateFromStack = fromStack.Last();
@@ -32,10 +32,19 @@ public class Cargo
 
     public IList<string> AddStack(params string[] crates)
     {
-        _stackList.Add(new Stack());
+        _stackList.Add(new AdventStack());
         var stack = GetStackById(_stackList.Count);
         crates.ToList().ForEach(p => stack.Add(p));
 
+        return stack;
+    }
+
+    public AdventStack CreateStackById(int stackId)
+    {
+        var stack = new AdventStack(){Id = stackId};
+        
+        _stackList.Add(stack);
+        
         return stack;
     }
 
@@ -52,7 +61,7 @@ public class Cargo
         {
             foreach (var stack in _stackList)
             {
-                if(stack.Count > i)
+                if (stack.Count > i)
                 {
                     line += $" [{stack[i]}] ";
                 }
@@ -69,8 +78,9 @@ public class Cargo
         {
             line += $"  {i}  ";
         }
+
         line += Environment.NewLine;
-        
+
         return line;
     }
 }

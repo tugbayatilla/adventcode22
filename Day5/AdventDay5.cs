@@ -46,7 +46,7 @@ public class AdventDay5
 
         for (int i = 1; i <= numberOfStacks; i++)
         {
-            cargo.AddStack();
+            cargo.CreateStackById(i);
         }
     }
 
