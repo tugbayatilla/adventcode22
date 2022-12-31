@@ -29,7 +29,7 @@ public class Cargo
 
     public AdventStack CreateStackById(int stackId)
     {
-        var stack = new AdventStack(){Id = stackId};
+        var stack = new AdventStack(stackId);
         
         _stackList.Add(stack);
         
