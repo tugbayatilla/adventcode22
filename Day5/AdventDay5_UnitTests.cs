@@ -8,13 +8,13 @@ public class AdventDay5UnitTests
     public void _002_cargo_has_one_emtpy_stack()
     {
         var stack = _adventDay5.GetCargo().CreateStackById(1);
-        Assert.Equal(0, stack.Count);
+        Assert.Empty(stack);
     }
 
     [Fact]
     public void _003_cargo_has_one_crate_in_one_stack()
     {
-        Assert.Equal(1, _adventDay5.GetCargo().CreateStackById(1).AddCrates("A").Count);
+        Assert.Single(_adventDay5.GetCargo().CreateStackById(1).AddCrates("A"));
     }
 
     [Fact]
@@ -62,28 +62,14 @@ public class AdventDay5UnitTests
         Assert.Equal(2, stack1.Count);
         Assert.Equal(2, stack2.Count);
     }
-
-    [Fact]
-    public void _014_move_one_crate_from_first_stack_to_second_stack()
-    {
-        var cargo = _adventDay5.GetCargo();
-
-        var stack1 = cargo.CreateStackById(1).AddCrates("A", "B");
-        var stack2 = cargo.CreateStackById(2).AddCrates("C", "D");
-        
-        cargo.Move(new Movement(1, 2, 1));
-
-        Assert.Equal(1, stack1.Count);
-        Assert.Equal(3, stack2.Count);
-    }
-
+    
     [Theory]
     [InlineData(1, new[] {"A", "B"}, new[] {"C", "D"}, new[] {"C", "D", "B"})]
     [InlineData(2, new[] {"A", "B"}, new[] {"C", "D"}, new[] {"C", "D", "B", "A"})]
     [InlineData(3, new[] {"A", "B"}, new[] {"C", "D"}, new[] {"C", "D", "B", "A"})]
     [InlineData(3, new string[] { }, new[] {"C", "D"}, new[] {"C", "D"})]
     public void _016_move_from_stack_to_stack_and_get_the_result(
-        int numberOfCratesToMove,
+        int moves,
         string[] fromStack,
         string[] toStack,
         string[] expectedToStack)
@@ -93,9 +79,9 @@ public class AdventDay5UnitTests
         var stack1 = cargo.CreateStackById(1).AddCrates(fromStack);
         var stack2 = cargo.CreateStackById(2).AddCrates(toStack);
 
-        cargo.Move(new Movement(stack1.Id, stack2.Id, numberOfCratesToMove));
+        cargo.Move(new Movement(stack1.Id, stack2.Id, moves));
 
-        Assert.True(cargo.GetStackById(2).SequenceEqual(expectedToStack));
+        Assert.True(stack2.SequenceEqual(expectedToStack));
     }
 
     [Fact]
