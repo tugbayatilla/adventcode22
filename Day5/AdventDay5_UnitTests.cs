@@ -42,14 +42,6 @@ public class AdventDay5UnitTests
         Assert.IsType<Cargo>(_adventDay5.GetCargo());
     }
 
-    [Fact(Skip = $"same as {nameof(_005_cargo_has_one_crate_named_H_in_one_stack)}")]
-    public void _007_cargo_can_get_stack_by_id_returns_not_null()
-    {
-        var cargo = _adventDay5.GetCargo();
-        cargo.AddStack("H");
-        Assert.NotNull(cargo.GetStackById(1));
-    }
-
     [Fact()]
     public void _008_cargo_has_one_emtpy_stack()
     {
@@ -235,8 +227,8 @@ public class AdventDay5UnitTests
         Assert.Equal(result, _adventDay5.AfterRearrangementCratesFromTopOfEachStacks(filePath));
     }
 
-    [Theory(DisplayName = "this should fail")]
-    [InlineData("Day5/AdventDay5.data", "RMVWJPFGV")]
+    [Theory]
+    [InlineData("Day5/AdventDay5.data", "FWNSHLDNZ")]
     public void _028_part1_actual_data_result(string filePath, string result)
     {
         Assert.Equal(result, _adventDay5.AfterRearrangementCratesFromTopOfEachStacks(filePath));
@@ -287,15 +279,5 @@ public class AdventDay5UnitTests
         var after = cargo.CrateCount();
         
         Assert.Equal(before, after);
-    }
-
-    [Fact]
-    public void dummy_test()
-    {
-        var adventDay5Data = AdventUtils.ReadDataFromAFile("Day5/AdventDay5.data");
-        (Cargo cargo, _) = _adventDay5.ParseLines(adventDay5Data);
-        cargo.Draw();
-        
-        Assert.True(false);
     }
 }
