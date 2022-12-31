@@ -23,7 +23,7 @@ public class Cargo
 
         for (var i = 0; i < movingCount; i++)
         {
-            toStack.AddCrates(fromStack.RemoveCrates());
+            toStack.AddCrates(fromStack.RemoveCrate());
         }
     }
 

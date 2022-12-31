@@ -1,5 +1,3 @@
-using System.Collections;
-
 namespace AdventOfCode22.Day5;
 
 public record AdventStack(int Id)
@@ -13,14 +11,14 @@ public record AdventStack(int Id)
         return this;
     }
 
-    public bool SequenceEqual(string[] collection)
+    public bool IsEqual(string[] collection)
     {
         return _stack.ToArray().Reverse().SequenceEqual(collection);
     }
 
     public int Count => _stack.Count;
 
-    public string RemoveCrates()
+    public string RemoveCrate()
     {
         return _stack.Pop();
     }

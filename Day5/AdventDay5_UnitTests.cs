@@ -80,7 +80,7 @@ public class AdventDay5UnitTests
 
         cargo.Move(new Movement(stack1.Id, stack2.Id, moves));
 
-        Assert.True(stack2.SequenceEqual(expectedToStack));
+        Assert.True(stack2.IsEqual(expectedToStack));
     }
 
     [Fact]
@@ -109,7 +109,7 @@ public class AdventDay5UnitTests
         var stackWithTwoCrates = new[] {"[A]", "[B]", " 1 "};
         (Cargo cargo, _) = _adventDay5.ParseLines(stackWithTwoCrates);
 
-        Assert.True(cargo.GetStackById(1).SequenceEqual(new[] {"B", "A"}));
+        Assert.True(cargo.GetStackById(1).IsEqual(new[] {"B", "A"}));
     }
 
     [Fact]
@@ -130,7 +130,7 @@ public class AdventDay5UnitTests
         var lines = AdventUtils.ReadDataFromAFile(filePath);
         (Cargo cargo, _) = _adventDay5.ParseLines(lines);
 
-        Assert.True(cargo.GetStackById(stackId).SequenceEqual(crates));
+        Assert.True(cargo.GetStackById(stackId).IsEqual(crates));
     }
 
     [Theory]
@@ -239,7 +239,7 @@ public class AdventDay5UnitTests
             cargo.Move(movements.GetByIndex(i));
         }
 
-        Assert.True(cargo.GetStackById(stackId).SequenceEqual(lastStateOfCrates));
+        Assert.True(cargo.GetStackById(stackId).IsEqual(lastStateOfCrates));
     }
     
     [Theory]
