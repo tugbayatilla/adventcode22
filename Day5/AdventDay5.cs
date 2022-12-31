@@ -96,7 +96,7 @@ public class AdventDay5
             var crateName = GetCrateNameFromRawDefinition(crate);
 
             var stack = cargo.GetStackById(index + 1);
-            stack.Add(crateName);
+            stack.AddCrates(crateName);
         }
     }
 
@@ -120,7 +120,7 @@ public class AdventDay5
         for (var stackId = 1; stackId <= cargo.StackCount(); stackId++)
         {
             var stack = cargo.GetStackById(stackId);
-            result += stack.LastOrDefault();
+            result += stack.GetTopCrateOrEmpty();
         }
 
         return result;

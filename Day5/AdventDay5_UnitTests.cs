@@ -7,14 +7,13 @@ public class AdventDay5UnitTests
     [Fact]
     public void _002_cargo_has_one_emtpy_stack()
     {
-        var stack = _adventDay5.GetCargo().CreateStackById(1);
-        Assert.Empty(stack);
+        Assert.Equal(0, _adventDay5.GetCargo().CreateStackById(1).Count);
     }
 
     [Fact]
     public void _003_cargo_has_one_crate_in_one_stack()
     {
-        Assert.Single(_adventDay5.GetCargo().CreateStackById(1).AddCrates("A"));
+        Assert.Equal(1, _adventDay5.GetCargo().CreateStackById(1).AddCrates("A").Count);
     }
 
     [Fact]
@@ -23,7 +22,7 @@ public class AdventDay5UnitTests
         var cargo = _adventDay5.GetCargo();
         cargo.CreateStackById(1).AddCrates("A", "B");
 
-        Assert.Equal(2, cargo.GetStackById(1).Count());
+        Assert.Equal(2, cargo.GetStackById(1).Count);
     }
 
     [Fact]
@@ -32,7 +31,7 @@ public class AdventDay5UnitTests
         var cargo = _adventDay5.GetCargo();
         cargo.CreateStackById(1).AddCrates("H");
         
-        var firstCrate = cargo.GetStackById(1).First();
+        var firstCrate = cargo.GetStackById(1).GetCrateByIndex(0);
         Assert.Equal("H", firstCrate);
     }
 
@@ -176,7 +175,7 @@ public class AdventDay5UnitTests
             cargo.Move(movements.GetByIndex(i));
         }
 
-        Assert.Equal(numberOfCrates, cargo.GetStackById(stackId).Count());
+        Assert.Equal(numberOfCrates, cargo.GetStackById(stackId).Count);
     }
 
     [Theory]

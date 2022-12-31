@@ -23,10 +23,7 @@ public class Cargo
 
         for (var i = 0; i < movingCount; i++)
         {
-            var lastCrateFromStack = fromStack.Last();
-            fromStack.Remove(lastCrateFromStack);
-
-            toStack.Add(lastCrateFromStack);
+            toStack.AddCrates(fromStack.RemoveCrates());
         }
     }
 
@@ -54,7 +51,7 @@ public class Cargo
             {
                 if (stack.Count > i)
                 {
-                    line += $" [{stack[i]}] ";
+                    line += $" [{stack.GetCrateByIndex(i)}] ";
                 }
                 else
                 {
