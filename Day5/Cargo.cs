@@ -3,6 +3,7 @@ namespace AdventOfCode22.Day5;
 public class Cargo
 {
     private readonly List<AdventStack> _stackList = new();
+    public StackMoveStrategy MoveStrategy { get; set; } = new ();
 
     public AdventStack GetStackById(int stackId)
     {

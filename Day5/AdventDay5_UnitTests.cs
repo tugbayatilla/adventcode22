@@ -255,4 +255,11 @@ public class AdventDay5UnitTests
         
         Assert.Equal(before, after);
     }
+    
+    [Fact]
+    public void _031_cargo_is_using_stack_moving_strategy_as_default()
+    {
+        var cargo = _adventDay5.GetCargo();
+        Assert.IsType<StackMoveStrategy>(cargo.MoveStrategy);
+    }
 }
