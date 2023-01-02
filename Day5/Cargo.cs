@@ -9,7 +9,7 @@ public class Cargo
         MoveStrategy = new StackMoveStrategy(this);
     }
 
-    public StackMoveStrategy MoveStrategy { get; set; }
+    public IMoveStrategy MoveStrategy { get; set; }
 
     public AdventStack GetStackById(int stackId)
     {

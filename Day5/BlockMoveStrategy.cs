@@ -1,10 +1,10 @@
 namespace AdventOfCode22.Day5;
 
-public class StackMoveStrategy : IMoveStrategy
+public class BlockMoveStrategy : IMoveStrategy
 {
     private readonly Cargo cargo;
 
-    public StackMoveStrategy(Cargo cargo)
+    public BlockMoveStrategy(Cargo cargo)
     {
         this.cargo = cargo;
     }
@@ -16,9 +16,15 @@ public class StackMoveStrategy : IMoveStrategy
 
         var movingCount = fromStack.Count < movement.Move ? fromStack.Count : movement.Move;
 
+        var tempStack = new Stack<string>();
         for (var i = 0; i < movingCount; i++)
         {
-            toStack.AddCrates(fromStack.RemoveCrate());
+            tempStack.Push(fromStack.RemoveCrate());
+        }
+
+        foreach (var stack in tempStack)
+        {
+            toStack.AddCrates(stack);
         }
     }
 }

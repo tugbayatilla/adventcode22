@@ -274,4 +274,18 @@ public class AdventDay5UnitTests
 
         Assert.True(stack2.IsEqual(new[] {"C", "D", "B"}));
     }
+    
+    [Fact]
+    public void _033_block_movement_moves_the_crates()
+    {
+        var cargo = _adventDay5.GetCargo();
+        var stack1 = cargo.CreateStackById(1).AddCrates("A", "B");
+        var stack2 = cargo.CreateStackById(2).AddCrates("C", "D");
+
+        cargo.MoveStrategy = new BlockMoveStrategy(cargo);
+        
+        cargo.Move(new Movement(stack1.Id, stack2.Id, 2));
+
+        Assert.True(stack2.IsEqual(new[] {"C", "D", "A", "B"}));
+    }
 }
