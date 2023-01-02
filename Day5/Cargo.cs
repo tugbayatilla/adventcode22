@@ -3,7 +3,13 @@ namespace AdventOfCode22.Day5;
 public class Cargo
 {
     private readonly List<AdventStack> _stackList = new();
-    public StackMoveStrategy MoveStrategy { get; set; } = new ();
+
+    public Cargo()
+    {
+        MoveStrategy = new StackMoveStrategy(this);
+    }
+
+    public StackMoveStrategy MoveStrategy { get; set; }
 
     public AdventStack GetStackById(int stackId)
     {
@@ -17,15 +23,7 @@ public class Cargo
 
     public void Move(Movement movement)
     {
-        var fromStack = GetStackById(movement.From);
-        var toStack = GetStackById(movement.To);
-
-        var movingCount = fromStack.Count < movement.Move ? fromStack.Count : movement.Move;
-
-        for (var i = 0; i < movingCount; i++)
-        {
-            toStack.AddCrates(fromStack.RemoveCrate());
-        }
+        MoveStrategy.Move(movement);
     }
 
     public AdventStack CreateStackById(int stackId)

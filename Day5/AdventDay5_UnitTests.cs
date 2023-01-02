@@ -3,7 +3,7 @@ namespace AdventOfCode22.Day5;
 public class AdventDay5UnitTests
 {
     private readonly AdventDay5 _adventDay5 = new();
-    
+
     [Fact]
     public void _002_cargo_has_one_emtpy_stack()
     {
@@ -30,7 +30,7 @@ public class AdventDay5UnitTests
     {
         var cargo = _adventDay5.GetCargo();
         cargo.CreateStackById(1).AddCrates("H");
-        
+
         var firstCrate = cargo.GetStackById(1).GetCrateByIndex(0);
         Assert.Equal("H", firstCrate);
     }
@@ -61,7 +61,7 @@ public class AdventDay5UnitTests
         Assert.Equal(2, stack1.Count);
         Assert.Equal(2, stack2.Count);
     }
-    
+
     [Theory]
     [InlineData(1, new[] {"A", "B"}, new[] {"C", "D"}, new[] {"C", "D", "B"})]
     [InlineData(2, new[] {"A", "B"}, new[] {"C", "D"}, new[] {"C", "D", "B", "A"})]
@@ -241,7 +241,7 @@ public class AdventDay5UnitTests
 
         Assert.True(cargo.GetStackById(stackId).IsEqual(lastStateOfCrates));
     }
-    
+
     [Theory]
     [InlineData("Day5/AdventDay5.data")]
     public void _030_after_rearrangement_crate_numbers_should_be_same(string filePath)
@@ -252,14 +252,26 @@ public class AdventDay5UnitTests
         var before = cargo.CrateCount();
         _adventDay5.AfterRearrangementCratesFromTopOfEachStacks(filePath);
         var after = cargo.CrateCount();
-        
+
         Assert.Equal(before, after);
     }
-    
+
     [Fact]
     public void _031_cargo_is_using_stack_moving_strategy_as_default()
     {
         var cargo = _adventDay5.GetCargo();
         Assert.IsType<StackMoveStrategy>(cargo.MoveStrategy);
+    }
+
+    [Fact]
+    public void _032_stack_movement_moves_the_crates()
+    {
+        var cargo = _adventDay5.GetCargo();
+        var stack1 = cargo.CreateStackById(1).AddCrates("A", "B");
+        var stack2 = cargo.CreateStackById(2).AddCrates("C", "D");
+
+        cargo.MoveStrategy.Move(new Movement(stack1.Id, stack2.Id, 1));
+
+        Assert.True(stack2.IsEqual(new[] {"C", "D", "B"}));
     }
 }
