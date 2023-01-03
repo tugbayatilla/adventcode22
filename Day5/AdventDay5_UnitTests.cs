@@ -179,13 +179,6 @@ public class AdventDay5UnitTests
     }
 
     [Theory]
-    [InlineData("Day5/test02.data", "CMZ")]
-    public void _025_part1_result_After_Rearrangement_Crates_From_Top_Of_Each_Stacks(string filePath, string result)
-    {
-        Assert.Equal(result, _adventDay5.AfterRearrangementCratesFromTopOfEachStacks(filePath));
-    }
-
-    [Theory]
     [InlineData("Day5/test02.data", 3)]
     public void _026_Fix_cargo_stack_count_should_be_given(string filePath, int stackCount)
     {
@@ -193,20 +186,6 @@ public class AdventDay5UnitTests
         (Cargo cargo, _) = _adventDay5.ParseLines(lines);
 
         Assert.Equal(stackCount, cargo.StackCount());
-    }
-
-    [Theory]
-    [InlineData("Day5/test03.data", "ZGQCWCFG")]
-    public void _027_stack_does_not_have_any_crates(string filePath, string result)
-    {
-        Assert.Equal(result, _adventDay5.AfterRearrangementCratesFromTopOfEachStacks(filePath));
-    }
-
-    [Theory]
-    [InlineData("Day5/AdventDay5.data", "FWNSHLDNZ")]
-    public void _028_part1_actual_data_result(string filePath, string result)
-    {
-        Assert.Equal(result, _adventDay5.AfterRearrangementCratesFromTopOfEachStacks(filePath));
     }
 
     [Theory]
@@ -275,7 +254,7 @@ public class AdventDay5UnitTests
 
         Assert.True(stack2.IsEqual(new[] {"C", "D", "B"}));
     }
-    
+
     [Fact]
     public void _033_block_movement_moves_the_crates()
     {
@@ -284,17 +263,32 @@ public class AdventDay5UnitTests
         var stack2 = cargo.CreateStackById(2).AddCrates("C", "D");
 
         cargo.MoveStrategy = new BlockMoveStrategy(cargo);
-        
+
         cargo.Move(new Movement(stack1.Id, stack2.Id, 2));
 
         Assert.True(stack2.IsEqual(new[] {"C", "D", "A", "B"}));
     }
-    
+
     [Fact]
     public void _034_get_cargo_and_parse_file_must_be_same_instance()
     {
         (Cargo cargo, _) = _adventDay5.ParseLines(Enumerable.Empty<string>());
 
         Assert.Same(cargo, _adventDay5.GetCargo());
+    }
+
+    [Theory]
+    [InlineData("Day5/AdventDay5.data", "FWNSHLDNZ", typeof(StackMoveStrategy))]
+    [InlineData("Day5/AdventDay5.data", "RNRGDNFQG", typeof(BlockMoveStrategy))]
+    [InlineData("Day5/test03.data", "ZGQCWCFG", typeof(StackMoveStrategy))]
+    [InlineData("Day5/test02.data", "CMZ", typeof(StackMoveStrategy))]
+    public void _035_part2_actual_data_result(string filePath, string result, Type strategyType)
+    {
+        var cargo = _adventDay5.GetCargo();
+        cargo.MoveStrategy =
+            strategyType == typeof(BlockMoveStrategy)
+                ? new BlockMoveStrategy(cargo)
+                : new StackMoveStrategy(cargo);
+        Assert.Equal(result, _adventDay5.AfterRearrangementCratesFromTopOfEachStacks(filePath));
     }
 }
