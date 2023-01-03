@@ -1,6 +1,6 @@
 using System.Collections;
 
-namespace AdventOfCode22.Day5;
+namespace AdventOfCode22.Day5.domain;
 
 public class Movements : IEnumerable<Movement>
 {

@@ -1,7 +1,14 @@
+using AdventOfCode22.Day5.domain;
+using AdventOfCode22.Day5.strategies;
+
 namespace AdventOfCode22.Day5;
 
 public class AdventDay5UnitTests
 {
+    public const string MainDataFolderPath = "Day5/input/AdventDay5.data";
+    private const string Test01DataPath = "Day5/input/test01.data";
+    private const string Test02DataPath = "Day5/input/test02.data";
+    private const string Test03DataPath = "Day5/input/test03.data";
     private readonly AdventDay5 _adventDay5 = new();
 
     [Fact]
@@ -122,9 +129,9 @@ public class AdventDay5UnitTests
     }
 
     [Theory]
-    [InlineData("Day5/test01.data", 1, new[] {"Z", "N"})]
-    [InlineData("Day5/test01.data", 2, new[] {"M", "C", "D"})]
-    [InlineData("Day5/test01.data", 3, new[] {"P"})]
+    [InlineData(Test01DataPath, 1, new[] {"Z", "N"})]
+    [InlineData(Test01DataPath, 2, new[] {"M", "C", "D"})]
+    [InlineData(Test01DataPath, 3, new[] {"P"})]
     public void _021_in_test01_data_given_stack_contains_given_crates(string filePath, int stackId, string[] crates)
     {
         var lines = AdventUtils.ReadDataFromAFile(filePath);
@@ -146,10 +153,10 @@ public class AdventDay5UnitTests
     }
 
     [Theory]
-    [InlineData("Day5/test02.data", 0, 1, 2, 1)]
-    [InlineData("Day5/test02.data", 1, 3, 1, 3)]
-    [InlineData("Day5/test02.data", 2, 2, 2, 1)]
-    [InlineData("Day5/test02.data", 3, 1, 1, 2)]
+    [InlineData(Test02DataPath, 0, 1, 2, 1)]
+    [InlineData(Test02DataPath, 1, 3, 1, 3)]
+    [InlineData(Test02DataPath, 2, 2, 2, 1)]
+    [InlineData(Test02DataPath, 3, 1, 1, 2)]
     public void _023_in_test02_data_given_movements(string filePath, int movementIndex,
         int movementCount, int from, int to)
     {
@@ -160,10 +167,10 @@ public class AdventDay5UnitTests
     }
 
     [Theory]
-    [InlineData("Day5/test02.data", 0, 1, 2)]
-    [InlineData("Day5/test02.data", 0, 2, 3)]
-    [InlineData("Day5/test02.data", 0, 3, 1)]
-    [InlineData("Day5/test02.data", 1, 1, 3)]
+    [InlineData(Test02DataPath, 0, 1, 2)]
+    [InlineData(Test02DataPath, 0, 2, 3)]
+    [InlineData(Test02DataPath, 0, 3, 1)]
+    [InlineData(Test02DataPath, 1, 1, 3)]
     public void _024_in_test02_data_given_movements_applied_to_cargo_and_get_final(
         string filePath, int movementCount, int stackId, int numberOfCrates)
     {
@@ -179,7 +186,7 @@ public class AdventDay5UnitTests
     }
 
     [Theory]
-    [InlineData("Day5/test02.data", 3)]
+    [InlineData(Test02DataPath, 3)]
     public void _026_Fix_cargo_stack_count_should_be_given(string filePath, int stackCount)
     {
         var lines = AdventUtils.ReadDataFromAFile(filePath);
@@ -189,21 +196,21 @@ public class AdventDay5UnitTests
     }
 
     [Theory]
-    [InlineData("Day5/test02.data", 0, 1, new[] {"Z", "N"})]
-    [InlineData("Day5/test02.data", 0, 2, new[] {"M", "C", "D"})]
-    [InlineData("Day5/test02.data", 0, 3, new[] {"P"})]
-    [InlineData("Day5/test02.data", 1, 1, new[] {"Z", "N", "D"})]
-    [InlineData("Day5/test02.data", 1, 2, new[] {"M", "C"})]
-    [InlineData("Day5/test02.data", 1, 3, new[] {"P"})]
-    [InlineData("Day5/test02.data", 2, 1, new string[] { })]
-    [InlineData("Day5/test02.data", 2, 2, new[] {"M", "C"})]
-    [InlineData("Day5/test02.data", 2, 3, new[] {"P", "D", "N", "Z"})]
-    [InlineData("Day5/test02.data", 3, 1, new[] {"C", "M"})]
-    [InlineData("Day5/test02.data", 3, 2, new string[] { })]
-    [InlineData("Day5/test02.data", 3, 3, new[] {"P", "D", "N", "Z"})]
-    [InlineData("Day5/test02.data", 4, 1, new[] {"C"})]
-    [InlineData("Day5/test02.data", 4, 2, new[] {"M"})]
-    [InlineData("Day5/test02.data", 4, 3, new[] {"P", "D", "N", "Z"})]
+    [InlineData(Test02DataPath, 0, 1, new[] {"Z", "N"})]
+    [InlineData(Test02DataPath, 0, 2, new[] {"M", "C", "D"})]
+    [InlineData(Test02DataPath, 0, 3, new[] {"P"})]
+    [InlineData(Test02DataPath, 1, 1, new[] {"Z", "N", "D"})]
+    [InlineData(Test02DataPath, 1, 2, new[] {"M", "C"})]
+    [InlineData(Test02DataPath, 1, 3, new[] {"P"})]
+    [InlineData(Test02DataPath, 2, 1, new string[] { })]
+    [InlineData(Test02DataPath, 2, 2, new[] {"M", "C"})]
+    [InlineData(Test02DataPath, 2, 3, new[] {"P", "D", "N", "Z"})]
+    [InlineData(Test02DataPath, 3, 1, new[] {"C", "M"})]
+    [InlineData(Test02DataPath, 3, 2, new string[] { })]
+    [InlineData(Test02DataPath, 3, 3, new[] {"P", "D", "N", "Z"})]
+    [InlineData(Test02DataPath, 4, 1, new[] {"C"})]
+    [InlineData(Test02DataPath, 4, 2, new[] {"M"})]
+    [InlineData(Test02DataPath, 4, 3, new[] {"P", "D", "N", "Z"})]
     public void _029_in_test02_data_given_movements_applied_to_cargo_and_get_final_crates(
         string filePath,
         int movementCount,
@@ -222,7 +229,7 @@ public class AdventDay5UnitTests
     }
 
     [Theory]
-    [InlineData("Day5/AdventDay5.data")]
+    [InlineData(MainDataFolderPath)]
     public void _030_after_rearrangement_crate_numbers_should_be_same(string filePath)
     {
         var lines = AdventUtils.ReadDataFromAFile(filePath);
@@ -278,10 +285,10 @@ public class AdventDay5UnitTests
     }
 
     [Theory]
-    [InlineData("Day5/AdventDay5.data", "FWNSHLDNZ", typeof(StackMoveStrategy))]
-    [InlineData("Day5/AdventDay5.data", "RNRGDNFQG", typeof(BlockMoveStrategy))]
-    [InlineData("Day5/test03.data", "ZGQCWCFG", typeof(StackMoveStrategy))]
-    [InlineData("Day5/test02.data", "CMZ", typeof(StackMoveStrategy))]
+    [InlineData(MainDataFolderPath, "FWNSHLDNZ", typeof(StackMoveStrategy))]
+    [InlineData(MainDataFolderPath, "RNRGDNFQG", typeof(BlockMoveStrategy))]
+    [InlineData(Test03DataPath, "ZGQCWCFG", typeof(StackMoveStrategy))]
+    [InlineData(Test02DataPath, "CMZ", typeof(StackMoveStrategy))]
     public void _035_part2_actual_data_result(string filePath, string result, Type strategyType)
     {
         var cargo = _adventDay5.GetCargo();

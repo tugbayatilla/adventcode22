@@ -1,4 +1,6 @@
-namespace AdventOfCode22.Day5;
+using AdventOfCode22.Day5.domain;
+
+namespace AdventOfCode22.Day5.strategies;
 
 public class StackMoveStrategy : IMoveStrategy
 {

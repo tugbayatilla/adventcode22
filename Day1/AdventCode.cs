@@ -1,4 +1,4 @@
-namespace AdventOfCode22;
+namespace AdventOfCode22.Day1;
 
 public class AdventCode
 {

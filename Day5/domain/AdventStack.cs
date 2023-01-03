@@ -1,4 +1,4 @@
-namespace AdventOfCode22.Day5;
+namespace AdventOfCode22.Day5.domain;
 
 public record AdventStack(int Id)
 {

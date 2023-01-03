@@ -1,4 +1,6 @@
-namespace AdventOfCode22.Day5;
+using AdventOfCode22.Day5.strategies;
+
+namespace AdventOfCode22.Day5.domain;
 
 public class Cargo
 {

@@ -1,8 +1,9 @@
-namespace AdventOfCode22.Day5;
+namespace AdventOfCode22.Day5.domain;
 
 public class AdventDay5
 {
-    private readonly Cargo _cargo = new Cargo();
+    private readonly Cargo _cargo = new();
+    public const string FilePath = "Day5/AdventDay5.output";
 
     public Cargo GetCargo()
     {
@@ -128,9 +129,9 @@ public class AdventDay5
     {
         var lines = AdventUtils.ReadDataFromAFile(filePath);
         (Cargo cargo, Movements movements) = ParseLines(lines);
-        
-        DisplayMove(cargo, new Movement(0,0,0));
-        
+
+        DisplayMove(cargo, new Movement(0, 0, 0));
+
         foreach (var movement in movements)
         {
             cargo.Move(movement);
@@ -142,10 +143,8 @@ public class AdventDay5
 
     private void DisplayMove(Cargo cargo, Movement movement)
     {
-        var filePath = "Day5/AdventDay5.result";
-        File.AppendAllText(filePath, movement.ToString());
-        File.AppendAllText(filePath, cargo.Draw());
-        File.AppendAllText(filePath, $"-------------------------------{Environment.NewLine}");
+        File.AppendAllText(FilePath, movement.ToString());
+        File.AppendAllText(FilePath, cargo.Draw());
+        File.AppendAllText(FilePath, $"-------------------------------{Environment.NewLine}");
     }
-
 }
