@@ -262,7 +262,7 @@ public class AdventDay5UnitTests
         var stack1 = cargo.CreateStackById(1).AddCrates("A", "B");
         var stack2 = cargo.CreateStackById(2).AddCrates("C", "D");
 
-        cargo.MoveStrategy = new BlockMoveStrategy(cargo);
+        cargo.ChangeStrategy<BlockMoveStrategy>();
 
         cargo.Move(new Movement(stack1.Id, stack2.Id, 2));
 
@@ -285,10 +285,16 @@ public class AdventDay5UnitTests
     public void _035_part2_actual_data_result(string filePath, string result, Type strategyType)
     {
         var cargo = _adventDay5.GetCargo();
-        cargo.MoveStrategy =
-            strategyType == typeof(BlockMoveStrategy)
-                ? new BlockMoveStrategy(cargo)
-                : new StackMoveStrategy(cargo);
+        cargo.ChangeStrategy(strategyType);
         Assert.Equal(result, _adventDay5.AfterRearrangementCratesFromTopOfEachStacks(filePath));
+    }
+    
+    [Fact]
+    public void _036_change_strategy_of_cargo_with_generic_method()
+    {
+        var cargo = _adventDay5.GetCargo();
+        cargo.ChangeStrategy<BlockMoveStrategy>();
+
+        Assert.IsType<BlockMoveStrategy>(cargo.MoveStrategy);
     }
 }

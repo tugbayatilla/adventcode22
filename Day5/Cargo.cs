@@ -9,7 +9,7 @@ public class Cargo
         MoveStrategy = new StackMoveStrategy(this);
     }
 
-    public IMoveStrategy MoveStrategy { get; set; }
+    public IMoveStrategy MoveStrategy { get; private set; }
 
     public AdventStack GetStackById(int stackId)
     {
@@ -69,5 +69,15 @@ public class Cargo
         line += Environment.NewLine;
 
         return line;
+    }
+
+    public void ChangeStrategy<T>() where T: IMoveStrategy
+    {
+        ChangeStrategy(typeof(T));
+    }
+
+    public void ChangeStrategy(Type strategyType)
+    {
+        MoveStrategy = (IMoveStrategy)Activator.CreateInstance(strategyType, this);
     }
 }
