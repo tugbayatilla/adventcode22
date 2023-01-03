@@ -64,3 +64,10 @@ AdventDay5 adventDay5 = new();
 var day5Part1Result = adventDay5.AfterRearrangementCratesFromTopOfEachStacks("Day5/AdventDay5.data");
 Console.WriteLine($"Day5: {day5Part1Result} -- part1: After the rearrangement procedure completes, what crate ends up on top of each stack?");
 // RMVWJPFGV -> wrong answer
+
+AdventDay5 adventDay5Part2 = new();
+var day5Part2Cargo = adventDay5Part2.GetCargo();
+day5Part2Cargo.MoveStrategy = new BlockMoveStrategy(day5Part2Cargo);
+
+var day5Part2Result = adventDay5Part2.AfterRearrangementCratesFromTopOfEachStacks("Day5/AdventDay5.data");
+Console.WriteLine($"Day5: {day5Part2Result} -- part2: ");

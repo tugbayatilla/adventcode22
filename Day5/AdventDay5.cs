@@ -14,13 +14,11 @@ public class AdventDay5
 
     private Cargo ParseCargo(IEnumerable<string> lines)
     {
-        var cargo = new Cargo();
+        CreateStacksInCargo(lines, _cargo);
 
-        CreateStacksInCargo(lines, cargo);
+        CreateCratesInStacksInCargo(lines, _cargo);
 
-        CreateCratesInStacksInCargo(lines, cargo);
-
-        return cargo;
+        return _cargo;
     }
 
     private void CreateCratesInStacksInCargo(IEnumerable<string> lines, Cargo cargo)

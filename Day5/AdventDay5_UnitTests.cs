@@ -247,11 +247,12 @@ public class AdventDay5UnitTests
     public void _030_after_rearrangement_crate_numbers_should_be_same(string filePath)
     {
         var lines = AdventUtils.ReadDataFromAFile(filePath);
-        (Cargo cargo, _) = _adventDay5.ParseLines(lines);
+        var tempAdventDay5 = new AdventDay5();
+        (Cargo cargo, _) = tempAdventDay5.ParseLines(lines);
 
         var before = cargo.CrateCount();
         _adventDay5.AfterRearrangementCratesFromTopOfEachStacks(filePath);
-        var after = cargo.CrateCount();
+        var after = _adventDay5.GetCargo().CrateCount();
 
         Assert.Equal(before, after);
     }
@@ -287,5 +288,13 @@ public class AdventDay5UnitTests
         cargo.Move(new Movement(stack1.Id, stack2.Id, 2));
 
         Assert.True(stack2.IsEqual(new[] {"C", "D", "A", "B"}));
+    }
+    
+    [Fact]
+    public void _034_get_cargo_and_parse_file_must_be_same_instance()
+    {
+        (Cargo cargo, _) = _adventDay5.ParseLines(Enumerable.Empty<string>());
+
+        Assert.Same(cargo, _adventDay5.GetCargo());
     }
 }
