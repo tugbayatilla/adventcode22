@@ -10,4 +10,6 @@
 
 # Smells (WIP 3)
 
-- 
+- FindMarker method
+  - is static
+  - returns a value instead of exception
