@@ -7,4 +7,10 @@ public class AdventDay6UnitTests
     {
         Assert.Equal(0,ElfCommSystem.FindMarker(""));
     }
+    
+    [Fact]
+    public void Marker_is_zero_when_buffer_contains_less_than_four_chars()
+    {
+        Assert.Equal(0,ElfCommSystem.FindMarker("asd"));
+    }
 }
