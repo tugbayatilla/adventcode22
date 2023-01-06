@@ -13,4 +13,12 @@ public class AdventDay6UnitTests
     {
         Assert.Equal(0,ElfCommSystem.FindMarker("asd"));
     }
+    
+    [Fact]
+    public void Marker_is_four_when_buffer_only_contains_four_different_chars()
+    {
+        Assert.Equal(4,ElfCommSystem.FindMarker("abcd"));
+    }
+    
+    
 }

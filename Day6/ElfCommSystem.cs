@@ -4,6 +4,8 @@ public class ElfCommSystem
 {
     public static int FindMarker(string buffer)
     {
-        return 0;
+        if (buffer.Length < 4) return 0;
+        
+        return buffer.Length;
     }
 }
