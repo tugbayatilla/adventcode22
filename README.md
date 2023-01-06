@@ -34,4 +34,11 @@
 
 ### Day5
 
-- No comment
+- i have started this day multiple times from scratch because everytime when i want to make small steps, it lost my way.
+- the solution was creating navigator.md file to write goals and smells in it with wip limits. 
+- after part1, part2 was super easy to implement using strategy pattern.
+- code is super open for refactoring so i will one day comeback and play with it.
+
+### Day6
+
+- No comment yet.
