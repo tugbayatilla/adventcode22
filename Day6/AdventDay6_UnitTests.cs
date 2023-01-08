@@ -26,6 +26,19 @@ public class AdventDay6UnitTests
         Assert.Equal(marker,ElfCommSystem.FindMarker(buffer));
     }
 
+    
+    [Theory]
+    [InlineData("mjqjpqmgbljsphdztnvjfqwrcgsmlb", 19)]
+    [InlineData("bvwbjplbgvbhsrlpgdmjqwftvncz", 23)]
+    [InlineData("nppdvjthqldpwncqszvftbrmjlhg", 23)]
+    [InlineData("nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg", 29)]
+    [InlineData("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw", 26)]
+    public void change_distinct_char_length_changes_the_marker(string buffer, int marker)
+    {
+        ElfCommSystem.ChangeDistinctCharLenght(14);
+        Assert.Equal(marker,ElfCommSystem.FindMarker(buffer));
+    }
+
 
     
 }

@@ -2,7 +2,7 @@ namespace AdventOfCode22.Day6;
 
 public class ElfCommSystem
 {
-    private const int ChunkSize = 4;
+    private static int ChunkSize = 4;
 
     public static int FindMarker(string buffer)
     {
@@ -30,5 +30,10 @@ public class ElfCommSystem
         }
 
         return true;
+    }
+
+    public static void ChangeDistinctCharLenght(int distinctCharLenght)
+    {
+        ChunkSize = distinctCharLenght;
     }
 }
