@@ -78,7 +78,11 @@ var day5Part2Result =
     adventDay5Part2.AfterRearrangementCratesFromTopOfEachStacks(AdventDay5UnitTests.MainDataFolderPath);
 Console.WriteLine($"Day5: {day5Part2Result} -- part2: ");
 
-
+ElfCommSystem elfCommSystem = ElfCommSystem.Create();
 var buffer = File.ReadAllText("Day6/data/AdventDay6.data");
-var marker = ElfCommSystem.FindMarker(buffer);
+var marker = elfCommSystem.FindMarker(buffer);
 Console.WriteLine($"Day6: {marker} -- part1: How many characters need to be processed before the first start-of-packet marker is detected?");
+
+elfCommSystem.ChangeDistinctCharLenght(14);
+var marker2 = elfCommSystem.FindMarker(buffer);
+Console.WriteLine($"Day6: {marker2} -- part2: After changing distinct char length");

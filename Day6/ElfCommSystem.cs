@@ -2,9 +2,9 @@ namespace AdventOfCode22.Day6;
 
 public class ElfCommSystem
 {
-    private static int ChunkSize = 4;
+    private int ChunkSize = 4;
 
-    public static int FindMarker(string buffer)
+    public int FindMarker(string buffer)
     {
         for (var i = 0; i <= buffer.Length - ChunkSize; i++)
         {
@@ -18,7 +18,7 @@ public class ElfCommSystem
         return 0;
     }
 
-    private static bool AllCharsAreDifferent(string chunk)
+    private bool AllCharsAreDifferent(string chunk)
     {
         for (int i = 0; i < chunk.Length; i++)
         {
@@ -32,8 +32,13 @@ public class ElfCommSystem
         return true;
     }
 
-    public static void ChangeDistinctCharLenght(int distinctCharLenght)
+    public void ChangeDistinctCharLenght(int distinctCharLenght)
     {
         ChunkSize = distinctCharLenght;
+    }
+
+    public static ElfCommSystem Create()
+    {
+        return new ElfCommSystem();
     }
 }

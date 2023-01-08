@@ -2,6 +2,14 @@ namespace AdventOfCode22.Day6;
 
 public class AdventDay6UnitTests
 {
+    private readonly ElfCommSystem _elfCommSystem;
+
+    public AdventDay6UnitTests()
+    {
+        _elfCommSystem = ElfCommSystem.Create();
+    }
+    
+    
     [Theory]
     [InlineData("", 0)]
     [InlineData("asd", 0)]
@@ -14,7 +22,7 @@ public class AdventDay6UnitTests
     [InlineData("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw", 11)]
     public void Marker_finds_when_buffer_given(string buffer, int marker)
     {
-        Assert.Equal(marker,ElfCommSystem.FindMarker(buffer));
+        Assert.Equal(marker,_elfCommSystem.FindMarker(buffer));
     }
     
     [Theory]
@@ -23,7 +31,7 @@ public class AdventDay6UnitTests
     public void Marker_found_with_given_file(string filePath, int marker)
     {
         var buffer = File.ReadAllText(filePath);
-        Assert.Equal(marker,ElfCommSystem.FindMarker(buffer));
+        Assert.Equal(marker,_elfCommSystem.FindMarker(buffer));
     }
 
     
@@ -35,8 +43,8 @@ public class AdventDay6UnitTests
     [InlineData("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw", 26)]
     public void change_distinct_char_length_changes_the_marker(string buffer, int marker)
     {
-        ElfCommSystem.ChangeDistinctCharLenght(14);
-        Assert.Equal(marker,ElfCommSystem.FindMarker(buffer));
+        _elfCommSystem.ChangeDistinctCharLenght(14);
+        Assert.Equal(marker,_elfCommSystem.FindMarker(buffer));
     }
 
 
