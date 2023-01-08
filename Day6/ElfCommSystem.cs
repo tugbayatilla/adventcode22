@@ -8,18 +8,16 @@ public class ElfCommSystem
     {
         if (buffer.Length < 4) return 0;
 
-        int markerIndex = 0;
         for (var i = 0; i <= buffer.Length - ChunkSize; i++)
         {
             var chunk = buffer.Substring(i, ChunkSize);
             if (AllCharsAreDifferent(chunk))
             {
-                markerIndex = i + ChunkSize;
-                break;
+                return i + ChunkSize;
             }
         }
 
-        return markerIndex;
+        return 0;
     }
 
     private static bool AllCharsAreDifferent(string chunk)
