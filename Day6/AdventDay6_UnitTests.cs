@@ -17,5 +17,14 @@ public class AdventDay6UnitTests
         Assert.Equal(marker,ElfCommSystem.FindMarker(buffer));
     }
     
+    [Theory]
+    [InlineData("Day6/data/test01.data", 5)]
+    public void Marker_found_with_given_file(string filePath, int marker)
+    {
+        var buffer = File.ReadAllText(filePath);
+        Assert.Equal(marker,ElfCommSystem.FindMarker(buffer));
+    }
+
+
     
 }
