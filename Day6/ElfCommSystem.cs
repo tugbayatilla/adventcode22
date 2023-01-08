@@ -6,8 +6,6 @@ public class ElfCommSystem
 
     public static int FindMarker(string buffer)
     {
-        if (buffer.Length < 4) return 0;
-
         for (var i = 0; i <= buffer.Length - ChunkSize; i++)
         {
             var chunk = buffer.Substring(i, ChunkSize);
