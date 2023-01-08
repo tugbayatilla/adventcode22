@@ -19,6 +19,7 @@ public class AdventDay6UnitTests
     
     [Theory]
     [InlineData("Day6/data/test01.data", 5)]
+    [InlineData("Day6/data/AdventDay6.data", 1848)]
     public void Marker_found_with_given_file(string filePath, int marker)
     {
         var buffer = File.ReadAllText(filePath);
