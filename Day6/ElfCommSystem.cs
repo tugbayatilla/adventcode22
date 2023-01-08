@@ -22,7 +22,7 @@ public class ElfCommSystem
     {
         for (int i = 0; i < chunk.Length; i++)
         {
-            var restChunk = chunk.Clone().ToString().Remove(i, 1);
+            var restChunk = chunk.Remove(i, 1);
             if (restChunk.Contains(chunk[i]))
             {
                 return false;
