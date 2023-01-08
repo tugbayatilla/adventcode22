@@ -6,6 +6,7 @@ using AdventOfCode22.Day4;
 using AdventOfCode22.Day5;
 using AdventOfCode22.Day5.domain;
 using AdventOfCode22.Day5.strategies;
+using AdventOfCode22.Day6;
 
 AdventCode adventDay1 = new();
 var content = adventDay1.ReadDataFromFile("Day1/adventDay1.data");
@@ -39,10 +40,11 @@ foreach (var items in rucksackItems)
     var errorChar = adventDay3.FindErrorInItems(items);
     adventDay3.IdentifyAndStorePriorityItem(errorChar);
 }
+
 Console.WriteLine($"Day3: {adventDay3.SumOfPriorities()} --the sum of the priorities");
 
 adventDay3 = new();
-for (int i = 0; i < rucksackItems.Count(); i+=3)
+for (int i = 0; i < rucksackItems.Count(); i += 3)
 {
     var rucksackForAGroup = rucksackItems.Skip(i).Take(3).ToArray();
     var badge = adventDay3.FindBadge(rucksackForAGroup);
@@ -65,11 +67,18 @@ Console.WriteLine($"Day4: {countPartially} -- part2: how many assignment pairs d
 
 AdventDay5 adventDay5 = new();
 var day5Part1Result = adventDay5.AfterRearrangementCratesFromTopOfEachStacks(AdventDay5UnitTests.MainDataFolderPath);
-Console.WriteLine($"Day5: {day5Part1Result} -- part1: After the rearrangement procedure completes, what crate ends up on top of each stack?");
+Console.WriteLine(
+    $"Day5: {day5Part1Result} -- part1: After the rearrangement procedure completes, what crate ends up on top of each stack?");
 
 
 AdventDay5 adventDay5Part2 = new();
 var day5Part2Cargo = adventDay5Part2.GetCargo();
 day5Part2Cargo.ChangeStrategy<BlockMoveStrategy>();
-var day5Part2Result = adventDay5Part2.AfterRearrangementCratesFromTopOfEachStacks(AdventDay5UnitTests.MainDataFolderPath);
+var day5Part2Result =
+    adventDay5Part2.AfterRearrangementCratesFromTopOfEachStacks(AdventDay5UnitTests.MainDataFolderPath);
 Console.WriteLine($"Day5: {day5Part2Result} -- part2: ");
+
+
+var buffer = File.ReadAllText("Day6/data/AdventDay6.data");
+var marker = ElfCommSystem.FindMarker(buffer);
+Console.WriteLine($"Day6: {marker} -- part1: How many characters need to be processed before the first start-of-packet marker is detected?");
