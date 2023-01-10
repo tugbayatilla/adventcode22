@@ -41,4 +41,16 @@
 
 ### Day6
 
-- No comment yet.
+- it was relatively easy to implement.
+- implementing part2 took only 5 min
+- i might approach smaller
+- i did not like to implement theory because it is not so clear which Inline data is doing what!
+- i used navigator.md file again, it helped a lot but at the end i forgot to clean-up.
+- new decisions from my side for the navigator
+  - keep the data in it
+  - remove wip
+  - always add as task so i can mark as completed.
+
+### Day7
+
+- no comment yet.
